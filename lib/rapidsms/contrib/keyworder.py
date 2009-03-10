@@ -46,7 +46,6 @@ class Keyworder(object):
         return re.compile(self.pattern % str, re.IGNORECASE)
 
     def __call__(self, *regex_strs):
-        print 'called with %s' % (', '.join(regex_strs))
         def decorator(func):
 
             # make the current prefix into something
@@ -74,10 +73,20 @@ class Keyworder(object):
         return decorator
 
     def match(self, sself, str):
-        print self.regexen
         for pat, func in self.regexen:
-            print str 
             match = pat.match(str)
             if match:
                 return (func, match.groups())
+        # TODO proper error handling
         print "No method called %s" % (str)
+
+    # a semantic way to add a default
+    # handler (when nothing else is matched)
+    def blank(self):
+        return self.__call__("")
+    
+    # another semantic way to add a catch-all
+    # most useful with a prefix for catching
+    # invalid syntax and responding with help
+    def invalid(self):
+        return self.__call__("(whatever)")
