@@ -9,3 +9,4 @@ class App(rapidsms.app.App):
     def handle(self, msg):
         for r in Responder.objects.filter(trigger=msg.text):
             msg.respond(r.response)
+            return True
