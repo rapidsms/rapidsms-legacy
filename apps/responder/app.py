@@ -6,10 +6,6 @@ from models import *
 
 class App(rapidsms.app.App):
     
-    def __init__(self, router):
-        super(rapidsms.app.App, self).__init__()
-        self.name = "Responder"
-
     def handle(self, msg):
         for r in Responder.objects.filter(trigger=msg.text):
             msg.respond(r.response)
