@@ -1,11 +1,11 @@
 import os
 
-import poll.views as pv
+import views as pv
 
 # magic admin stuff (remove during prod)
 from django.conf.urls.defaults import *
-from django.contrib import admin
-admin.autodiscover()
+#from django.contrib import admin
+#admin.autodiscover()
 
 urlpatterns = patterns('',
 
@@ -19,8 +19,12 @@ urlpatterns = patterns('',
 
 	# poll views (move to poll/urls.py)
 	(r'^$', pv.dashboard),
-	(r'^question/(?P<id>\d+)$', pv.dashboard),
-	(r'^add$', pv.add_question),
+	(r'^dashboard$', pv.dashboard),
+	(r'^dashboard/(?P<id>\d+)$', pv.dashboard),
+	(r'^questions$', pv.manage_questions),
+	(r'^question/(?P<id>\d+)$', pv.manage_questions),
+	(r'^question/(?P<id>\d+)/edit$', pv.edit_question),
+	(r'^question/add$', pv.add_question),
 	(r'^log$', pv.message_log),
 	
 	# ajax
@@ -28,5 +32,5 @@ urlpatterns = patterns('',
 	(r'^correct/(?P<id>\d+)$', pv.correction),\
 
     # enable the django magic admin
-    (r'^admin/(.*)', admin.site.root),
+    #(r'^admin/(.*)', admin.site.root),
 )

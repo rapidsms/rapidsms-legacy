@@ -8,6 +8,7 @@ from django.core.exceptions import ObjectDoesNotExist, MultipleObjectsReturned
 
 import rapidsms
 from rapidsms.message import Message
+from rapidsms.connection import Connection
 from rapidsms.parsers.keyworder import * 
 
 # import poll-specific models as p because
@@ -75,7 +76,7 @@ class App(rapidsms.app.App):
     @kw.blank()
     @kw("(whatever)")
     def subscribe(self, message, blah=None):
-        r, created = p.Respondant.subscribe(message.caller, message.backend)
+        r, created = p.Respondant.subscribe(message.connection)
         
         # acknowledge with an appropriate message
         if created: message.respond(STR["subscribe"])
@@ -89,7 +90,7 @@ class App(rapidsms.app.App):
     @kw.blank()
     @kw("(whatever)")
     def unsubscribe(self, message, blah=None):
-        r, created = p.Respondant.unsubscribe(message.caller, message.backend)
+        r, created = p.Respondant.unsubscribe(message.connection)
         message.respond(STR["unsubscribe"])
 
     # SUBMIT AN ANSWER --------------------------------------------------------
@@ -98,10 +99,10 @@ class App(rapidsms.app.App):
         # make a poll.Message out of the rapidsms.models.Message
         # because utils.parse_message expects a poll.Message
         mess = p.Message.objects.create(is_outgoing=False,\
-            phone=message.caller, text=message.text)
+            connection=message.connection, text=message.text)
 
         # ensure that the caller is subscribed
-        r, created = p.Respondant.subscribe(message.caller, message.backend)
+        r, created = p.Respondant.subscribe(message.connection)
         # if no question is currently running, then
         # we can effectively ignore the incoming sms,
         # but should notify the caller anyway
@@ -112,15 +113,93 @@ class App(rapidsms.app.App):
         # pass along the rapidsms.models.Message.backend with the
         # poll.Message object so that parse_message can check that
         # the respondant is subscribed
-        # yes this is strange but is a result of porting existing
-        # poll code into rapidsms 
-        parsed = utils.parse_message(mess, ques, message.backend)
+        parsed = utils.parse_message(mess, ques)
 
         # send an appropriate response to the caller
         if parsed:  
-            #graph.graph_entries(ques)
+            graph.graph_entries(ques)
             message.respond(STR["thanks"])
 
         else:       message.respond(STR["thanks_unparseable"])
 
-    # TODO port broadcast and broadcast_question functions
+	# BROADCAST FUNCTIONS ----------------------------------------------------------
+	
+	def broadcast_question(question):
+
+		# gather active respondants
+		respondants = p.Respondant.objects.filter(is_active=True)
+		sending = 0
+
+		# message to be blasted
+		broadcast = question.text
+
+		# unless this is a free text question,
+		# add the answer choices to the broadcast message
+		if question.type != 'F':
+			answers = p.Answer.objects.filter(question=question.pk)
+			for a in answers:
+				broadcast = broadcast + '\n ' + a.choice + ' - ' + a.text
+
+		# blast the broadcast message to our active respondants
+		# and increment the counter
+		for r in respondants:
+			r.connection.backend.send(r.connection.identity, broadcast)
+			sending += 1
+			self.info('[broadcaster] Blasted to %d of %d numbers...' % (sending, len(respondants)))
+
+		# save number broadcasted to db
+		question.sent_to = sending
+		question.save()
+
+		return '[broadcaster] Blasted %s to %d numbers with %d failures' % \
+				(broadcast, sending, (len(respondants) - sending))
+
+
+	def broadcaster(seconds=60, wake_hour=8, sleep_hour=21):
+		self.info("Starting Broadcaster...", "init")
+		while True:
+			
+			# only broadcast while people are awake. otherwise, we'll be sending
+			# people messages at 12:01AM, which probably won't go down so well
+			hour = time.localtime()[3]
+			if wake_hour < hour < sleep_hour:
+				
+				# if the current question has not been sent,
+				# broadcaster will broadcast it
+				q = p.Question.current()
+				if q:
+				
+					# if this question hasn't been 'sent_to' anyone yet,
+					# we can assume that it should be broadcast now
+					if not q.sent_to:
+						self.info("Broadcasting new question")
+						broadcast_question(q)
+					
+					# already sent, so we have nothing to do
+					# i don't think we really need to log this...
+					#else: app.log("Current question was already broadcast")
+					else: pass
+				
+				# when in production, there should probably ALWAYS
+				# be an active question; otherwise, anyone texting
+				# in will receive an error -- so highlight this
+				# as a warning in the screen log
+				else: self.info("No current question", "warn")
+			
+			# we are outside of waking hours, so do nothing
+			else:
+				self.info("Broadcast disabled from %d:00 to %d:00" %\
+						(sleep_hour, wake_hour))
+			
+			# wait until it's time
+			# to check again (60s)
+			time.sleep(seconds)
+
+	# BROADCAST THREAD -------------------------------------------------------------
+
+	self.info("[broadcaster] Starting up...")
+
+	# interval to check for broadcasting (in seconds)
+	broadcast_interval = 30
+	# start a thread for broadcasting
+	thread.start_new_thread(broadcaster, (broadcast_interval,))
