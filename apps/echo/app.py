@@ -12,3 +12,4 @@ class App(rapidsms.app.App):
             response = self.prefix.sub("",message.text)
             self.debug("responding with %s", response)
             message.respond(response)
+	    return True
