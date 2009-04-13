@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/buppn/env python
 # vim: ai ts=4 sts=4 et sw=4
 
 from django.db import models
@@ -7,17 +7,17 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes import generic
 from datetime import date
-
+import re
 
 class Validator():
-    
+    '''An interface that does validation.  The default implementation does nothing'''
     def get_validation_errors(self, content):
         '''Returns any errors with this content'''
         # by default this implementation will do nothing
         pass
 
 class Validatable():
-    '''Class to extend to allow validaiton.  The validator property should 
+    '''Class to extend to allow validation.  The validator property should 
     be overridden with a custom implementation''' 
     
     _validator = Validator()
@@ -25,98 +25,120 @@ class Validatable():
     def _get_validator(self):
         return self._validator
     def _set_validator(self, validator):
-        # todo: check the type of this and make sure it's a valid Validator
         self._validator = validator
     validator = property(_get_validator, _set_validator, None, None)
     
     def get_validation_errors(self, form):
         #print "in Validatable, next call will generate errors"
         return self._validator.get_validation_errors(form)
+        
 
-    def __unicode__(self):
-        return "%s" % (self.type)
+class Alerter():
+    '''An interface that does alerts.  The default implementation does nothing'''
+    def get_alerts(self, content):
+        '''Returns any alerts generated from this content'''
+        # by default this implementation will do nothing
+        pass
+
+class Alertable():
+    '''Class to extend to allow alerts.  The alerter property should 
+    be overridden with a custom implementation''' 
+    
+    _alerter = Alerter()
+    
+    def _get_alerter(self):
+        return self._alerter
+    def _set_alerter(self, alerter):
+        self._alerter = alerter
+    alerter = property(_get_alerter, _set_alerter, None, None)
+    
+    def get_alerts(self, form):
+        #print "in Alertable, next call will generate alerts"
+        return self._alerter.get_alerts(form)
+        
 
 
 class Reporter(models.Model):
-        first_name = models.CharField(max_length=100, blank=True, null=True)
-        last_name = models.CharField(max_length=100, blank=True, null=True)
-        nickname = models.CharField(max_length=100, blank=True, null=True)
-        connection = models.CharField(max_length=100, blank=True, null=True)
-        location = models.ForeignKey("Location")
-        role = models.ForeignKey("Role")
+    first_name = models.CharField(max_length=100, blank=True, null=True)
+    last_name = models.CharField(max_length=100, blank=True, null=True)
+    nickname = models.CharField(max_length=100, blank=True, null=True)
+    connection = models.CharField(max_length=100, blank=True, null=True)
+    location = models.ForeignKey("Location")
+    role = models.ForeignKey("Role")
 
-        def __unicode__(self):
-                return self.connection.identity
+    def __unicode__(self):
+            return self.connection.identity
         
 class Role(models.Model):
         name = models.CharField(max_length=160)
 
-class Report(models.Model, Validatable):
+class Form(models.Model, Validatable, Alertable):
     type = models.CharField(max_length=160)
-    supply = models.ForeignKey("Supply")
+    tokens = models.ManyToManyField("Token")
 
     def __init__ (self, *args, **kwargs):
-        super(Report, self).__init__(*args, **kwargs) 
+        super(Form, self).__init__(*args, **kwargs) 
         self.validator = FormValidator(self)
+        self.alerter = FormAlerter(self)
         
     def __unicode__(self):
-        return "%s %s" % (self.supply.code, self.type)
+        return "%s" % (self.type)
 
 class Token(models.Model):
-        name = models.CharField(max_length=160)
-        abbreviation = models.CharField(max_length=20)
-        regex = models.CharField(max_length=160)
-        sequence = models.IntegerField()
-        report = models.ForeignKey(Report)
+    name = models.CharField(max_length=160)
+    abbreviation = models.CharField(max_length=20)
+    regex = models.CharField(max_length=160)
+    sequence = models.IntegerField()
 
-        def __unicode__(self):
-            return "%s %s" % (self.report.type, self.abbreviation)
+    def __unicode__(self):
+        return "%s" % (self.abbreviation)
 
-class Supply(models.Model):
-        name = models.CharField(max_length=160, help_text="Name of supply")
-        code = models.CharField(max_length=20, blank=True, null=True,\
-            help_text="Abbreviation")
+class Domain(models.Model):
+    name = models.CharField(max_length=160, help_text="Name of form domain")
+    code = models.CharField(max_length=20, blank=True, null=True,\
+        help_text="Abbreviation")
+    forms = models.ManyToManyField(Form)
         
-        def __unicode__(self):
-                return self.name
+    def __unicode__(self):
+        return self.name
     
 class LocationType(models.Model):
-        name = models.CharField(max_length=160,\
-            help_text="Name of location type")
+    name = models.CharField(max_length=160,\
+        help_text="Name of location type")
         
-        def __unicode__(self):
-                return self.name
+    def __unicode__(self):
+        return self.name
     
 
 class Location(models.Model):
-        name = models.CharField(max_length=160, help_text="Name of location")
-        type = models.ForeignKey(LocationType, blank=True, null=True, help_text="Type of location")
-        latitude = models.DecimalField(max_digits=8, decimal_places=6, null=True, blank=True, help_text="The physical latitude of this location")
-        longitude = models.DecimalField(max_digits=8, decimal_places=6, null=True, blank=True, help_text="The physical longitude of this location")
+    name = models.CharField(max_length=160, help_text="Name of location")
+    type = models.ForeignKey(LocationType, blank=True, null=True, help_text="Type of location")
+    latitude = models.DecimalField(max_digits=8, decimal_places=6, null=True, blank=True, help_text="The physical latitude of this location")
+    longitude = models.DecimalField(max_digits=8, decimal_places=6, null=True, blank=True, help_text="The physical longitude of this location")
 
-        def __unicode__(self):
-                return self.name
+    def __unicode__(self):
+        return self.name
     
 class Stock(models.Model):
-        location = models.ForeignKey(Location)
-        supply = models.ForeignKey(Supply)
-        balance = models.PositiveIntegerField(blank=True, null=True, help_text="Amount of supply at warehouse")
+    location = models.ForeignKey(Location)
+    domain = models.ForeignKey(Domain)
+    balance = models.PositiveIntegerField(blank=True, null=True, help_text="Amount of supply at warehouse")
         
-        def __unicode__(self):
-                return "%s (%s units)" % (self.supply, self.balance)
+    def __unicode__(self):
+        return "%s (%s units)" % (self.domain, self.balance)
         
 class Shipment(models.Model):
-        origin = models.ForeignKey(Location)
-        destination = models.ForeignKey(Location, related_name='destination')
-        sent = models.DateTimeField()
-        received = models.DateTimeField()
-        shipment_id = models.PositiveIntegerField(blank=True, null=True)
+    origin = models.ForeignKey(Location)
+    destination = models.ForeignKey(Location, related_name='destination')
+    sent = models.DateTimeField()
+    received = models.DateTimeField()
+    shipment_id = models.PositiveIntegerField(blank=True, null=True, help_text="Waybill number")
 
 class Transaction(models.Model):
-        supply = models.ForeignKey(Supply)
-        amount_sent  = models.PositiveIntegerField(blank=True, null=True, help_text="Amount of supply being shipped")
-        amount_received = models.PositiveIntegerField(blank=True, null=True, help_text="Amount of supply being shipped")
-        shipment = models.ForeignKey(Shipment)  
+    domain = models.ForeignKey(Domain)
+    amount_sent  = models.PositiveIntegerField(blank=True, null=True, help_text="Amount of supply being shipped")
+    amount_received = models.PositiveIntegerField(blank=True, null=True, help_text="Amount of supply being shipped")
+    shipment = models.ForeignKey(Shipment)  
 
 class Notification(models.Model):
     reporter = models.ForeignKey(Reporter)
@@ -126,14 +148,12 @@ class Notification(models.Model):
     # do we want to save a resolver?
 
 
-
-    
 class FormValidator(Validator):
-    
+    '''Validator for forms, by passing off validation for each token'''
     def __init__ (self, form):
         self._form = form
         
-        tokens = Token.objects.all().filter(report=self._form)
+        tokens = Token.objects.all().filter(form=self._form)
         self._validators = {}
         for token in tokens:
             validators = TokenExistanceValidator.objects.all().filter(token=token) 
@@ -142,7 +162,7 @@ class FormValidator(Validator):
         
     def get_validation_errors(self, form):
         validation_errors = []
-        print self._validators
+        #print self._validators
         for token, validators in self._validators.items():
             print "token: %s" % token
             if form.has_key(token):
@@ -167,6 +187,7 @@ class TokenValidator(models.Model):
 
         
 class TokenExistanceValidator(TokenValidator):
+    '''Validator that can ensure a token exists in some other model.name db column'''
     lookup_type = models.ForeignKey(ContentType, verbose_name='type to check against')
     field_name = models.CharField(max_length = 100)
     
@@ -181,3 +202,26 @@ class TokenExistanceValidator(TokenValidator):
             return "%s not in list of %s %s" % (token, self.lookup_type.name, self.field_name) 
         return None
         
+class FormAlerter(Alerter):
+    '''Alerter for forms, by passing off alerts to a contained list'''
+    def __init__ (self, form):
+        self._form =form
+        self._alerters = RegexAlerter.objects.all().filter(form = self._form)
+
+    def get_alerts(self, msg):
+        alerts = []
+        for alerter in self._alerters:
+            alert = alerter.get_alerts(msg)
+            if (alert):
+                alerts.append(alert)
+        return alerts
+
+class RegexAlerter(models.Model, Alerter):
+    '''Alerter that raises an error any time a particular regex matches'''
+    form = models.ForeignKey(Form)
+    regex = models.CharField(max_length=100)
+    response = models.CharField(max_length=160)
+        
+    def get_alerts(self, msg):
+        if re.match(self.regex, msg):
+            return self.response
