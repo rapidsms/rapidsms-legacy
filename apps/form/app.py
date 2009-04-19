@@ -200,28 +200,30 @@ class App(rapidsms.app.App):
                     if type.upper() in form:
                         this_domain = Domain.objects.get(code__iexact=code.upper())
                         this_form = Form.objects.get(type__iexact=type)
-                        
+                        if hasattr(message, "reporter") and message.reporter:
+                            this_form.reporter = message.reporter
+                        else:
+                            # there was no reporter set.  We allow this
+                            # currently, but we may want to create one or 
+                            # respond here.
+                            pass
                         form_entry = FormEntry.objects.create(domain=this_domain, \
                             form=this_form, date=datetime.now())
                         # gather list of token tuples for this form type
                         tokens = form[type.upper()]
-
+                        
                         self.debug("FORM MATCH")
                         info = []
                         for t, d in zip(tokens, data):
                             if not d:
-                                self.debug("Empty data for token: %s.  This is not allowed." % t[0])
-                                message.respond("Empty data for token: %s.  This is not allowed." % t[0])
-                                return
+                                self.debug("Empty data for token: %s." % t[0])
+                                d = ""
                             this_token = Token.objects.get(abbreviation=t[0])
                             token_entry = TokenEntry.objects.create(\
                                 form_entry=form_entry, token=this_token, data=d)
                             # gather info for confirmation message, matching
                             # abbreviations from the token tuple to the received data
                             info.append("%s=%s" % (t[0], d or "??"))
-                        
-                        
-                        
                         
                         # call the validator methods, which return False on
                         # success, or a list of error messages on failure
@@ -253,8 +255,7 @@ class App(rapidsms.app.App):
                             message.respond("Invalid form.  %s" % ". ".join(validation_errors))
                             return
                         self.handled = True
-                        
-                        
+
                         # stop processing forms, move
                         # on to the next domain (!?)
                         break

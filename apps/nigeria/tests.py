@@ -8,7 +8,7 @@ from app import App
 
 class TestApp (TestScript):
     apps = (reporter_app.App, App,form_app.App, supply_app.App )
-    fixtures = ['nigeria_llin', 'kano_locations', 'kano_location_parents']
+    fixtures = ['nigeria_llin', 'kano_locations']
     
     def setUp(self):
         TestScript.setUp(self)
@@ -24,6 +24,18 @@ class TestApp (TestScript):
         self._testForms()
         self._testRoles()
         
+    def testScript(self):
+        a = """
+           8005551219 > llin register 20 dl secret crummy user
+           8005551219 < Hello cuser! You are now registered as Distribution point team leader at KANO State.
+           """
+        self.runScript(a)
+        # this should succeed because we just created him
+        Reporter.objects.get(alias="cuser")
+        dict = {"alias":"fail"}
+        # make sure checking a non-existant user fails
+        self.assertRaises(Reporter.DoesNotExist, Reporter.objects.get, **dict)     
+        
     testRegistration = """
            8005551212 > llin my status
            8005551212 < Sorry, I don't know who you are.
@@ -33,26 +45,43 @@ class TestApp (TestScript):
            8005551212 < I think you are are dummy user.
          """
     
+    testRegistrationErrors = """
+           12345 > llin my status
+           12345 < Sorry, I don't know who you are.
+           12345 > llin register 45 DL secret hello world 
+           12345 < Invalid form.  45 not in list of location codes
+           12345 > llin my status
+           12345 < Sorry, I don't know who you are.
+           12345 > llin register 20 pp secret hello world 
+           12345 < Invalid form.  pp not in list of role codes
+           12345 > llin my status
+           12345 < Sorry, I don't know who you are.
+           12345 > llin register 6803 AL secret hello world 
+           12345 < Invalid form.  6803 not in list of location codes. AL not in list of role codes
+           12345 > llin my status
+           12345 < Sorry, I don't know who you are.
+         """
+    
     testNets= """
            8005551213 > llin nets 2001 123 456 78 90
-           8005551213 < Invalid form.  You must register your phone before submitting data
+           8005551213 < Invalid form.  You must register your phone before submitting data: llin register <location> <role> <password> <name>
            8005551213 > llin register 2001 lf anothersecret net guy
            8005551213 < Hello nguy! You are now registered as LGA focal person at AJINGI LGA.
            8005551213 > llin nets 2001 123 456 78 90
            8005551213 < Received report for LLIN nets: expected=456, actual=78, location=AJINGI, distributed=123, discrepancy=90
            8005551213 > llin nets 2001 123 456 78 
-           8005551213 < Empty data for token: discrepancy.  This is not allowed.
+           8005551213 < Invalid form.  The following fields are required: discrepancy
          """
     
     testNetCards= """
            8005551214 > llin net cards 200201 123 456 78 
-           8005551214 < Invalid form.  You must register your phone before submitting data
+           8005551214 < Invalid form.  You must register your phone before submitting data: llin register <location> <role> <password> <name>
            8005551214 > llin register 200201 lf anothersecret card guy
            8005551214 < Hello cguy! You are now registered as LGA focal person at ALBASU CENTRAL Ward.
            8005551214 > llin net cards 200201 123 456 78 
            8005551214 < Received report for LLIN net cards: settlements=123, people=456, distributed=78, location=ALBASU CENTRAL
            8005551214 > llin net cards 200201 123 456  
-           8005551214 < Empty data for token: coupons.  This is not allowed.
+           8005551214 < Invalid form.  The following fields are required: coupons
          """
     
     def _testKanoLocations(self):
@@ -73,12 +102,11 @@ class TestApp (TestScript):
         kano = locations.get(type=state)
         self.assertEqual("KANO", kano.name)
         
-        # test edge and edge type generation.  
-        # TODO these don't play nice with new db's because the content type
-        # id's change.  We need a true workaround for this.
-        self.assertEqual(1, len(EdgeType.objects.all()))
-        parent_type = EdgeType.objects.all()[0]
-        self.assertEqual(528, len(Edge.objects.all()))
+        self.assertEqual(44, len(kano.children.all()))
+        
+        for lga in locations.filter(type=lga):
+            self.assertEqual(kano, lga.parent)
+        
         
     def _testForms(self):
         forms = Form.objects.all()
