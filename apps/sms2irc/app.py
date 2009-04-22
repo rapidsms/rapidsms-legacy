@@ -9,12 +9,8 @@ from rapidsms.message import Message
 class App(rapidsms.app.App):
 
     def start(self):
-        self.name = 'sms2irc'
-        self.irc_backend = None
-        for backend in self.router.backends:
-            if backend._name == 'irc':
-                self.irc_backend = backend
-                  
+        self.irc_backend = self.router.get_backend('irc')
+
     def parse(self, message):
         pass
             
