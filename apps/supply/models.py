@@ -7,7 +7,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes import generic
 from apps.form.models import Domain
-from apps.reporters.models import Location, Reporter
+from apps.reporters.models import Location, Reporter, PersistantConnection
 from datetime import date
 import re
 
@@ -26,6 +26,9 @@ class Shipment(models.Model):
     received = models.DateTimeField()
     shipment_id = models.PositiveIntegerField(blank=True, null=True, help_text="Waybill number")
 
+    def __unicode__(self):
+        return "%s (%s) ==> %s (%s)" % (self.origin.name, self.sent.date(), self.destination.name, self.received.date())
+    
 class Transaction(models.Model):
     FLAG_TYPES = (
         ('A', 'Amount received does not match amount issued'),
@@ -41,6 +44,9 @@ class Transaction(models.Model):
     receipt = models.ForeignKey('PartialTransaction', related_name='receipts')
     flag = models.CharField(blank=True, null=True, max_length=1, choices=FLAG_TYPES)
 
+    def __unicode__(self):
+        return "%s (%s) ==> %s (%s)" % (self.shipment.origin.name, self.amount_sent, self.shipment.destination.name, self.amount_received)
+    
 class PartialTransaction(models.Model):
     TRANSACTION_TYPES = (
         ('I', 'Issue'),
@@ -55,7 +61,8 @@ class PartialTransaction(models.Model):
         ('S', 'Reported stock does not match expected stock balance.'),
     )
     
-    reporter = models.ForeignKey(Reporter)
+    reporter = models.ForeignKey(Reporter, blank=True, null=True)
+    connection = models.ForeignKey(PersistantConnection, blank=True, null=True)
     domain = models.ForeignKey(Domain)
     origin = models.ForeignKey(Location, related_name='origins')
     destination = models.ForeignKey(Location, related_name='destinations')
@@ -68,6 +75,23 @@ class PartialTransaction(models.Model):
     status = models.CharField(max_length=1, choices=STATUS_TYPES)
     flag = models.CharField(blank=True, null=True, max_length=1, choices=FLAG_TYPES)
     
+    @staticmethod
+    def get_all_with_stock_updates(location):
+        '''Gets all transactions that involve adjusting the 
+           stock at the location passed in.  This entails either
+           a CONFIRMED ISSUE transaction FROM the location, or a 
+           CONFIRMED RECEIVE transaction TO the location'''
+        issues = PartialTransaction.objects.all().filter(origin=location).filter(type="I").filter(status="C")
+        receipts = PartialTransaction.objects.all().filter(destination=location).filter(type="R").filter(status="C") 
+        return issues | receipts 
+        
+    @staticmethod
+    def get_all_involving(location):
+        '''Gets all transactions that have either an origin
+           or a destination matching the location'''
+        return PartialTransaction.objects.all().filter(origin=location) | PartialTransaction.objects.all().filter(destination=location)  
+        
+        
     def __unicode__(self):
         return "%s reported %s of %s %s from %s to %s. (waybill: %s)" %(self.reporter, 
                                                                         self.type, 
@@ -95,3 +119,20 @@ class Notification(models.Model):
     resolved = models.DateTimeField(blank=True, null=True)
     # TODO do we want to save a resolver?
 
+
+
+# this is a signal that says that whenever a location is loaded,
+# if these models have also been loaded we should try to set the 
+# stock in that location
+def loc_stock_post_init(sender, **kwargs):
+    """Location post init signal that reads the stock from the stock table and 
+       sets it in the location object, if it is defined"""
+    instance = kwargs["instance"]
+    try:
+        instance.stock = Stock.objects.get(location=instance)
+    except Stock.DoesNotExist:
+        # this isn't a real error, we just don't have any stock information
+        instance.stock = None
+
+# this is the magic that glues the signal to the post load call
+models.signals.post_init.connect(loc_stock_post_init, sender=Location)
