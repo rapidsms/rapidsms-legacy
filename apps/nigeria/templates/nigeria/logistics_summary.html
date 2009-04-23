@@ -1,0 +1,136 @@
+{% extends "layout.html" %}
+{% block title %}Logistics Summary{% endblock %}
+{% block javascripts %}
+<!--[if IE]>
+<script language="javascript" type="text/javascript" src="/static/nigeria/js/excanvas.pack.js"></script>
+<![endif]-->
+<script language="javascript" type="text/javascript" src="/static/nigeria/js/jquery.flot.min.js"></script>
+<script language="javascript">
+$(document).ready(function() {
+//	data = [
+//	 { label: 'APK', data: [[0,10]]},
+//	 { label: 'DPO', data: [[1,20]]},
+//	 { label: 'PMS', data: [[2,50]]},
+//	 { label: 'AGO', data: [[3,20]]}
+//	];
+//	options = { pies: {show: true, labelWidth: 30, fontSize: 10, autoScale: true, fillOpacity: 1}};
+///	$.plot($('#piechart'), data, options);
+//$.plot($('#sl_ot'), stocklevels_overtime, {'lines': {show: true, fill: true}});
+//$.plot($('#sl_pl'), stocklevels_perlocation, {'bars':{show: true}});
+
+stock_loc_data = {{stock_per_loc_plot_data|safe}};
+stock_loc_options = {{stock_per_loc_plot_options|safe}};
+$.plot($("#sl_pl"), stock_loc_data , stock_loc_options );
+
+// add tooltip.  unfortunately this isn't working now
+$("#sl_pl").bind("plotclick", function (event, pos, item) {
+            if (item) {
+                $("#tooltip").remove();
+                var y = item.datapoint[1].toFixed(0);
+                showTooltip(item.pageX, item.pageY,
+                            item.series.label + " = " + y);
+            }
+                });
+       
+
+data_for_dates = {{stock_over_time_data|safe}};
+axis_for_dates =  {{stock_over_time_options|safe}};
+
+$.plot($('#sl_ot'), data_for_dates, axis_for_dates);
+
+data_for_child_dates = {{stock_over_time_child_data|safe}};
+axis_for_child_dates =  {{stock_over_time_child_options|safe}};
+
+$.plot($('#sl_ot_children'), data_for_child_dates, axis_for_child_dates);
+
+});
+
+     function showTooltip(x, y, contents) {
+        $('<div id="tooltip">' + contents + '</div>').css( {
+            position: 'absolute',
+            display: 'none',
+            top: y + 5,
+            left: x + 5,
+            border: '1px solid #fdd',
+            padding: '2px',
+            'background-color': '#fee',
+            opacity: 0.80
+        }).appendTo("body").fadeIn(200);
+    }
+
+
+</script>
+{% endblock %}
+{% block stylesheets %}
+<style>
+td {border-top: none}
+tr.variant-amount { background-color: #FFD6DD; }
+tr.variant-waybill { background-color: #FFD869; }
+tr.variant-incorrect { background-color: #FFD6DD; }
+</style>
+{% endblock %}
+{% block content %}
+<div class="split">
+  <div class = "location_summary">
+    <h3>Logistics information for {{location.name}}</h3>
+    <b>Current Stock: </b>{% if location.stock %}{{location.stock}}{% else %}None{% endif %}
+  </div> 
+  <table width="100%">
+    <td colspan="2">
+      <div class="module">
+        <h2>Stock Levels Over Time</h2>
+        <div id="sl_ot" style="height:350px;width:900;"></div>
+      </div>
+    </td>
+    <tr>
+      <td>
+        <div class="module">
+          <h2>Stock Levels Over Time For {{location.name}} Shipment Destinations</h2>
+	  <div id="sl_ot_children" style="height:350px;width:450px;">
+	  </div>
+        </div>
+      </td>
+      <td>
+	<div class="module">
+          <h2>Current Stock Levels at {{location.name}} Shipment Destinations</h2>
+	  <div id="sl_pl" style="height:350px;width:450px;">
+	  </div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <a name="st">
+		<div class="module">
+          <h2>Shipment Transactions</h2>
+			<table class="shipment_discrepancy" width="100%">
+			<thead><tr><th>Waybill No.</th><th>Date Sent</th><th>Date Received</th><th>From</th><th>To</th><th>Amount Sent</th><th>Amount Received</th></tr></thead>
+			<tbody>
+			{% for transaction in transactions_pager.object_list %}
+				<tr {% ifequal transaction.flag "W" %}class="variant-waybill"{% else %}{% ifequal transaction.flag "A" %}class="variant-amount"{% endifequal %}{% endifequal %}>
+                   <td>{{transaction.shipment.shipment_id}}</td>
+                   <td>{{transaction.shipment.sent|date:"M j, Y h:iA"}}</td>
+                   <td>{{transaction.shipment.received|date:"M j, Y h:iA"}}</td>
+                   <td><a href="/reports/logistics/summary/{{transaction.shipment.origin.id}}/">{{transaction.shipment.origin.name}}</a></td>
+				   <td><a href="/reports/logistics/summary/{{transaction.shipment.destination.id}}/">{{transaction.shipment.destination.name}}</a></td>
+				   <td>{{transaction.amount_sent}}</td>
+                   <td>{{transaction.amount_received}}</td>
+                </tr>
+			{% endfor %}
+			</tbody>
+			</table>
+			<div class="toolbar">
+				{% if transactions_pager.has_other_pages %}<a href="?page={{paginator.num_pages}}#st">Last &raquo;</a>{% endif %}
+				{% if transactions_pager.has_next %}<a href="?page={{transactions_pager.next_page_number}}#st">Next &rsaquo;</a>{% endif %}
+				<a href="javascript:;">Page {{page}} of {{paginator.num_pages}}</a>
+				<a href="?page={% if transactions_pager.previous_page_number %}{{transactions_pager.previous_page_number}}{% else %}1{% endif %}#st">&lsaquo; Prev</a>
+				<a href="?page=1#st">&laquo; First</a>
+			</div>
+        </div></a>
+      </td>
+    </tr>
+  </table>
+</div>
+</div>
+</div>
+{% endblock %}
