@@ -2,6 +2,7 @@
 # vim: ai ts=4 sts=4 et sw=4
 
 import rapidsms
+from rapidsms.message import StatusCodes
 import re
 
 class App(rapidsms.app.App):
@@ -14,5 +15,5 @@ class App(rapidsms.app.App):
         if not msg.responses:
             
             # TODO: i18n from the reporters app
-            msg.respond("Sorry, we didn't understand that message.")
+            msg.respond("Sorry, we didn't understand that message.", StatusCodes.GENERIC_ERROR)
             return True
