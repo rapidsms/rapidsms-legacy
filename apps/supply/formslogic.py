@@ -2,7 +2,7 @@
 # vim: ai ts=4 sts=4 et sw=4
 
 from django.core.exceptions import ObjectDoesNotExist, MultipleObjectsReturned
-
+from rapidsms.message import StatusCodes
 from models import *
 from apps.form.utils import *
 from apps.form.formslogic import FormsLogic
@@ -35,7 +35,7 @@ class SupplyFormsLogic(FormsLogic):
         # and create a new transaction
         self._match_partial_transaction(pending)
         
-    # Just hard coding this for now.  We might want to revisit this.
+    #TODO Just hard coding this for now.  We might want to revisit this.
     _form_lookups = {"issue" : {
                                 "origin" : "origin", 
                                 "dest" : "destination", 
@@ -76,8 +76,6 @@ class SupplyFormsLogic(FormsLogic):
         partial.status = "P"
         # gather partial transactions from the same place to the same place with
         # for the same stuff with the same waybill before we save the new one
-        # TODO? not checking for same phone reporter or connection currently
-        # should we?
         all_partials_to_amend = PartialTransaction.objects.filter(origin=partial.origin,\
             destination=partial.destination, shipment_id=partial.shipment_id,\
             domain=partial.domain, type=partial.type)
@@ -115,9 +113,9 @@ class SupplyFormsLogic(FormsLogic):
         partial.save()
         response = "Received report for %s %s: origin=%s, dest=%s, waybill=%s, amount=%s, stock=%s. If this is not correct, reply with CANCEL" % (
              partial.domain.code, form_entry.form.type, partial.origin, partial.destination, partial.shipment_id, partial.amount, partial.stock)  
+        message.respond(response, StatusCodes.OK)
         if not partial.reporter:
-            response = response + ". Please register your phone"
-        message.respond(response)
+            message.respond("Please register your phone.")
         self._notify_counterparty(partial)
         return partial
 
