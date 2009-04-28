@@ -5,6 +5,9 @@ from apps.reporters.models import Reporter, Location
 class App (rapidsms.app.App):
     def start (self):
         """Configure your app in the start phase."""
+        # we have to register our functions with the tree app
+        tree_app = self.router.get_app("tree")
+        tree_app.register_custom_transition("validate_pin", validate_pin)
         pass
 
     def parse (self, message):
@@ -77,3 +80,8 @@ class App (rapidsms.app.App):
     def stop (self):
         """Perform global app cleanup when the application is stopped."""
         pass
+
+def validate_pin(msg):
+    # todo
+    print "%s PIN validated!" % msg
+    return True
