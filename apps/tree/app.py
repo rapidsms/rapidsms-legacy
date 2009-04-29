@@ -3,6 +3,9 @@
 
 import rapidsms
 from models import *
+from apps.reporters.models import Reporter
+from i18n import get_translation as _
+from i18n import get_language 
 
 class App(rapidsms.app.App):
     
@@ -15,25 +18,15 @@ class App(rapidsms.app.App):
         self.last_message = last_message
     
     def handle(self, msg):
-        # first check if the caller is registered.  if not, register them.  this is very 
-        # similar to the polls app
-        try:
-            person = Person.objects.all().get(phone=msg.connection.identity)
-        except Person.DoesNotExist:
-            person = Person(phone=msg.connection.identity, name="unknown")
-            person.save()
-            self.debug("Person %s saved" % person)
-
-        
         # if this caller doesn't have a "question" attribute,
         # they're not currently answering a question tree, so
         # just search for triggers and return
-        sessions = Session.objects.all().filter(state__isnull=False).filter(person=person)
+        sessions = Session.objects.all().filter(state__isnull=False).filter(connection=msg.persistant_connection)
         if not sessions:
             try:
                 tree = Tree.objects.get(trigger=msg.text)
                 # start a new session for this person and save it
-                session = Session(person=person, tree=tree, state=tree.root_state)
+                session = Session(connection=msg.persistant_connection, tree=tree, state=tree.root_state)
                 session.save()
                 self.debug("session %s saved" % session)
                 #self.connections[msg.connection.identity] = tree.root_state
@@ -56,7 +49,7 @@ class App(rapidsms.app.App):
             transitions = Transition.objects.filter(current_state=state)
             found_transition = None
             for transition in transitions:
-                if self.matches(transition, msg.text):
+                if self.matches(transition.answer, msg.text):
                     found_transition = transition
                     break
                         
@@ -73,7 +66,7 @@ class App(rapidsms.app.App):
                     # self.connections.pop(msg.connection.identity)
                     return
                 else:
-                    flat_answers = " or ".join([trans.helper_text() for trans in transitions])
+                    flat_answers = " or ".join([trans.answer.helper_text() for trans in transitions])
                     msg.respond('"%s" is not a valid answer. You must enter %s' % (msg.text, flat_answers))
                     return True
             
@@ -116,12 +109,12 @@ class App(rapidsms.app.App):
         
         # if there is a next question ready to ask
         # (and this includes THE FIRST), send it along
-        sessions = Session.objects.all().filter(state__isnull=False).filter(person=person)
+        sessions = Session.objects.all().filter(state__isnull=False).filter(connection=msg.persistant_connection)
         if sessions:
             state = sessions[0].state
             if state.question:
-                msg.respond(state.question.text)
-                self.info(state.question.text)
+                msg.respond(_(state.question.text, get_language(sessions[0].connection)))
+                self.info(_(state.question.text, get_language(sessions[0].connection)))
         
         # if we haven't returned long before now, we're
         # long committed to dealing with this message
@@ -131,19 +124,19 @@ class App(rapidsms.app.App):
         self.info("Registering keyword: %s for function %s, %s" %(name, function.im_class, function.im_func.func_name))
         self.registered_functions
         
-    def matches(self, transition, answer):
+    def matches(self, answer, answer_value):
         '''returns True if the answer is a match for this.'''
-        if not answer:
+        if not answer_value:
             return False
-        if transition.type == "A":
-            return answer.lower() == transition.answer.lower()
-        elif transition.type == "R":
-            return re.match(transition.answer, answer)
-        elif transition.type == "C":
-            if self.registered_functions.has_key(transition.answer):
-                return self.registered_functions[transition.answer](answer)
+        if answer.type == "A":
+            return answer_value.lower() == answer.answer.lower()
+        elif answer.type == "R":
+            return re.match(answer.answer, answer_value)
+        elif answer.type == "C":
+            if self.registered_functions.has_key(answer.answer):
+                return self.registered_functions[answer.answer](answer_value)
             else:
-                raise Exception("Can't find a function to match custom key: %s", transition.answer)
-        raise Exception("Don't know how to process answer type: %s", transition.type)
+                raise Exception("Can't find a function to match custom key: %s", answer)
+        raise Exception("Don't know how to process answer type: %s", answer.type)
         
         

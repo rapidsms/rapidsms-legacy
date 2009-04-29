@@ -3,22 +3,30 @@
 
 
 from django.db import models
+from apps.reporters.models import Reporter, PersistantConnection
 import re
 
-# user stuff.  should probably be in a different app
-class Person(models.Model):
-    name = models.CharField(max_length=100, blank=True, null=True)
-    phone = models.CharField(max_length=100, blank=True, null=True)
-    
+
+# some really bare bones models for localization
+# TODO this should be moved to its own app or something 
+class Language(models.Model):
+    code = models.CharField(max_length = 10) # e.g. "en"
+    name = models.CharField(max_length = 50) # e.g. "English"
+
     def __unicode__(self):
-        return "%s (%s)" % (self.phone, self.name)
+        return "%s (%s)" % (self.name, self.code)
 
-
-class Registration(models.Model):
-    '''Registration allows the system to initiate trees, rather than user prompts'''
-    person = models.ForeignKey(Person)
-    tree = models.ForeignKey('Tree')
+class Translation(models.Model):
+    language = models.ForeignKey(Language)
     
+    # The actual original (probably english) string will be 
+    # used as the key into the other languages.  This is 
+    # similar to the python/django _() i18n support.  
+    original = models.TextField()
+    translation = models.TextField()
+
+    def __unicode__(self):
+        return "%s --> %s (%s)" % (self.original, self.translation, self.language.name)
 
 class Question(models.Model):
     text = models.TextField()
@@ -43,44 +51,20 @@ class Tree(models.Model):
 
 
 class Answer(models.Model):
-    previous_question = models.ForeignKey(Question, related_name="answers", help_text="The Question which this Answer is an option to")
-    trigger = models.CharField("Answer", max_length=30, help_text="The incoming message which triggers this Answer")
-    next_question     = models.ForeignKey(Question, blank=True, null=True, related_name="next_question_set", help_text="The (optional) Question to proceed to when this Answer is chosen")
-    response          = models.TextField(blank=True, help_text="The message which is sent in response to this Answer, before the next question is sent")
-    
-    def __unicode__(self):
-        return ("Q%s -> %s" % (
-            self.question.pk,
-            self.answer))
-            
-            # if this question has a "next question", which the
-            # user is forwarded to after answering, append it
-            #(" -> Q%s" % (self.next_question.pk)\
-            #    if self.next_question else ""))
-        
-
-class TreeState(models.Model):
-    #tree = models.ForeignKey(Tree)
-    name = models.CharField(max_length=100)
-    question = models.ForeignKey(Question, blank=True, null=True)
-    
-    def __unicode__(self):
-        return ("State %s, Question: %s" % (
-            self.name,
-            self.question))
-    
-class Transition(models.Model):
-    TRANSITION_TYPES = (
+    ANSWER_TYPES = (
         ('A', 'Answer (exact)'),
         ('R', 'Regular Expression'),
         ('C', 'Custom logic'),
     )
-    current_state = models.ForeignKey(TreeState)
+    name = models.CharField(max_length=30)
+    type = models.CharField(max_length=1, choices=ANSWER_TYPES)
     # I'm not sure if it's easier or harder to make this an Answer or just a CharField.  Leaving as a charfield for now.
-    type = models.CharField(max_length=1, choices=TRANSITION_TYPES)
-    answer = models.TextField("Answer")
-    description = models.CharField(max_length=50, null=True)
-    next_state = models.ForeignKey(TreeState, blank=True, null=True, related_name='next_state')     
+    answer = models.CharField(max_length=160)
+    description = models.CharField(max_length=100, null=True)
+    
+    def __unicode__(self):
+        return self.name
+        #return "%s %s (%s)" % (self.helper_text(), self.type)
     
     def helper_text(self):
         if self.type == "A":
@@ -98,7 +82,24 @@ class Transition(models.Model):
             # this might be ugly
             return self.answer
     
+    
 
+class TreeState(models.Model):
+    #tree = models.ForeignKey(Tree)
+    name = models.CharField(max_length=100)
+    question = models.ForeignKey(Question, blank=True, null=True)
+    
+    def __unicode__(self):
+        return ("State %s, Question: %s" % (
+            self.name,
+            self.question))
+    
+class Transition(models.Model):
+    current_state = models.ForeignKey(TreeState)
+    answer = models.ForeignKey(Answer)
+    next_state = models.ForeignKey(TreeState, blank=True, null=True, related_name='next_state')     
+    
+    
     def __unicode__(self):
         return ("%s : %s --> %s" % 
             (self.current_state,
@@ -106,7 +107,8 @@ class Transition(models.Model):
              self.next_state))
  
 class Session(models.Model):
-    person = models.ForeignKey(Person)
+    # We might want to make these reporters
+    connection = models.ForeignKey(PersistantConnection)
     tree = models.ForeignKey(Tree)
     start_date = models.DateTimeField(auto_now_add=True)
     state = models.ForeignKey(TreeState, blank=True, null=True) # none if the session is complete
@@ -116,7 +118,7 @@ class Session(models.Model):
             text = self.state
         else:
             text = "completed"
-        return ("%s : %s" % (self.person, text))
+        return ("%s : %s" % (self.connection.identity, text))
 
 class Entry(models.Model):
     session = models.ForeignKey(Session)
