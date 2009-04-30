@@ -1,40 +1,14 @@
 from rapidsms.tests.scripted import TestScript
 from app import App
+import apps.reporters.app as reporters_app
 from models import *
-
-
+from apps.reporters.models import Reporter, PersistantConnection, PersistantBackend
     
 class TestApp (TestScript):
-    apps = (App,)
-
-    
-    def setUp(self):
-        TestScript.setUp(self)
-        if not self.isSetup():
-            question_strings = ["hello", "Please enter your 4-digit PIN", "Thanks for entering."]
-            questions = []
-            for question_text in question_strings:
-                question = Question(text=question_text)
-                question.save()
-                questions.append(question)
-            state_names = ["test_root" , "test_pin" , "pin_success" ]
-            state_map = { state_names[0]: questions[0], state_names[1] : questions[1], state_names[2] : questions[2]}
-            states = []
-            for name in state_names:
-                state = TreeState(name=name, question=state_map[name])
-                state.save()
-                states.append(state)
-            trees = { "test" : states[0], "pin" : states[1]}
-            for trigger, state in trees.items():
-                tree = Tree(trigger=trigger, root_state=state)
-                tree.save()
-            transition = Transition(current_state=states[1], next_state=states[2], type="R", answer=r"^(\d{4})$", description="a 4-digit decimal number")
-            transition.save()
-            
-            
-
-    def isSetup(self):
-        return len(Tree.objects.all()) > 0
+    apps = (App, reporters_app.App)
+    # the test_backend script does the loading of the dummy backend that allows reporters
+    # to work properly in tests
+    fixtures = ['test_backend', 'test_tree']
     
     testTrigger = """
            8005551212 > test
@@ -64,3 +38,42 @@ class TestApp (TestScript):
            8005551213 > 0000
            8005551213 < Thanks for entering.
          """
+         
+    def testLocalization(self):
+        backend = PersistantBackend.objects.get(title="TestScript")
+        reporter = Reporter.objects.create(alias='0004', language='en')
+        connection = PersistantConnection.objects.create(backend=backend,identity="loc_en",reporter=reporter)
+        script = """
+              loc_en > test
+              loc_en < hello
+            """        
+        self.runScript(script)
+        reporter = Reporter.objects.create(alias='0005', language='sp')
+        connection = PersistantConnection.objects.create(backend=backend,identity="loc_sp",reporter=reporter)
+        script = """
+              loc_sp > test
+              loc_sp < ola
+            """        
+        self.runScript(script)
+        reporter = Reporter.objects.create(alias='0006', language='fr')
+        connection = PersistantConnection.objects.create(backend=backend,identity="loc_mult",reporter=reporter)
+        script = """
+              loc_mult > test
+              loc_mult < bon jour
+              loc_mult > blah
+              loc_mult < You are done with this survey.  Thanks for participating!
+              
+            """        
+        self.runScript(script)
+        reporter.language = 'en'
+        reporter.save()
+        script = """
+              loc_mult > test
+              loc_mult < hello
+            """        
+        self.runScript(script)
+        
+         
+        
+        
+         
