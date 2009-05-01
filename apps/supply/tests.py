@@ -112,9 +112,70 @@ class TestApp (TestScript):
         script = "\n".join(all_txns)
         self.runScript(script)
         dumpdata = Command()
-        print "\n\n=========This is your fixture.  Copy and paste it to a text file========\n\n"
-        print dumpdata.handle("supply")
+        filename = os.path.abspath(os.path.join(os.path.dirname(__file__),"fixtures/test_transactions_stock.json"))
+        options = { "indent" : 2 }
+        datadump = dumpdata.handle("supply", **options)
+        # uncomment these lines to save the fixture
+        #file = open(filename, "w")
+        #file.write(datadump)
+        #file.write(datadump)
+        #file.close()
+        #print "=== Successfully wrote fixtures to %s ===" % filename
         
+    
+    testIssueFormats = """
+         t_i_formats > llin register 20 sm mister sender 
+         t_i_formats < Hello mister! You are now registered as Stock manager at KANO State.
+         # base case
+         t_i_formats > llin issue from 20 to 2027 11111 200 1800
+         t_i_formats < Received report for LLIN ISSUE: origin=KANO, dest=KURA, waybill=11111, amount=200, stock=1800
+         # casing
+         t_i_formats > llin ISSUE from 20 to 2027 11111 200 1800
+         t_i_formats < Received report for LLIN ISSUE: origin=KANO, dest=KURA, waybill=11111, amount=200, stock=1800
+         # other spellings
+         t_i_formats > llin issued from 20 to 2027 11111 200 1800
+         t_i_formats < Received report for LLIN ISSUE: origin=KANO, dest=KURA, waybill=11111, amount=200, stock=1800
+         t_i_formats > llin ishew from 20 to 2027 11111 200 1800
+         t_i_formats < Received report for LLIN ISSUE: origin=KANO, dest=KURA, waybill=11111, amount=200, stock=1800
+         t_i_formats > llin is from 20 to 2027 11111 200 1800
+         t_i_formats < Received report for LLIN ISSUE: origin=KANO, dest=KURA, waybill=11111, amount=200, stock=1800
+         # spaces
+         t_i_formats > llin      issue      from   20  to    2027    11111     200  1800
+         t_i_formats < Received report for LLIN ISSUE: origin=KANO, dest=KURA, waybill=11111, amount=200, stock=1800
+         # fail
+         t_i_formats > llin send from 20 to 2027 11111 200 1800
+         t_i_formats < Sorry we didn't understand that. Available forms are LLIN: REGISTER, NETCARDS, NETS, RECEIVE, ISSUE
+    """
+    
+    testReceiveFormats = """
+         t_r_formats > llin register 20 sm mister sender 
+         t_r_formats < Hello mister! You are now registered as Stock manager at KANO State.
+         # base case
+         t_r_formats > llin receive from 20 to 2027 11111 200 1800
+         t_r_formats < Received report for LLIN RECEIVE: origin=KANO, dest=KURA, waybill=11111, amount=200, stock=1800
+         # casing
+         t_r_formats > llin RECEIVE from 20 to 2027 11111 200 1800
+         t_r_formats < Received report for LLIN RECEIVE: origin=KANO, dest=KURA, waybill=11111, amount=200, stock=1800
+         # other spellings
+         t_r_formats > llin receeved from 20 to 2027 11111 200 1800
+         t_r_formats < Received report for LLIN RECEIVE: origin=KANO, dest=KURA, waybill=11111, amount=200, stock=1800
+         t_r_formats > llin recieve from 20 to 2027 11111 200 1800
+         t_r_formats < Received report for LLIN RECEIVE: origin=KANO, dest=KURA, waybill=11111, amount=200, stock=1800
+         t_r_formats > llin recv from 20 to 2027 11111 200 1800
+         t_r_formats < Received report for LLIN RECEIVE: origin=KANO, dest=KURA, waybill=11111, amount=200, stock=1800
+         t_r_formats > llin receeev from 20 to 2027 11111 200 1800
+         t_r_formats < Received report for LLIN RECEIVE: origin=KANO, dest=KURA, waybill=11111, amount=200, stock=1800
+         # spaces
+         t_r_formats > llin     receive     from   20  to     2027    11111     200    1800
+         t_r_formats < Received report for LLIN RECEIVE: origin=KANO, dest=KURA, waybill=11111, amount=200, stock=1800
+         # fail
+         # should this one fail??
+         t_r_formats > llin rcv from 20 to 2027 11111 200 1800
+         t_r_formats < Sorry we didn't understand that. Available forms are LLIN: REGISTER, NETCARDS, NETS, RECEIVE, ISSUE
+         t_r_formats > llin get from 20 to 2027 11111 200 1800
+         t_r_formats < Sorry we didn't understand that. Available forms are LLIN: REGISTER, NETCARDS, NETS, RECEIVE, ISSUE
+    """
+
     def testScript(self):
         mismatched_amounts = """
             8005552222 > llin register 20 sm mister sender 
@@ -122,27 +183,27 @@ class TestApp (TestScript):
             8005551111 > llin register 2027 sm mister recipient
             8005551111 < Hello mister! You are now registered as Stock manager at KURA LGA.
             8005552222 > llin issue from 20 to 2027 11111 200 1800
-            8005552222 < Received report for LLIN issue: origin=KANO, dest=KURA, waybill=11111, amount=200, stock=1800. If this is not correct, reply with CANCEL
+            8005552222 < Received report for LLIN ISSUE: origin=KANO, dest=KURA, waybill=11111, amount=200, stock=1800
             8005551111 > llin receive from 20 to 2027 11111 150 500
-            8005551111 < Received report for LLIN receive: origin=KANO, dest=KURA, waybill=11111, amount=150, stock=500. If this is not correct, reply with CANCEL
+            8005551111 < Received report for LLIN RECEIVE: origin=KANO, dest=KURA, waybill=11111, amount=150, stock=500
             """
         self.runScript(mismatched_amounts)
 
         sender = Reporter.objects.get(alias="msender")
         recipient = Reporter.objects.get(alias="mrecipient")
 
-        issue = PartialTransaction.objects.get(origin__name="KANO",\
-           destination__name="KURA", shipment_id="11111",\
-           domain__code="LLIN", type="I", reporter__pk=sender.pk)
+        issue = PartialTransaction.objects.get(origin__name__iexact="KANO",\
+           destination__name__iexact="KURA", shipment_id="11111",\
+           domain__code__abbreviation__iexact="LLIN", type="I", reporter__pk=sender.pk)
 
         receipt = PartialTransaction.objects.get(origin__name__iexact="KANO",\
            destination__name__iexact="KURA", shipment_id="11111",\
-           domain__code__iexact="LLIN", type="R", reporter__pk=recipient.pk)
+           domain__code__abbreviation__iexact="LLIN", type="R", reporter__pk=recipient.pk)
         
         origin_stock = Stock.objects.get(location__name__iexact="KANO",\
-            domain__code__iexact="LLIN")
+            domain__code__abbreviation__iexact="LLIN")
         dest_stock = Stock.objects.get(location__name__iexact="KURA",\
-            domain__code__iexact="LLIN")
+            domain__code__abbreviation__iexact="LLIN")
         
         # everything in its right place
         self.assertEqual(sender.location, issue.origin)
@@ -157,7 +218,7 @@ class TestApp (TestScript):
         # issue and receipt have been matched into a transaction
         self.assertEqual(issue.status, 'C')
         self.assertEqual(issue.status, receipt.status)
-        first_transaction = Transaction.objects.get(domain__code__iexact="LLIN",\
+        first_transaction = Transaction.objects.get(domain__code__abbreviation__iexact="LLIN",\
             amount_sent=issue.amount, amount_received=receipt.amount,\
             issue=issue, receipt=receipt)
 
@@ -169,7 +230,7 @@ class TestApp (TestScript):
         # mister recipient realizes his error and resends with correct amount
         amendment = """
             8005551111 > llin receive from 20 to 2027 11111 200 500
-            8005551111 < Received report for LLIN receive: origin=KANO, dest=KURA, waybill=11111, amount=200, stock=500. If this is not correct, reply with CANCEL
+            8005551111 < Received report for LLIN RECEIVE: origin=KANO, dest=KURA, waybill=11111, amount=200, stock=500
             """
         self.runScript(amendment)
 
@@ -185,13 +246,13 @@ class TestApp (TestScript):
         # mister recipient's amendment
         second_receipt = PartialTransaction.objects.get(origin__name__iexact="KANO",\
            destination__name__iexact="KURA", shipment_id="11111",\
-           domain__code__iexact="LLIN", type="R", reporter=recipient, status="C")
+           domain__code__abbreviation__iexact="LLIN", type="R", reporter=recipient, status="C")
 
         # make sure this is a new one
         self.assertNotEqual(second_receipt.pk, receipt.pk)
 
         # make sure a new transaction was matched
-        second_transaction = Transaction.objects.get(domain__code__iexact="LLIN",\
+        second_transaction = Transaction.objects.get(domain__code__abbreviation__iexact="LLIN",\
             amount_sent=issue.amount, amount_received=second_receipt.amount,\
             issue=issue, receipt=second_receipt)
 
@@ -210,16 +271,16 @@ class TestApp (TestScript):
         # send a form from an unregistered user and assure it is accepted
         unregistered_submission = """
             supply_tus_1 > llin issue from 20 to 2027 11111 200 1800
-            supply_tus_1 < Received report for LLIN issue: origin=KANO, dest=KURA, waybill=11111, amount=200, stock=1800. If this is not correct, reply with CANCEL
+            supply_tus_1 < Received report for LLIN ISSUE: origin=KANO, dest=KURA, waybill=11111, amount=200, stock=1800
             supply_tus_1 < Please register your phone.
             """
         self.runScript(unregistered_submission)
         
         # check that the connection object in the transaction is set properly
         connection = PersistantConnection.objects.get(identity="supply_tus_1")
-        issue = PartialTransaction.objects.get(origin__name="KANO",\
-           destination__name="KURA", shipment_id="11111",\
-           domain__code="LLIN", type="I", connection=connection)
+        issue = PartialTransaction.objects.get(origin__name__iexact="KANO",\
+           destination__name__iexact="KURA", shipment_id="11111",\
+           domain__code__abbreviation__iexact="LLIN", type="I", connection=connection)
         
         # check that the reporter is empty
         self.assertFalse(issue.reporter)

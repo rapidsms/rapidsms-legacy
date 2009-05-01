@@ -3,7 +3,6 @@
 
 import rapidsms
 from rapidsms.message import StatusCodes
-import re
 
 class App(rapidsms.app.App):
     """When an incoming message is received, this application is notified
