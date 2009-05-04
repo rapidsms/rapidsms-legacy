@@ -1,6 +1,10 @@
 import rapidsms
 import re
 from apps.reporters.models import Reporter, Location
+from models import *
+from apps.i18n.utils import get_translation as _
+from apps.i18n.utils import get_language
+from strings import strings
 
 class App (rapidsms.app.App):
     def start (self):
@@ -8,17 +12,37 @@ class App (rapidsms.app.App):
         # we have to register our functions with the tree app
         tree_app = self.router.get_app("tree")
         tree_app.register_custom_transition("validate_pin", validate_pin)
-        pass
-
+        self.pending_pins = { }
+        
     def parse (self, message):
         """Parse and annotate messages in the parse phase."""
         pass
 
     def handle (self, message):
-        """Add your main application logic in the handle phase."""
+        # there are three things this app deals with primarily:
+        # registration, pin setup, and testing
         
+        # but we'll also use it to circumvent some logic in the tree
+        # app with a few custom codes.
+        if message.text.lower() == "iavi uganda" or message.text.lower() == "iavi kenya":
+            # if they are allowed to participate, return false so 
+            # that the message propagates to the tree app.  If they
+            # aren't this will come back as handled and the tree app
+            # will never see it.  
+            # ASSUMES ORDERING OF APPS AND THAT THIS IS BEFORE TREE
+            return not self._allowed_to_participate(message)
+        
+        # we'll be using the language in all our responses so
+        # keep it handy
+        language = get_language(message.persistant_connection)
+        
+        # check pin conditions and process if they match
+        if message.reporter and message.reporter.pk in self.pending_pins:
+            return self._process_pin(message)
+            
+        # registration block
         # first make sure the string starts and ends with the *# - #* combination
-        match = re.match(r"^\*\#(.*?)\#\*$", message.text) 
+        match = re.match(r"^\*\#(.*?)\#\*$", message.text)
         if match:
             self.info("Message matches! %s", message)
             body_groups = match.groups()[0].split("#")
@@ -41,9 +65,9 @@ class App (rapidsms.app.App):
                 
                 # create the reporter object for this person 
                 # TODO: what if the id already exists?  currently blows up
-                reporter = Reporter(alias=id, language=language, location=location)
+                reporter = IaviReporter(alias=id, language=language, location=location)
                 reporter.save()
-
+                
                 # also attach the reporter to the connection 
                 message.persistant_connection.reporter=reporter
                 message.persistant_connection.save()
@@ -54,6 +78,10 @@ class App (rapidsms.app.App):
                 # send the response confirmation
                 message.respond("Confirm %s Registration is Complete" % id)
                 
+                # also send the PIN request and add this user to the 
+                # pending pins
+                self.pending_pins[reporter.pk] = None
+                message.respond(_(strings["pin_request"], language))
             elif len(body_groups)== 4:
                 # assume this is the testing format
                 # this is the (extremely ugly) format of testing
@@ -80,8 +108,47 @@ class App (rapidsms.app.App):
     def stop (self):
         """Perform global app cleanup when the application is stopped."""
         pass
+    
+    def _allowed_to_participate(self, message):
+        if message.reporter:
+            iavi_reporter = IaviReporter.objects.get(pk=message.reporter.pk)
+            if iavi_reporter.pin:
+                return True
+            else:
+                message.respond(_(strings["rejection_no_pin"], get_language(message.persistant_connection)))
+        else:
+            message.respond(_(strings["rejection_unknown_user"], get_language(message.persistant_connection)))
+        return False
+            
+    def _process_pin(self, message):
+        language = get_language(message.persistant_connection)
+        incoming_pin = message.text.strip()
+        if self.pending_pins[message.reporter.pk]:
+            # this means it has already been set once 
+            # check if they are equal and if so save
+            pending_pin = self.pending_pins.pop(message.reporter.pk)
+            if incoming_pin == pending_pin:
+                # success!
+                reporter = IaviReporter.objects.get(pk=message.reporter.pk)
+                reporter.pin = pending_pin
+                reporter.save()
+                message.respond(_(strings["pin_set"], language))
+            else:
+                # oops they didn't match.  send a failure string
+                message.respond(_(strings["pin_mismatch"], language) % {"alias": message.reporter.alias})
+        else:
+            # this is their first try.  make sure 
+            # it's 4 numeric digits and if so ask for confirmation
+            if re.match(r"^(\d{4})$", incoming_pin):
+                self.pending_pins[message.reporter.pk] = incoming_pin
+                message.respond(_(strings["pin_request_again"], language))
+            else:
+                # bad format.  send a failure string and prompt again
+                message.respond(_(strings["bad_pin_format"], language) % {"alias": message.reporter.alias})
+        return True
+    
 
 def validate_pin(msg):
-    # todo
-    print "%s PIN validated!" % msg
-    return True
+    rep = IaviReporter.objects.get(pk=msg.reporter.pk)
+    return msg.text == rep.pin
+    

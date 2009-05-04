@@ -1,7 +1,7 @@
 [
   {
     "pk": 1, 
-    "model": "tree.language", 
+    "model": "i18n.language", 
     "fields": {
       "code": "en", 
       "name": "English"
@@ -9,7 +9,7 @@
   }, 
   {
     "pk": 2, 
-    "model": "tree.language", 
+    "model": "i18n.language", 
     "fields": {
       "code": "ug", 
       "name": "Ugandan"
@@ -17,7 +17,7 @@
   }, 
   {
     "pk": 3, 
-    "model": "tree.language", 
+    "model": "i18n.language", 
     "fields": {
       "code": "sw", 
       "name": "Swahili"
@@ -25,7 +25,7 @@
   }, 
   {
     "pk": 1, 
-    "model": "tree.translation", 
+    "model": "i18n.translation", 
     "fields": {
       "translation": "Wetabyeeko mu kikolwa eky'omukwano n'omwagalwawo gw'olinaye mukunoonyereza kuno mu lunaku lumu oluyise?", 
       "original": "Did you have sex with your main partner in the last 24 hours?", 
@@ -34,7 +34,7 @@
   }, 
   {
     "pk": 2, 
-    "model": "tree.translation", 
+    "model": "i18n.translation", 
     "fields": {
       "translation": "Mwakozesezza kondomu?", 
       "original": "Did you use a condom?", 
@@ -43,7 +43,7 @@
   }, 
   {
     "pk": 3, 
-    "model": "tree.translation", 
+    "model": "i18n.translation", 
     "fields": {
       "translation": "Wetabyeeko mu kikolwa ky'omukwano n'omwagalwawo omulala yenna mu lunaku lumu oluyise?", 
       "original": "Did you have vaginal sex with any other partner in the last 24 hours?", 
@@ -52,7 +52,7 @@
   }, 
   {
     "pk": 4, 
-    "model": "tree.translation", 
+    "model": "i18n.translation", 
     "fields": {
       "translation": "Ssebo/Nnyabo Yingiza ennamba yo eye'kyaama mu ssimu yo. Era ennamba eyo giwereze ku kompyuta yaffe.", 
       "original": "Hello, Please Reply With Your PIN", 
@@ -61,7 +61,7 @@
   }, 
   {
     "pk": 5, 
-    "model": "tree.translation", 
+    "model": "i18n.translation", 
     "fields": {
       "translation": "Ebibuuzo bino bikomemye wano. Webale nnyo kuwaayo budde bwo.", 
       "original": "Questionnaire is complete. Thank you.", 
@@ -112,7 +112,7 @@
       "answer": "validate_pin", 
       "type": "C", 
       "name": "pin validation", 
-      "description": "Your 4-digit PIN"
+      "description": "your 4-digit PIN"
     }
   }, 
   {
