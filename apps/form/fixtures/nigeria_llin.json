@@ -592,95 +592,7 @@
       "form": 5, 
       "sequence": 4
     }
-  }, 
-  {
-    "pk": 1, 
-    "model": "form.pattern", 
-    "fields": {
-      "regex": "(l[a-z]+)", 
-      "name": "llin"
-    }
-  }, 
-  {
-    "pk": 2, 
-    "model": "form.pattern", 
-    "fields": {
-      "regex": "(reg[a-z]+)", 
-      "name": "register"
-    }
-  }, 
-  {
-    "pk": 3, 
-    "model": "form.pattern", 
-    "fields": {
-      "regex": "(\\d+)", 
-      "name": "numbers"
-    }
-  }, 
-  {
-    "pk": 4, 
-    "model": "form.pattern", 
-    "fields": {
-      "regex": "(\\w+)", 
-      "name": "letters"
-    }
-  }, 
-  {
-    "pk": 5, 
-    "model": "form.pattern", 
-    "fields": {
-      "regex": "(n[a-z]+)", 
-      "name": "nets"
-    }
-  }, 
-  {
-    "pk": 6, 
-    "model": "form.pattern", 
-    "fields": {
-      "regex": "(n[a-z]+\\s*c[a-z]+)", 
-      "name": "net cards"
-    }
-  }, 
-  {
-    "pk": 7, 
-    "model": "form.pattern", 
-    "fields": {
-      "regex": "(netcards)", 
-      "name": "netcards"
-    }
-  }, 
-  {
-    "pk": 8, 
-    "model": "form.pattern", 
-    "fields": {
-      "regex": "(i[a-z]+)", 
-      "name": "issue"
-    }
-  }, 
-  {
-    "pk": 9, 
-    "model": "form.pattern", 
-    "fields": {
-      "regex": "(t[a-z]+)", 
-      "name": "to"
-    }
-  }, 
-  {
-    "pk": 10, 
-    "model": "form.pattern", 
-    "fields": {
-      "regex": "(f[a-z]+)", 
-      "name": "from"
-    }
-  }, 
-  {
-    "pk": 11, 
-    "model": "form.pattern", 
-    "fields": {
-      "regex": "(rec[a-z]+)", 
-      "name": "receive"
-    }
-  }, 
+  },
   {
     "pk": 1, 
     "model": "form.domain", 
@@ -702,23 +614,16 @@
     "fields": {
       "token": 3
     }
-  }, 
+  },
   {
     "pk": 2, 
-    "model": "form.tokenvalidator", 
-    "fields": {
-      "token": 4
-    }
-  }, 
-  {
-    "pk": 3, 
     "model": "form.tokenvalidator", 
     "fields": {
       "token": 24
     }
   }, 
   {
-    "pk": 4, 
+    "pk": 3, 
     "model": "form.tokenvalidator", 
     "fields": {
       "token": 25
@@ -731,12 +636,13 @@
       "lookup_type": "location", 
       "field_name": "code"
     }
-  }, 
+  },
   {
+
     "pk": 2, 
     "model": "form.tokenexistancevalidator", 
     "fields": {
-      "lookup_type": "role", 
+      "lookup_type": "location", 
       "field_name": "code"
     }
   }, 
@@ -749,11 +655,107 @@
     }
   }, 
   {
-    "pk": 4, 
-    "model": "form.tokenexistancevalidator", 
+    "pk": 1, 
+    "model": "patterns.pattern", 
     "fields": {
-      "lookup_type": "location", 
-      "field_name": "code"
+      "regex": "(l[a-z]+)", 
+      "name": "llin"
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "patterns.pattern", 
+    "fields": {
+      "regex": "(reg[a-z]*)", 
+      "name": "register"
+    }
+  }, 
+  {
+    "pk": 3, 
+    "model": "patterns.pattern", 
+    "fields": {
+      "regex": "(\\d+)", 
+      "name": "numbers"
+    }
+  }, 
+  {
+    "pk": 4, 
+    "model": "patterns.pattern", 
+    "fields": {
+      "regex": "(\\w+)", 
+      "name": "letters"
+    }
+  }, 
+  {
+    "pk": 5, 
+    "model": "patterns.pattern", 
+    "fields": {
+      "regex": "(n[a-z]+)", 
+      "name": "nets"
+    }
+  }, 
+  {
+    "pk": 6, 
+    "model": "patterns.pattern", 
+    "fields": {
+      "regex": "(n[a-z]+\\s*c[a-z]+)", 
+      "name": "net cards"
+    }
+  }, 
+  {
+    "pk": 7, 
+    "model": "patterns.pattern", 
+    "fields": {
+      "regex": "(netcards)", 
+      "name": "netcards"
+    }
+  }, 
+  {
+    "pk": 8, 
+    "model": "patterns.pattern", 
+    "fields": {
+      "regex": "(i[a-z]+)", 
+      "name": "issue"
+    }
+  }, 
+  {
+    "pk": 9, 
+    "model": "patterns.pattern", 
+    "fields": {
+      "regex": "(t[a-z]+)", 
+      "name": "to"
+    }
+  }, 
+  {
+    "pk": 10, 
+    "model": "patterns.pattern", 
+    "fields": {
+      "regex": "(f[a-z]+)", 
+      "name": "from"
+    }
+  }, 
+  {
+    "pk": 11, 
+    "model": "patterns.pattern", 
+    "fields": {
+      "regex": "(rec[a-z]*)", 
+      "name": "receive"
+    }
+  }, 
+  {
+    "pk": 12, 
+    "model": "patterns.pattern", 
+    "fields": {
+      "regex": "(dp|dl|ds|dm)", 
+      "name": "distribution leader code"
+    }
+  }, 
+  {
+    "pk": 13, 
+    "model": "patterns.pattern", 
+    "fields": {
+      "regex": "(lf|lp)", 
+      "name": "lga focal person code"
     }
   }
 ]
