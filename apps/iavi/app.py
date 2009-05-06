@@ -11,9 +11,9 @@ class App (rapidsms.app.App):
         """Configure your app in the start phase."""
         # we have to register our functions with the tree app
         tree_app = self.router.get_app("tree")
-        tree_app.register_custom_transition("validate_pin", validate_pin)
-        tree_app.register_custom_transition("validate_1_to_19", validate_1_to_19)
-        tree_app.register_custom_transition("validate_num_times_condoms_used", validate_num_times_condoms_used)
+        tree_app.register_custom_transition("validate_pin", self.validate_pin)
+        tree_app.register_custom_transition("validate_1_to_19", self.validate_1_to_19)
+        tree_app.register_custom_transition("validate_num_times_condoms_used", self.validate_num_times_condoms_used)
         self.pending_pins = { }
         
     def parse (self, message):
@@ -149,21 +149,37 @@ class App (rapidsms.app.App):
                 message.respond(_(strings["bad_pin_format"], language) % {"alias": message.reporter.alias})
         return True
     
-
-def validate_pin(msg):
-    rep = IaviReporter.objects.get(pk=msg.reporter.pk)
-    return msg.text == rep.pin
-
-def validate_1_to_19(msg):
-    value = msg.text.strip()
-    if value.isdigit():
-        return 0 < int(value) < 20
-    return False
-
-def validate_num_times_condoms_used(msg):
-    value = msg.text.strip()
-    # todo - base this on the previous answer
-    if value.isdigit():
-        return 0 <= int(value) < 20
-    return False
+    # this region is for the validation logic
     
+    
+    def validate_pin(self, msg):
+        rep = IaviReporter.objects.get(pk=msg.reporter.pk)
+        return msg.text == rep.pin
+    
+    # we need to save these in order to validate the other
+    sex_answers = {}
+    
+    def validate_1_to_19(self, msg):
+        value = msg.text.strip()
+        if value.isdigit():
+            if 0 < int(value) < 20:
+                self.sex_answers[msg.reporter.pk] = int(value)
+                return True
+        return False
+    
+    def validate_num_times_condoms_used(self, msg):
+        value = msg.text.strip()
+        if value.isdigit():
+            old_value = self.sex_answers.get(msg.reporter.pk)
+            if not old_value:
+                # this should never happen unless we were
+                # interrupted between questions. we could
+                # look this up in the DB but for now we'll
+                # be dumb.  
+                # TODO: do this for real from the DB
+                old_value = 20
+            if 0 <= int(value) <= old_value:
+                self.sex_answers.pop(msg.reporter.pk)
+                return True
+        return False
+        
