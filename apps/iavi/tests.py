@@ -186,6 +186,7 @@ class TestApp (TestScript):
         """
         self.runScript(script)
         
+    def testUgandaLocalization(self):
         # and again in another language
         self._register(**{"phone":"ugb_2", "id": "0002", "language":"ug"})
         script = """
@@ -214,9 +215,49 @@ class TestApp (TestScript):
             kenya_1 < Of the number of times that you had sex in the last 24 hours, how many times were condoms used?
             kenya_1 > 2
             kenya_1 < Interview is complete. Remember to use a new condom each time you have sex and take your pills as agreed. Thank you
+            kenya_1 > iavi kenya
+            kenya_1 < Hello, Please Reply With Your PIN
+            kenya_1 > 1234
+            kenya_1 < How many times did you have sex in the last 24 hours?
+            # 0 should skip the next question
+            kenya_1 > 0
+            kenya_1 < Interview is complete. Remember to use a new condom each time you have sex and take your pills as agreed. Thank you
         """
         self.runScript(script)
         
+        # test other cases
+        script = """
+            kenya_1 > iavi kenya
+            kenya_1 < Hello, Please Reply With Your PIN
+            kenya_1 > 1234
+            kenya_1 < How many times did you have sex in the last 24 hours?
+            kenya_1 > 50
+            # this is ugly too.
+            kenya_1 < "50" is not a valid answer. You must enter a number between 1 and 19 or 0
+            kenya_1 > a
+            kenya_1 < "a" is not a valid answer. You must enter a number between 1 and 19 or 0
+            kenya_1 > -3
+            kenya_1 < "-3" is not a valid answer. You must enter a number between 1 and 19 or 0
+            kenya_1 < Sorry, invalid answer 3 times. Your session will now end. Please try again later.
+            kenya_1 > iavi kenya
+            kenya_1 < Hello, Please Reply With Your PIN
+            kenya_1 > 1234
+            kenya_1 < How many times did you have sex in the last 24 hours?
+            kenya_1 > 5
+            kenya_1 < Of the number of times that you had sex in the last 24 hours, how many times were condoms used?
+            kenya_1 > a
+            kenya_1 < "a" is not a valid answer. You must enter a number less than or equal to the previous answer
+            kenya_1 > 6
+            kenya_1 < "6" is not a valid answer. You must enter a number less than or equal to the previous answer
+            kenya_1 > -1
+            kenya_1 < "-1" is not a valid answer. You must enter a number less than or equal to the previous answer
+            kenya_1 < Sorry, invalid answer 3 times. Your session will now end. Please try again later.
+        """
+        self.runScript(script)
+        
+        
+        
+    def testKenyaLocalization(self):
         # and again in another language
         self._register(**{"phone":"kenya_2", "id": "0002", "language":"sw"})
         script = """

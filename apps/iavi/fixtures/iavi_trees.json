@@ -116,7 +116,7 @@
       "answer": "validate_num_times_condoms_used", 
       "type": "C", 
       "name": "times condoms used", 
-      "description": "a number less than the previous answer"
+      "description": "a number less than or equal to the previous answer"
     }
   }, 
   {
