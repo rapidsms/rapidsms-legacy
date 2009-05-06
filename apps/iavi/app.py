@@ -12,6 +12,8 @@ class App (rapidsms.app.App):
         # we have to register our functions with the tree app
         tree_app = self.router.get_app("tree")
         tree_app.register_custom_transition("validate_pin", validate_pin)
+        tree_app.register_custom_transition("validate_1_to_19", validate_1_to_19)
+        tree_app.register_custom_transition("validate_num_times_condoms_used", validate_num_times_condoms_used)
         self.pending_pins = { }
         
     def parse (self, message):
@@ -151,4 +153,17 @@ class App (rapidsms.app.App):
 def validate_pin(msg):
     rep = IaviReporter.objects.get(pk=msg.reporter.pk)
     return msg.text == rep.pin
+
+def validate_1_to_19(msg):
+    value = msg.text.strip()
+    if value.isdigit():
+        return 0 < int(value) < 20
+    return False
+
+def validate_num_times_condoms_used(msg):
+    value = msg.text.strip()
+    # todo - base this on the previous answer
+    if value.isdigit():
+        return 0 <= int(value) < 20
+    return False
     
