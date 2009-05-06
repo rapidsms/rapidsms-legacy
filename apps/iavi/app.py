@@ -7,6 +7,7 @@ from apps.i18n.utils import get_language
 from strings import strings
 
 class App (rapidsms.app.App):
+
     def start (self):
         """Configure your app in the start phase."""
         # we have to register our functions with the tree app
