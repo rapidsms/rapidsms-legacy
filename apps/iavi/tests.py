@@ -36,7 +36,10 @@ class TestApp (TestScript):
             # test a duplicate id
             reg_4 > *#En#22#001#*
             reg_4 < Sorry, 001 has already been registered. Please choose a new user id.
-            
+            # but a duplicate at a new location should be ok
+            reg_5 > *#En#19#001#*
+            reg_5 < Confirm 001 Registration is Complete
+            reg_5 < Please Enter Your PIN Code
         """
         self.runScript(reg_script)
         
