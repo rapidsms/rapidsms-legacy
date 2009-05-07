@@ -8,6 +8,7 @@ strings = {
     "bad_pin_format":           "Error %(alias)s. Poorly formatted PIN, must be 4 numbers. Please try again.",
     "rejection_unknown_user":   "Sorry, only known respondants are allowed to participate in the survey. Please register before submitting.",
     "rejection_no_pin":         'You must set a PIN before participating in the survey. Respond "iavi set pin" (without quotes) to do this now.',
+    "already_registered":       "Sorry, %(alias)s has already been registered. Please choose a new user id."
     
         
 }

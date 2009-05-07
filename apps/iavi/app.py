@@ -64,13 +64,18 @@ class App (rapidsms.app.App):
                 except Location.DoesNotExist:
                     message.respond("Error %s.  Unknown location %s" % (id, site))
                     return True
-                # TODO: validate the language
+                
+                # TODO: validate the language?
+                
+                # make sure this isn't a duplicate alias
+                if len(IaviReporter.objects.filter(alias=id)) > 0:
+                    message.respond(_(strings["already_registered"], language) % {"alias": id})
+                    return True
                 
                 # create the reporter object for this person 
-                # TODO: what if the id already exists?  currently blows up
                 reporter = IaviReporter(alias=id, language=language, location=location)
                 reporter.save()
-                
+                                    
                 # also attach the reporter to the connection 
                 message.persistant_connection.reporter=reporter
                 message.persistant_connection.save()
@@ -85,6 +90,7 @@ class App (rapidsms.app.App):
                 # pending pins
                 self.pending_pins[reporter.pk] = None
                 message.respond(_(strings["pin_request"], language))
+                
             elif len(body_groups)== 4:
                 # assume this is the testing format
                 # this is the (extremely ugly) format of testing

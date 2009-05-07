@@ -33,6 +33,10 @@ class TestApp (TestScript):
             reg_3 < Error 00003.  Id must be 4 numeric digits.  You sent 00003 
             reg_3 > *#En#22#o003#*
             reg_3 < Error o003.  Id must be 4 numeric digits.  You sent o003 
+            # test a duplicate id
+            reg_4 > *#En#22#0001#*
+            reg_4 < Sorry, 0001 has already been registered. Please choose a new user id.
+            
         """
         self.runScript(reg_script)
         
