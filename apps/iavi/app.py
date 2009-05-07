@@ -79,7 +79,7 @@ class App (rapidsms.app.App):
                     return True
                 
                 # create the reporter object for this person 
-                reporter = IaviReporter(alias=alias, language=language, location=location)
+                reporter = IaviReporter(alias=alias, language=language, location=location, registered=message.date)
                 reporter.save()
                 
                 # also attach the reporter to the connection 
@@ -106,25 +106,13 @@ class App (rapidsms.app.App):
                 code, language, site, id = body_groups
                 alias = IaviReporter.get_alias(site, id)
                 try: 
+                    # lookup the user in question and initiate the tree
+                    # sequence for them.  If there are errors, respond
+                    # with them
                     user = IaviReporter.objects.get(alias=alias)
-                    user_conn = user.connection()
-                    if user_conn:
-                        db_backend = user_conn.backend
-                        # we need to get the real backend from the router 
-                        # to properly send it 
-                        real_backend = self.router.get_backend(db_backend.slug)
-                        if real_backend:
-                            connection = Connection(real_backend, user_conn.identity)
-                            text = self._get_tree_sequence(language)
-                            if not text:
-                                message.respond(_(strings["unknown_language"],language) % {"language":language, "alias":id})
-                            else:
-                                start_msg = Message(connection, text)
-                                self.router.incoming(start_msg)
-                        else:
-                            self.error("Can't find backend %s.  Messages will not be sent", connection.backend.slug)
-                    else:
-                        self.error("Can't find connection %s.  Messages will not be sent", connection)
+                    errors = self._initiate_tree_sequence(user, language)
+                    if errors:
+                        message.respond(errors)
                 except IaviReporter.DoesNotExist:
                     message.respond(_(strings["unknown_user"], language) % {"alias":id})
                 return True
@@ -187,6 +175,31 @@ class App (rapidsms.app.App):
                 message.respond(_(strings["bad_pin_format"], language) % {"alias": reporter.study_id})
         return True
     
+    def _initiate_tree_sequence(self, user, language):
+        user_conn = user.connection()
+        if user_conn:
+            db_backend = user_conn.backend
+            # we need to get the real backend from the router 
+            # to properly send it 
+            real_backend = self.router.get_backend(db_backend.slug)
+            if real_backend:
+                connection = Connection(real_backend, user_conn.identity)
+                text = self._get_tree_sequence(language)
+                if not text:
+                    return _(strings["unknown_language"],language) % ({"language":language, "alias":user.study_id})
+                else:
+                    start_msg = Message(connection, text)
+                    self.router.incoming(start_msg)
+                    return
+            else:
+                error = "Can't find backend %s.  Messages will not be sent" % connection.backend.slug
+                self.error(error)
+                return error
+        else:
+            error = "Can't find connection %s.  Messages will not be sent" % connection
+            self.error(error)
+            return error
+
     def _get_tree_sequence(self, language):
         if re.match(r"^(ug[a-z]*)$", language, re.IGNORECASE):
             return "iavi uganda"
