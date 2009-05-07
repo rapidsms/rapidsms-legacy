@@ -201,7 +201,7 @@ class TestApp (TestScript):
             ugb_1 < Did you have sex with your main partner in the last 24 hours?
             ugb_1 > yes
             ugb_1 < Did you use a condom?
-            ugb_1 > yes
+            ugb_1 > YES
             ugb_1 < Did you have vaginal sex with any other partner in the last 24 hours?
             ugb_1 > no
             ugb_1 < Questionnaire is complete. Thank you.
