@@ -1,5 +1,7 @@
 import rapidsms
 import re
+from rapidsms.connection import Connection 
+from rapidsms.message import Message
 from apps.reporters.models import Reporter, Location
 from models import *
 from apps.i18n.utils import get_translation as _
@@ -91,15 +93,39 @@ class App (rapidsms.app.App):
                 self.pending_pins[reporter.pk] = None
                 message.respond(_(strings["pin_request"], language))
                 
-            elif len(body_groups)== 4:
-                # assume this is the testing format
+            elif len(body_groups)== 4 and body_groups[0] == "8377":
+                # this is the testing format
                 # this is the (extremely ugly) format of testing
                 # *#8377#<Country/Language Group>#<Site Number>#<Last 4 Digits of Participant ID>#*
                 # TODO: implement testing
                 
                 code, language, site, id = body_groups
-                message.respond("Sorry, we haven't made the testing feature yet!")
+                try: 
+                    user = IaviReporter.objects.get(alias=id)
+                    user_conn = user.connection()
+                    if user_conn:
+                        db_backend = user_conn.backend
+                        # we need to get the real backend from the router 
+                        # to properly send it 
+                        real_backend = self.router.get_backend(db_backend.slug)
+                        if real_backend:
+                            connection = Connection(real_backend, user_conn.identity)
+                            text = self._get_tree_sequence(language)
+                            if not text:
+                                message.respond(_(strings["unknown_language"],language) % {"language":language, "alias":id})
+                            else:
+                                start_msg = Message(connection, text)
+                                self.router.incoming(start_msg)
+                        else:
+                            self.error("Can't find backend %s.  Messages will not be sent", connection.backend.slug)
+                    else:
+                        self.error("Can't find connection %s.  Messages will not be sent", connection)
+                except IaviReporter.DoesNotExist:
+                    message.respond(_(strings["unknown_user"], language) % {"alias":id})
                 return True
+            else:
+                message.respond(_(strings["unknown_format"], get_language(message.persistant_connection)))
+                
         else:
             self.info("Message doesn't match. %s", message)
             # this is okay.  one of the other apps may yet pick it up
@@ -156,8 +182,15 @@ class App (rapidsms.app.App):
                 message.respond(_(strings["bad_pin_format"], language) % {"alias": message.reporter.alias})
         return True
     
-    # this region is for the validation logic
+    def _get_tree_sequence(self, language):
+        if re.match(r"^(ug[a-z]*)$", language, re.IGNORECASE):
+            return "iavi uganda"
+        elif re.match(r"^(ke[a-z]*|sw[a-z]*)$", language, re.IGNORECASE):
+            return "iavi kenya"
+        else:
+            return None
     
+    # this region is for the validation logic
     
     def validate_pin(self, msg):
         rep = IaviReporter.objects.get(pk=msg.reporter.pk)

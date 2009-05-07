@@ -51,6 +51,18 @@ class TestApp (TestScript):
         dict = {"alias":"003"}
         self.assertRaises(IaviReporter.DoesNotExist, IaviReporter.objects.get, **dict)     
         
+    def testTestSubmission(self):
+        self._register("tester", "0001", "1234", "22", "en")
+        self._register("nurse", "0002", "1234", "22", "en")
+        script = """
+            # base case
+            nurse > *#8377#ug#22#0001#*
+            tester < Hello, Please Reply With Your PIN
+            tester > 1234
+            tester < Did you have sex with your main partner in the last 24 hours?
+        """
+        self.runScript(script)
+        
     def testPinEntry(self):
         # this does a base registration/pin combo with everyhing correct
         self._register("pin_1", "0001", "4567")
