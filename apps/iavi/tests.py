@@ -60,6 +60,12 @@ class TestApp (TestScript):
             tester < Hello, Please Reply With Your PIN
             tester > 1234
             tester < Did you have sex with your main partner in the last 24 hours?
+            # unknown user
+            nurse > *#8377#ug#22#0003#*
+            nurse < Error 0003. Unknown user.
+            # unknown language
+            nurse > *#8377#huh#22#0002#*
+            nurse < Error 0002. Unknown language/region: huh.
         """
         self.runScript(script)
         
