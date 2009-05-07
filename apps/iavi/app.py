@@ -7,6 +7,8 @@ from models import *
 from apps.i18n.utils import get_translation as _
 from apps.i18n.utils import get_language
 from strings import strings
+import threading
+import time
 
 class App (rapidsms.app.App):
 
@@ -18,6 +20,15 @@ class App (rapidsms.app.App):
         tree_app.register_custom_transition("validate_1_to_19", self.validate_1_to_19)
         tree_app.register_custom_transition("validate_num_times_condoms_used", self.validate_num_times_condoms_used)
         self.pending_pins = { }
+        
+        # interval to check for new surveys (in seconds)
+        survey_interval = 60
+        # start a thread for initiating surveys
+        survey_thread = threading.Thread(
+                target=self.survey_initiator_loop,
+                args=(survey_interval,))
+        survey_thread.daemon = True
+        survey_thread.start()
         
     def parse (self, message):
         """Parse and annotate messages in the parse phase."""
@@ -241,3 +252,13 @@ class App (rapidsms.app.App):
                 return True
         return False
         
+    # Responder Thread --------------------
+    def survey_initiator_loop(self, seconds=60):
+        self.info("Starting survey initiator...")
+        while True:
+            # wait for some condition to be true, and when it is
+            # start a survey
+            
+            # wait until it's time to check again
+            time.sleep(seconds)
+
