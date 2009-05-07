@@ -26,12 +26,32 @@ class App (rapidsms.app.App):
 
     def outgoing (self, message):
         # I'm going to assume that I've gotten the reporter's connection
+        if hasattr(message, 'is_airtime'):
+            return True
         con = PersistantConnection.from_message(message)
         
         # determine if the user is due for a recharge
         time_period = time() - self._frequency
         try:
             last_airtime = AirtimePins.objects.filter(time_used__gt=strftime('%Y-%m-%d %H:%M:%S', localtime(time_period)), connection=con).latest('time_used')
+            try:
+                # The user is due hence let's obtain a recharge pin
+                airtime = AirtimePins.vend_airtime(con.identity)
+                airtime.used = True
+                airtime.time_used = datetime.now()
+                airtime.connection = con
+                airtime.save()
+
+                msg_text = "Thanks for using RapidSMS. Please load this credit: %s" % airtime.pin
+                msg = message.connection.backend.message(con.identity, msg_text)
+                # The is_airtime attribute/flag added to the msg object is required for airtime checks on outgoing messages on a  call to outgoing method in order to avoid an infinite loop/call
+                msg.is_airtime = True
+                msg.send()
+
+            except (AirtimePins.DoesNotExist):
+                # There probably should be a more elegant way of handling this
+                self.error("No airtime pins available!")
+                pass
         except (AirtimePins.DoesNotExist):
             try:
                 # The user is due hence let's obtain a recharge pin
@@ -43,13 +63,16 @@ class App (rapidsms.app.App):
 
                 msg_text = "Thanks for using RapidSMS. Please load this credit: %s" % airtime.pin
                 msg = message.connection.backend.message(con.identity, msg_text)
+                # The is_airtime attribute/flag added to the msg object is required for airtime checks on outgoing messages on a  call to outgoing method in order to avoid an infinite loop/call
+
+                msg.is_airtime = True
                 msg.send()
 
             except (AirtimePins.DoesNotExist):
                 # There probably should be a more elegant way of handling this
                 self.error("No airtime pins available!")
                 pass
-
+        return True
     def stop (self):
         """Perform global app cleanup when the application is stopped."""
         pass
