@@ -54,30 +54,34 @@ class App (rapidsms.app.App):
             if len(body_groups) == 3:
                 # assume this is the registration format
                 # this is the (extremely ugly) format of registration
-                # *#<Country/Language Group>#<Site Number>#<Last 4 Digits of Participant ID>#*
+                # *#<Country/Language Group>#<Site Number>#<Last 3 Digits of Participant ID>#*
                 
                 language, site, id = body_groups
                 # validate the format of the id, existence of location
-                if not re.match(r"^\d{4}$", id):
-                    message.respond("Error %s.  Id must be 4 numeric digits.  You sent %s" % (id, id))
+                if not re.match(r"^\d{3}$", id):
+                    message.respond("Error %s. Id must be 3 numeric digits. You sent %s" % (id, id))
                     return True
                 try:
                     location = Location.objects.get(code=site)
                 except Location.DoesNotExist:
-                    message.respond("Error %s.  Unknown location %s" % (id, site))
+                    message.respond("Error %s. Unknown location %s" % (id, site))
                     return True
                 
                 # TODO: validate the language?
                 
+                # user ids are unique per-location so use location-id
+                # as the alias
+                alias = IaviReporter.get_alias(location.code, id)
+                
                 # make sure this isn't a duplicate alias
-                if len(IaviReporter.objects.filter(alias=id)) > 0:
-                    message.respond(_(strings["already_registered"], language) % {"alias": id})
+                if len(IaviReporter.objects.filter(alias=alias)) > 0:
+                    message.respond(_(strings["already_registered"], language) % {"alias": id, "location":location.code})
                     return True
                 
                 # create the reporter object for this person 
-                reporter = IaviReporter(alias=id, language=language, location=location)
+                reporter = IaviReporter(alias=alias, language=language, location=location)
                 reporter.save()
-                                    
+                
                 # also attach the reporter to the connection 
                 message.persistant_connection.reporter=reporter
                 message.persistant_connection.save()
@@ -100,8 +104,9 @@ class App (rapidsms.app.App):
                 # TODO: implement testing
                 
                 code, language, site, id = body_groups
+                alias = IaviReporter.get_alias(site, id)
                 try: 
-                    user = IaviReporter.objects.get(alias=id)
+                    user = IaviReporter.objects.get(alias=alias)
                     user_conn = user.connection()
                     if user_conn:
                         db_backend = user_conn.backend
@@ -158,28 +163,28 @@ class App (rapidsms.app.App):
     def _process_pin(self, message):
         language = get_language(message.persistant_connection)
         incoming_pin = message.text.strip()
-        if self.pending_pins[message.reporter.pk]:
+        reporter = IaviReporter.objects.get(pk=message.reporter.pk)
+        if self.pending_pins[reporter.pk]:
             # this means it has already been set once 
             # check if they are equal and if so save
-            pending_pin = self.pending_pins.pop(message.reporter.pk)
+            pending_pin = self.pending_pins.pop(reporter.pk)
             if incoming_pin == pending_pin:
                 # success!
-                reporter = IaviReporter.objects.get(pk=message.reporter.pk)
                 reporter.pin = pending_pin
                 reporter.save()
                 message.respond(_(strings["pin_set"], language))
             else:
                 # oops they didn't match.  send a failure string
-                message.respond(_(strings["pin_mismatch"], language) % {"alias": message.reporter.alias})
+                message.respond(_(strings["pin_mismatch"], language) % {"alias": reporter.study_id})
         else:
             # this is their first try.  make sure 
             # it's 4 numeric digits and if so ask for confirmation
             if re.match(r"^(\d{4})$", incoming_pin):
-                self.pending_pins[message.reporter.pk] = incoming_pin
+                self.pending_pins[reporter.pk] = incoming_pin
                 message.respond(_(strings["pin_request_again"], language))
             else:
                 # bad format.  send a failure string and prompt again
-                message.respond(_(strings["bad_pin_format"], language) % {"alias": message.reporter.alias})
+                message.respond(_(strings["bad_pin_format"], language) % {"alias": reporter.study_id})
         return True
     
     def _get_tree_sequence(self, language):
