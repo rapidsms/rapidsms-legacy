@@ -16,7 +16,7 @@
         {% for report in kenya_reports %}
             <tr>
                 <td>{{report.reporter.location.code}}</td>
-                <td>{{report.reporter.study_id}}</td>
+                <td><a href="/iavi/participants/{{reporter.pk}}/">{{reporter.study_id}}</a></td>
                 <td>{{report.started|date:"d-M-Y"}}</td>
                 <td>{{report.started|date:"Hi"}}</td>
                 <td>{{report.sex_past_day}}</td>
