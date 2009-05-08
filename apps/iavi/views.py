@@ -38,4 +38,17 @@ def data(req):
     kenya_reports = KenyaReport.objects.filter(started__gte=tomorrow-seven_days).order_by("-started")
     uganda_reports = UgandaReport.objects.filter(started__gte=tomorrow-seven_days).order_by("-started")
     return render_to_response(req, template_name, {"kenya_reports":kenya_reports, "uganda_reports":uganda_reports})
-    
+
+def participants(req):
+    template_name="iavi/participants.html"
+    return render_to_response(req, template_name, {"reporters" : IaviReporter.objects.all()})
+
+def participant_summary(req, id):
+    template_name="iavi/participant_summary.html"
+    try:
+        reporter = IaviReporter.objects.get(pk=id)
+    except IaviReporter.NotFound:
+        reporter = None 
+    kenya_reports = KenyaReport.objects.filter(reporter=reporter).order_by("-started")
+    uganda_reports = UgandaReport.objects.filter(reporter=reporter).order_by("-started")
+    return render_to_response(req, template_name, {"reporter" : reporter,"kenya_reports":kenya_reports, "uganda_reports":uganda_reports})

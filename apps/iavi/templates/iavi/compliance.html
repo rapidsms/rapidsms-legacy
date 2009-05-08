@@ -1,6 +1,6 @@
-{% extends "layout.html" %}
+{% extends "iavi/layout.html" %}
 {% block title %}IAVI Summary{% endblock %}
-{% block content %}
+{% block pagecontent %}
 <h2>Participants and their compliance.  All sites.</h2>
 <table width="100%"> 
     <thead>
@@ -13,12 +13,7 @@
     </thead>
     <tbody>
         {% for reporter in reporters %}
-            <tr>
-                <td>{{reporter.study_id}}</td>
-                <td>{{reporter.past_7_compliant}}/{{reporter.past_7_reports}}</td>
-                <td>{{reporter.past_30_compliant}}/{{reporter.past_30_reports}}</td>
-                <td>{{reporter.all_compliant}}/{{reporter.all_reports}}</td>
-            </tr>
+            {% include "iavi/partials/user_compliance.html" %}
         {% endfor %}
     </tbody>
 </table>
