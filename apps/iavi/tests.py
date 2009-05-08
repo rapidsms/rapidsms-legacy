@@ -335,7 +335,7 @@ class TestApp (TestScript):
         self.assertTrue(k_report.completed > k_report.started)
         self.assertEqual(5, k_report.sex_past_day)
         self.assertEqual(2, k_report.condoms_past_day)
-        self.assertEqual(False, k_report.canceled)
+        self.assertEqual("F", k_report.status)
         
         script = """ 
             session_listener_2 > 1234
@@ -355,7 +355,7 @@ class TestApp (TestScript):
         self.assertEqual(None, u_report.condom_with_partner)
         self.assertEqual(True, u_report.sex_with_other)
         self.assertEqual(True, u_report.condom_with_other)
-        self.assertEqual(False, u_report.canceled)
+        self.assertEqual("F", u_report.status)
         
         
          

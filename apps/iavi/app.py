@@ -274,7 +274,7 @@ class App (rapidsms.app.App):
             iavi_reporter = IaviReporter.objects.get(pk=reporter.pk)
             klass.objects.create(reporter=iavi_reporter, 
                                  started=session.start_date, 
-                                 session=session)
+                                 session=session, status="A")
         else:
             # update the data and save
             report = klass.objects.get(session=session)
@@ -285,7 +285,10 @@ class App (rapidsms.app.App):
                     clean_answer = self._get_clean_answer(answer, entry.text)
                     setattr(report, column, clean_answer)
             report.completed = datetime.now()
-            report.canceled = session.canceled
+            if session.canceled:
+                report.status = "C"
+            else:
+                report.status = "F"
             report.save()
             
             

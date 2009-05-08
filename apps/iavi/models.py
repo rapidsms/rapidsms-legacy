@@ -22,11 +22,17 @@ class IaviReporter(Reporter):
     
 
 class Report(models.Model):
+    STATUS_TYPES = (
+        ('C', 'Canceled'),
+        ('A', 'Active'),
+        ('F', 'Finished'),
+    )
+
     reporter = models.ForeignKey(IaviReporter)
     session = models.ForeignKey(Session)
     started = models.DateTimeField()
     completed = models.DateTimeField(null=True, blank=True)
-    canceled = models.BooleanField(null=True, blank=True)
+    status = models.CharField(max_length=1, choices=STATUS_TYPES)
     
     @classmethod
     def pending_sessions(klass):
