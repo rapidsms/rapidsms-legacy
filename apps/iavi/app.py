@@ -285,6 +285,7 @@ class App (rapidsms.app.App):
                     clean_answer = self._get_clean_answer(answer, entry.text)
                     setattr(report, column, clean_answer)
             report.completed = datetime.now()
+            report.canceled = session.canceled
             report.save()
             
             

@@ -26,7 +26,8 @@ class Report(models.Model):
     session = models.ForeignKey(Session)
     started = models.DateTimeField()
     completed = models.DateTimeField(null=True, blank=True)
-
+    canceled = models.BooleanField(null=True, blank=True)
+    
     @classmethod
     def pending_sessions(klass):
         return klass.objects.filter(completed=None)
