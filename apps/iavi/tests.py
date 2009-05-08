@@ -279,8 +279,6 @@ class TestApp (TestScript):
         """
         self.runScript(script)
         
-        
-        
     def testKenyaLocalization(self):
         # and again in another language
         self._register(**{"phone":"kenya_2", "id": "002", "language":"sw"})
@@ -296,6 +294,69 @@ class TestApp (TestScript):
         """
         self.runScript(script)
     
+    def testSessionListeners(self):
+        self._register("session_listener")
+        self._register("session_listener_2", "002")
+        self.assertEqual(0, len(Report.objects.all()))
+        script = """ 
+            session_listener > iavi kenya
+            session_listener < Hello, Please Reply With Your PIN
+            session_listener_2 > iavi uganda
+            session_listener_2 < Hello, Please Reply With Your PIN
+        """
+        self.runScript(script)
+        # make sure the report got created
+        self.assertEqual(2,len(Report.objects.all()))
+        self.assertEqual(1,len(KenyaReport.objects.all()))
+        self.assertEqual(1,len(UgandaReport.objects.all()))
+        
+        # make sure it's the right person/type
+        k_report = KenyaReport.objects.all()[0]
+        u_report = UgandaReport.objects.all()[0]
+        self.assertEqual("session_listener", k_report.reporter.connection().identity)
+        self.assertEqual(None, u_report.completed)
+        self.assertEqual(None, k_report.completed)
+        
+        self.assertEqual("session_listener_2", u_report.reporter.connection().identity)
+        
+        # ok let's finish the sessions now
+        # and make sure all the data is set
+        script = """ 
+            session_listener > 1234
+            session_listener < How many times did you have sex in the last 24 hours?
+            session_listener > 5
+            session_listener < Of the number of times that you had sex in the last 24 hours, how many times were condoms used?
+            session_listener > 2
+            session_listener < Interview is complete. Remember to use a new condom each time you have sex and take your pills as agreed. Thank you
+        """
+        self.runScript(script)
+        k_report = KenyaReport.objects.all()[0]
+        self.assertNotEqual(None, k_report.completed)
+        self.assertTrue(k_report.completed > k_report.started)
+        self.assertEqual(5, k_report.sex_past_day)
+        self.assertEqual(2, k_report.condoms_past_day)
+        
+        script = """ 
+            session_listener_2 > 1234
+            session_listener_2 < Did you have sex with your main partner in the last 24 hours?
+            session_listener_2 > NO!
+            session_listener_2 < Did you have vaginal sex with any other partner in the last 24 hours?
+            session_listener_2 > yep
+            session_listener_2 < Did you use a condom?
+            session_listener_2 > yessir
+            session_listener_2 < Questionnaire is complete. Thank you.
+        """
+        self.runScript(script)
+        u_report = UgandaReport.objects.all()[0]
+        self.assertNotEqual(None, u_report.completed)
+        self.assertTrue(u_report.completed > u_report.started)
+        self.assertEqual(False, u_report.sex_with_partner)
+        self.assertEqual(None, u_report.condom_with_partner)
+        self.assertEqual(True, u_report.sex_with_other)
+        self.assertEqual(True, u_report.condom_with_other)
+        
+        
+         
     def _register(self, phone="55555", id="001", pin="1234", location= "22", language="En"):
         """ Register a user, via the test script. """
         script = """

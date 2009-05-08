@@ -9,17 +9,22 @@ from apps.i18n.utils import get_language
 from strings import strings
 import threading
 import time
+from datetime import datetime
 
 class App (rapidsms.app.App):
-
+    
+    tree_app = None
+    pending_pins = {}
     def start (self):
         """Configure your app in the start phase."""
         # we have to register our functions with the tree app
-        tree_app = self.router.get_app("tree")
-        tree_app.register_custom_transition("validate_pin", self.validate_pin)
-        tree_app.register_custom_transition("validate_1_to_19", self.validate_1_to_19)
-        tree_app.register_custom_transition("validate_num_times_condoms_used", self.validate_num_times_condoms_used)
-        self.pending_pins = { }
+        self.tree_app = self.router.get_app("tree")
+        self.tree_app.register_custom_transition("validate_pin", self.validate_pin)
+        self.tree_app.register_custom_transition("validate_1_to_19", self.validate_1_to_19)
+        self.tree_app.register_custom_transition("validate_num_times_condoms_used", 
+                                                 self.validate_num_times_condoms_used)
+        self.tree_app.add_session_listener("iavi uganda", self.uganda_session)
+        self.tree_app.add_session_listener("iavi kenya", self.kenya_session)
         
         # interval to check for new surveys (in seconds)
         survey_interval = 60
@@ -78,7 +83,7 @@ class App (rapidsms.app.App):
                     message.respond("Error %s. Unknown location %s" % (id, site))
                     return True
                 
-                # TODO: validate the language?
+                # TODO: validate the language
                 
                 # user ids are unique per-location so use location-id
                 # as the alias
@@ -199,6 +204,9 @@ class App (rapidsms.app.App):
                 if not text:
                     return _(strings["unknown_language"],language) % ({"language":language, "alias":user.study_id})
                 else:
+                    # first ask the tree app to end any sessions it has open
+                    if self.tree_app:
+                        self.tree_app.end_sessions(user_conn)
                     start_msg = Message(connection, text)
                     self.router.incoming(start_msg)
                     return
@@ -218,6 +226,68 @@ class App (rapidsms.app.App):
             return "iavi kenya"
         else:
             return None
+    
+    def _get_column(self, state):
+        # this is just hard coded. *sigh*
+        if state.name == "uganda_main_1": 
+            return "sex_with_partner" 
+        elif state.name == "uganda_main_2": 
+            return "condom_with_partner" 
+        if state.name == "uganda_main_3": 
+            return "sex_with_other" 
+        if state.name == "uganda_main_4": 
+            return "condom_with_other" 
+        if state.name == "kenya_main_1": 
+            return "sex_past_day" 
+        if state.name == "kenya_main_2": 
+            return "condoms_past_day" 
+        
+        return None
+
+    def _get_clean_answer(self, answer, value):
+        # this is just hard coded. *sigh*
+        if answer.name == "pin validation":
+            return value
+        elif answer.name == "1 to 19" or\
+            answer.name == "times condoms used":
+            return int(value)
+        elif answer.name == "zero":
+            return 0
+        elif answer.name == "uganda no":
+            return False
+        elif answer.name == "uganda yes":
+            return True
+        
+    # this region for session listeners
+    
+    def uganda_session(self, session, is_ending):
+        self._handle_session(session, is_ending, UgandaReport)
+
+    def kenya_session(self, session, is_ending):
+        self._handle_session(session, is_ending, KenyaReport)
+        
+    def _handle_session(self, session, is_ending, klass):
+        self.debug("%s session: %s" % (klass, session))
+        if not is_ending:
+            # create a new report for this
+            reporter = session.connection.reporter
+            iavi_reporter = IaviReporter.objects.get(pk=reporter.pk)
+            klass.objects.create(reporter=iavi_reporter, 
+                                 started=session.start_date, 
+                                 session=session)
+        else:
+            # update the data and save
+            report = klass.objects.get(session=session)
+            for entry in session.entry_set.all():
+                answer = entry.transition.answer
+                column = self._get_column(entry.transition.current_state)
+                if column:
+                    clean_answer = self._get_clean_answer(answer, entry.text)
+                    setattr(report, column, clean_answer)
+            report.completed = datetime.now()
+            report.save()
+            
+            
     
     # this region is for the validation logic
     
@@ -252,13 +322,17 @@ class App (rapidsms.app.App):
                 return True
         return False
         
-    # Responder Thread --------------------
+    # Survey Initiator Thread --------------------
     def survey_initiator_loop(self, seconds=60):
+        '''This loops and initiates surveys with registered participants
+           based on some criteria (like daily)'''
         self.info("Starting survey initiator...")
         while True:
             # wait for some condition to be true, and when it is
             # start a survey
+            reporter = IaviReporter()
             
             # wait until it's time to check again
             time.sleep(seconds)
 
+    

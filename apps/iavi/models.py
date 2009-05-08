@@ -1,5 +1,6 @@
 from django.db import models
 from apps.reporters.models import Reporter
+from apps.tree.models import Session
 
 class IaviReporter(Reporter):
     """This model represents a reporter in IAVI.  They are an extension of
@@ -22,8 +23,14 @@ class IaviReporter(Reporter):
 
 class Report(models.Model):
     reporter = models.ForeignKey(IaviReporter)
+    session = models.ForeignKey(Session)
     started = models.DateTimeField()
     completed = models.DateTimeField(null=True, blank=True)
+
+    @classmethod
+    def pending_sessions(klass):
+        return klass.objects.filter(completed=None)
+    
     
 class KenyaReport(Report):
     sex_past_day = models.PositiveIntegerField(null=True, blank=True)
