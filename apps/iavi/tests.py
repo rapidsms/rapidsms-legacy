@@ -62,6 +62,12 @@ class TestApp (TestScript):
             tester < Hello, Please Reply With Your PIN
             tester > 1234
             tester < Did you have sex with your main partner in the last 24 hours?
+            tester > no
+            tester < Did you have vaginal sex with any other partner in the last 24 hours?
+            tester > NO
+            # due to some minor quirkiness, the nurse's message actually comes first
+            nurse < 001 Passes Test            
+            tester < Questionnaire is complete. Thank you.
             # unknown user
             nurse > *#8377#ug#22#003#*
             nurse < Error 003. Unknown user.

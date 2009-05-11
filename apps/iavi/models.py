@@ -1,5 +1,5 @@
 from django.db import models
-from apps.reporters.models import Reporter
+from apps.reporters.models import Reporter, PersistantConnection 
 from apps.tree.models import Session
 
 class IaviReporter(Reporter):
@@ -19,6 +19,19 @@ class IaviReporter(Reporter):
     @classmethod
     def get_alias(klass, location, study_id):
         return location + "-" + study_id
+
+class TestSession(models.Model):
+    TEST_STATUS_TYPES = (
+                         ("A", "Active"),
+                         ("P", "Passed"),
+                         ("F", "Failed")
+                         )
+    
+    date = models.DateTimeField(auto_now_add=True)
+    initiator = models.ForeignKey(PersistantConnection)
+    tester = models.ForeignKey(IaviReporter)
+    tree_session = models.ForeignKey(Session, null=True, blank=True)
+    status = models.CharField(max_length=1, choices=TEST_STATUS_TYPES)
     
 
 class Report(models.Model):
@@ -42,6 +55,7 @@ class Report(models.Model):
 class KenyaReport(Report):
     sex_past_day = models.PositiveIntegerField(null=True, blank=True)
     condoms_past_day = models.PositiveIntegerField(null=True, blank=True)
+    
     
 
 class UgandaReport(Report):

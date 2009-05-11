@@ -23,8 +23,9 @@ class App (rapidsms.app.App):
         self.tree_app.register_custom_transition("validate_1_to_19", self.validate_1_to_19)
         self.tree_app.register_custom_transition("validate_num_times_condoms_used", 
                                                  self.validate_num_times_condoms_used)
-        self.tree_app.add_session_listener("iavi uganda", self.uganda_session)
-        self.tree_app.add_session_listener("iavi kenya", self.kenya_session)
+        
+        self.tree_app.set_session_listener("iavi uganda", self.uganda_session)
+        self.tree_app.set_session_listener("iavi kenya", self.kenya_session)
         
         # interval to check for new surveys (in seconds)
         survey_interval = 60
@@ -126,7 +127,8 @@ class App (rapidsms.app.App):
                     # sequence for them.  If there are errors, respond
                     # with them
                     user = IaviReporter.objects.get(alias=alias)
-                    errors = self._initiate_tree_sequence(user, language)
+                    
+                    errors = self._initiate_tree_sequence(user, language, message.persistant_connection)
                     if errors:
                         message.respond(errors)
                 except IaviReporter.DoesNotExist:
@@ -191,7 +193,7 @@ class App (rapidsms.app.App):
                 message.respond(_(strings["bad_pin_format"], language) % {"alias": reporter.study_id})
         return True
     
-    def _initiate_tree_sequence(self, user, language):
+    def _initiate_tree_sequence(self, user, language, initiator=None):
         user_conn = user.connection()
         if user_conn:
             db_backend = user_conn.backend
@@ -207,6 +209,13 @@ class App (rapidsms.app.App):
                     # first ask the tree app to end any sessions it has open
                     if self.tree_app:
                         self.tree_app.end_sessions(user_conn)
+                    if initiator:
+                        # if this was initiated by someone else
+                        # create an entry for this so they can be
+                        # notified upon completion, and also so 
+                        # we can ignore the data
+                        TestSession.objects.create(initiator=initiator, tester=user,
+                                                   status="A")
                     start_msg = Message(connection, text)
                     self.router.incoming(start_msg)
                     return
@@ -265,33 +274,77 @@ class App (rapidsms.app.App):
 
     def kenya_session(self, session, is_ending):
         self._handle_session(session, is_ending, KenyaReport)
+
         
     def _handle_session(self, session, is_ending, klass):
         self.debug("%s session: %s" % (klass, session))
+        
+        # get the reporter object
+        reporter = session.connection.reporter
+        iavi_reporter = IaviReporter.objects.get(pk=reporter.pk)
+            
         if not is_ending:
-            # create a new report for this
-            reporter = session.connection.reporter
-            iavi_reporter = IaviReporter.objects.get(pk=reporter.pk)
-            klass.objects.create(reporter=iavi_reporter, 
+            # check if the reporter has an active test session
+            # and if so, link it. Otherwise treat it normally
+            try: 
+                test_session = TestSession.objects.get(tester=iavi_reporter, 
+                                                  status="A")
+                test_session.tree_session = session
+                test_session.save()
+            except TestSession.DoesNotExist:
+                # not an error, just means this wasn't a test
+                # create a new report for this
+                klass.objects.create(reporter=iavi_reporter, 
                                  started=session.start_date, 
                                  session=session, status="A")
+            
         else:
-            # update the data and save
-            report = klass.objects.get(session=session)
-            for entry in session.entry_set.all():
-                answer = entry.transition.answer
-                column = self._get_column(entry.transition.current_state)
-                if column:
-                    clean_answer = self._get_clean_answer(answer, entry.text)
-                    setattr(report, column, clean_answer)
-            report.completed = datetime.now()
-            if session.canceled:
-                report.status = "C"
-            else:
-                report.status = "F"
-            report.save()
-            
-            
+            # if we have a test session mark the status and save
+            try:
+                test_session = TestSession.objects.get(tree_session=session)
+                if session.canceled:
+                    test_session.status = "F"
+                    response = _(strings["test_fail"], get_language(test_session.initiator)) % ({"alias": iavi_reporter.study_id})
+                else:
+                    test_session.status = "P"
+                    response = _(strings["test_pass"], get_language(test_session.initiator)) % ({"alias": iavi_reporter.study_id})
+                
+                test_session.save()
+                
+                # also have to initiate a callback to the 
+                # original person who initiated the test
+                db_backend = test_session.initiator.backend
+                real_backend = self.router.get_backend(db_backend.slug)
+                if real_backend:
+                    real_connection = Connection(real_backend, test_session.initiator.identity)
+                    response_msg = Message(real_connection, response)
+                    self.router.outgoing(response_msg)
+                else:
+                    error = "Can't find backend %s.  Messages will not be sent" % connection.backend.slug
+                    self.error(error)
+            except TestSession.DoesNotExist:
+                # not a big deal.  it wasn't a test.  
+                # if we have a report
+                # update the data and save
+                try:
+                    report = klass.objects.get(session=session)
+                    for entry in session.entry_set.all():
+                        answer = entry.transition.answer
+                        column = self._get_column(entry.transition.current_state)
+                        if column:
+                            clean_answer = self._get_clean_answer(answer, entry.text)
+                            setattr(report, column, clean_answer)
+                    report.completed = datetime.now()
+                    if session.canceled:
+                        report.status = "C"
+                    else:
+                        report.status = "F"
+                    report.save()
+                except klass.DoesNotExist:
+                    # oops, not sure how this could happen, but we don't
+                    # want to puke
+                    self.error("No report found for session %s" % session)
+    
     
     # this region is for the validation logic
     

@@ -12,6 +12,7 @@ strings = {
     "unknown_format":           "Sorry, we didn't understand that message. Please try again.",
     "unknown_user":             "Error %(alias)s. Unknown user.",
     "unknown_language":         "Error %(alias)s. Unknown language/region: %(language)s.",
-    
-        
+    #"unknown_reporter":         "Error %(alias)s. Unknown language/region: %(language)s.",
+    "test_pass":                "%(alias)s Passes Test",
+    "test_fail":                "%(alias)s Failed Test",
 }
