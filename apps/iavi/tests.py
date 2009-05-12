@@ -5,6 +5,7 @@ import apps.reporters.app as reporters_app
 import apps.tree.app as tree_app
 #import apps.i18n.app as i18n_app
 from apps.reporters.models import Reporter
+import datetime
 
 class TestApp (TestScript):
     apps = (reporters_app.App, App, tree_app.App )
@@ -35,6 +36,7 @@ class TestApp (TestScript):
             reg_3 < Error o003. Id must be 3 numeric digits. You sent o003 
             # test a duplicate id
             reg_4 > *#En#22#001#*
+            # but allow them to register with the same id in a different location
             reg_4 < Sorry, 001 has already been registered. Please choose a new user id.
             # but a duplicate at a new location should be ok
             reg_5 > *#En#19#001#*
@@ -51,7 +53,46 @@ class TestApp (TestScript):
         self.assertRaises(IaviReporter.DoesNotExist, IaviReporter.objects.get, **dict)     
         dict = {"alias":"22-003"}
         self.assertRaises(IaviReporter.DoesNotExist, IaviReporter.objects.get, **dict)     
-             
+    
+    def testTimeFormats(self):
+        reg_script = """
+            # test time format failures
+            # That's an "oh" 
+            time_format_1 > *#En#22#004#140O#*
+            time_format_1 < Error 004. Time must be 4 numeric digits between 0000 and 2359. You sent 140O
+            time_format_1 > *#En#22#004#2400#*
+            time_format_1 < Error 004. Time must be 4 numeric digits between 0000 and 2359. You sent 2400
+            time_format_1 > *#En#22#004#1460#*
+            time_format_1 < Error 004. Time must be 4 numeric digits between 0000 and 2359. You sent 1460
+            time_format_1 > *#En#22#004#0000#*
+            time_format_1 < Confirm 004 Registration is Complete
+            time_format_1 < Please Enter Your PIN Code
+            time_format_2 > *#En#22#005#*
+            time_format_2 < Confirm 005 Registration is Complete
+            time_format_2 < Please Enter Your PIN Code
+            time_format_3 > *#En#22#006#1838#*
+            time_format_3 < Confirm 006 Registration is Complete
+            time_format_3 < Please Enter Your PIN Code
+        """
+        self.runScript(reg_script)
+        
+        # this reporter should have been created
+        # and his time should be 0000
+        rep = IaviReporter.objects.get(alias="22-004")
+        time_status = StudyParticipant.objects.get(reporter=rep)
+        self.assertEqual(time_status.notification_time, datetime.time(0,0))
+        
+        # this one should get the default (1600)
+        rep = IaviReporter.objects.get(alias="22-005")
+        time_status = StudyParticipant.objects.get(reporter=rep)
+        self.assertEqual(time_status.notification_time, datetime.time(16,0))
+        
+        # this one should be 1838
+        rep = IaviReporter.objects.get(alias="22-006")
+        time_status = StudyParticipant.objects.get(reporter=rep)
+        self.assertEqual(time_status.notification_time, datetime.time(18,38))
+        
+    
         
     def testTestSubmission(self):
         self._register("tester", "001", "1234", "22", "en")

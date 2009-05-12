@@ -10,6 +10,7 @@ from strings import strings
 import threading
 import time
 from datetime import datetime
+from datetime import time as dtt
 
 class App (rapidsms.app.App):
     
@@ -115,10 +116,18 @@ class App (rapidsms.app.App):
                 # TODO: validate the language
                 
                 # validate and get the time object
-                if not time.isdigit():
-                    # todo
-                    pass
-                    
+                if re.match(r"^\d{4}$", study_time):
+                    hour = int(study_time[0:2])
+                    minute = int(study_time[2:4])
+                    print "hour: %s minute: %s" % (hour, minute)
+                    if hour < 0 or hour >= 24 or minute < 0 or minute >= 60:
+                        message.respond("Error %s. Time must be 4 numeric digits between 0000 and 2359. You sent %s" % (id, study_time))
+                        return
+                    real_time = dtt(hour, minute)
+                else:
+                    message.respond("Error %s. Time must be 4 numeric digits between 0000 and 2359. You sent %s" % (id, study_time))
+                    return 
+                
                 # user ids are unique per-location so use location-id
                 # as the alias
                 alias = IaviReporter.get_alias(location.code, id)
@@ -132,14 +141,16 @@ class App (rapidsms.app.App):
                 reporter = IaviReporter(alias=alias, language=language, location=location, registered=message.date)
                 reporter.save()
                 
+                # create the study participant for this too.  Assume they're starting
+                # today and don't set a stop date.  This logic may be revisited
+                participant = StudyParticipant.objects.create(reporter=reporter, 
+                                                              start_date = datetime.now(),
+                                                              notification_time = real_time)
+                
                 # also attach the reporter to the connection 
                 message.persistant_connection.reporter=reporter
                 message.persistant_connection.save()
                 
-                # TODO: also do some tree stuff
-                # TODO: initiate pin sequence
-                
-                # send the response confirmation
                 message.respond("Confirm %s Registration is Complete" % id)
                 
                 # also send the PIN request and add this user to the 
