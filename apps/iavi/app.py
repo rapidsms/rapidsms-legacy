@@ -68,12 +68,40 @@ class App (rapidsms.app.App):
         if match:
             self.info("Message matches! %s", message)
             body_groups = match.groups()[0].split("#")
-            if len(body_groups) == 3:
+            if len(body_groups)== 4 and body_groups[0] == "8377":
+                # this is the testing format
+                # this is the (extremely ugly) format of testing
+                # *#8377#<Country/Language Group>#<Site Number>#<Last 4 Digits of Participant ID>#*
+                # TODO: implement testing
+                
+                code, language, site, id = body_groups
+                alias = IaviReporter.get_alias(site, id)
+                try: 
+                    # lookup the user in question and initiate the tree
+                    # sequence for them.  If there are errors, respond
+                    # with them
+                    user = IaviReporter.objects.get(alias=alias)
+                    
+                    errors = self._initiate_tree_sequence(user, language, message.persistant_connection)
+                    if errors:
+                        message.respond(errors)
+                except IaviReporter.DoesNotExist:
+                    message.respond(_(strings["unknown_user"], language) % {"alias":id})
+                return True
+            
+            else:
                 # assume this is the registration format
                 # this is the (extremely ugly) format of registration
-                # *#<Country/Language Group>#<Site Number>#<Last 3 Digits of Participant ID>#*
+                # time is optional
+                # *#<Country/Language Group>#<Site Number>#<Last 3 Digits of Participant ID>#<time?>#*
+                if len(body_groups) == 3:
+                    language, site, id = body_groups
+                    study_time = "1600"
+                elif len(body_groups) == 4:
+                    language, site, id, study_time = body_groups
+                else:
+                    message.respond(_(strings["unknown_format"], get_language(message.persistant_connection)))
                 
-                language, site, id = body_groups
                 # validate the format of the id, existence of location
                 if not re.match(r"^\d{3}$", id):
                     message.respond("Error %s. Id must be 3 numeric digits. You sent %s" % (id, id))
@@ -86,6 +114,11 @@ class App (rapidsms.app.App):
                 
                 # TODO: validate the language
                 
+                # validate and get the time object
+                if not time.isdigit():
+                    # todo
+                    pass
+                    
                 # user ids are unique per-location so use location-id
                 # as the alias
                 alias = IaviReporter.get_alias(location.code, id)
@@ -113,30 +146,6 @@ class App (rapidsms.app.App):
                 # pending pins
                 self.pending_pins[reporter.pk] = None
                 message.respond(_(strings["pin_request"], language))
-                
-            elif len(body_groups)== 4 and body_groups[0] == "8377":
-                # this is the testing format
-                # this is the (extremely ugly) format of testing
-                # *#8377#<Country/Language Group>#<Site Number>#<Last 4 Digits of Participant ID>#*
-                # TODO: implement testing
-                
-                code, language, site, id = body_groups
-                alias = IaviReporter.get_alias(site, id)
-                try: 
-                    # lookup the user in question and initiate the tree
-                    # sequence for them.  If there are errors, respond
-                    # with them
-                    user = IaviReporter.objects.get(alias=alias)
-                    
-                    errors = self._initiate_tree_sequence(user, language, message.persistant_connection)
-                    if errors:
-                        message.respond(errors)
-                except IaviReporter.DoesNotExist:
-                    message.respond(_(strings["unknown_user"], language) % {"alias":id})
-                return True
-            else:
-                message.respond(_(strings["unknown_format"], get_language(message.persistant_connection)))
-                
         else:
             self.info("Message doesn't match. %s", message)
             # this is okay.  one of the other apps may yet pick it up

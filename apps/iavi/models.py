@@ -20,6 +20,15 @@ class IaviReporter(Reporter):
     def get_alias(klass, location, study_id):
         return location + "-" + study_id
 
+class StudyParticipant(models.Model):
+    """ This represents a participant in the IAVI study. """
+    reporter = models.ForeignKey(IaviReporter)
+    start_date = models.DateTimeField()
+    # if the end_date is blank the study will go indefinitely
+    end_date = models.DateTimeField(null=True, blank=True)
+    notification_time = models.TimeField()
+    
+
 class TestSession(models.Model):
     TEST_STATUS_TYPES = (
                          ("A", "Active"),
