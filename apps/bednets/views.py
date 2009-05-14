@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # vim: ai ts=4 sts=4 et sw=4
 
+from django.contrib.auth.decorators import permission_required
 from django.http import HttpResponse, HttpResponseNotAllowed, HttpResponseServerError, Http404
 from django.template import RequestContext
 from apps.reporters.models import Location, LocationType
@@ -26,6 +27,7 @@ reload(sys)
 sys.setdefaultencoding('utf-8')
 
 #Views for handling summary of Reports Displayed as Location Tree
+@permission_required('bednets.can_view')
 def index(req, locid=None):
     if not locid:
         locid = 1

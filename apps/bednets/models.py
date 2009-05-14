@@ -29,6 +29,14 @@ class NetDistribution(models.Model):
         # FIXME tell django the old table name (since app has been renamed)
         db_table = "nigeria_netdistribution"
 
+        # define a permission for this app to use the @permission_required
+        # decorator in bednet's views
+        # in the admin's auth section, we have a group called 'llin' whose
+        # users have this permission -- and are able to see this section
+        permissions = (
+            ("can_view", "Can view"),
+        )
+
     
 class CardDistribution(models.Model):
     reporter = models.ForeignKey(Reporter, null=True, blank=True)
