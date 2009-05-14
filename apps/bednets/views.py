@@ -5,7 +5,7 @@ from django.http import HttpResponse, HttpResponseNotAllowed, HttpResponseServer
 from django.template import RequestContext
 from apps.reporters.models import Location, LocationType
 from apps.supply.models import Shipment, Transaction, Stock, PartialTransaction
-from apps.nigeria.models import CardDistribution, NetDistribution
+from apps.bednets.models import CardDistribution, NetDistribution
 from rapidsms.webui.utils import render_to_response
 from django.db import models
 # The import here newly added for serializations
@@ -34,7 +34,7 @@ def index(req, locid=None):
     except Location.DoesNotExist:
         location= None
     #print "location: %s" % location
-    return render_to_response(req, "nigeria/index.html",{'location':location })
+    return render_to_response(req, "bednets/index.html",{'location':location })
 
 
 def logistics_summary(req, locid):
@@ -82,7 +82,7 @@ def logistics_summary(req, locid):
         raise Http404
 
     # send the whole list of stuff back to the template
-    return render_to_response(req, "nigeria/logistics_summary.html", 
+    return render_to_response(req, "bednets/logistics_summary.html", 
                               {'location': location,
                                'child_locations': locations_shipped_to,
                                'transactions_pager': transactions_pager,
@@ -126,7 +126,7 @@ def generate(req):
     return HttpResponse("Successfully created %s distribution points and %s teams" % (dps_created, teams_created))
     
 def supply_summary(req, frm, to, range):
-    return render_to_response(req, "nigeria/supply_summary.html")
+    return render_to_response(req, "bednets/supply_summary.html")
 
 def bednets_summary(req, locid=1):
     #Declarations
@@ -178,7 +178,7 @@ def bednets_summary(req, locid=1):
     bar_data.append({"data" : nets_data, "bars": { "show" : "true" }, "label":"nets distributed"})
     
     ticks = [[index * 4 + 1.5, label] for index, label in enumerate(labels)]
-    return render_to_response(req, "nigeria/bednets_summary.html", {'location': location,
+    return render_to_response(req, "bednets/bednets_summary.html", {'location': location,
                      'children' : loc_children, 
                      'child_type':type, 
                      'parent':parent, 
@@ -238,7 +238,7 @@ def coupons_summary(req, locid=1):
     bar_data.append({"data" : coupon_data, "bars": { "show" : "true" }, "label":"coupons"})
     
     ticks = [[index * 4 + 1.5, label] for index, label in enumerate(labels)]
-    return render_to_response(req, "nigeria/coupons_summary.html", {'location': location,
+    return render_to_response(req, "bednets/coupons_summary.html", {'location': location,
                      'children' : loc_children, 
                      'child_type':type, 
                      'parent':parent, 
@@ -252,7 +252,7 @@ def coupons_summary(req, locid=1):
 #    new_graph = FlotGraph()
 #    new_graph.set_data(bar_data)
 #    test_flot = new_graph.generate_javascript()
-#    return render_to_response(req, "nigeria/flot_test.html", {
+#    return render_to_response(req, "bednets/flot_test.html", {
 #                     'test_flot':    test_flot
 #                     }
 #                 )
@@ -305,7 +305,7 @@ def coupons_daily(req, locid=1):
                      {'data': coupons_data_for_dps_mts2, "bars": { "show": "true" },"label":"MT 2" },
                      { 'data': coupons_data_for_dps_mts3, "bars": { "show": "true" },"label":"MT 3" },
                      { 'data': overflow_data, "bars": { "show": "true", "fill": "true", "fillColor":"#FFFFFF","label":"MT 4" }} ] 
-    return render_to_response(req, "nigeria/coupons_daily.html", {'location': location,
+    return render_to_response(req, "bednets/coupons_daily.html", {'location': location,
                      'children' : loc_children, 
                      'type':type, 
                      'child':child, 
@@ -319,10 +319,10 @@ def coupons_daily(req, locid=1):
     
 
 def coupons_weekly(req, locid):
-    return render_to_response(req, "nigeria/coupons_weekly.html")
+    return render_to_response(req, "bednets/coupons_weekly.html")
 
 def coupons_monthly(req, locid):
-    return render_to_response(req, "nigeria/coupons_monthly.html")
+    return render_to_response(req, "bednets/coupons_monthly.html")
 
 
 # Periodical Reporting  by day, week, month for bednets
@@ -335,27 +335,27 @@ def bednets_daily(req, locid):
     except Location.DoesNotExist:
         location = None
         
-    return render_to_response(req, "nigeria/bednets_daily.html", {'location': location})
+    return render_to_response(req, "bednets/bednets_daily.html", {'location': location})
 
 def bednets_weekly(req, locid):
-    return render_to_response(req, "nigeria/bednets_weekly.html")
+    return render_to_response(req, "bednets/bednets_weekly.html")
 
 def bednets_monthly(req, locid):
-    return render_to_response(req, "nigeria/bednets_monthly.html")
+    return render_to_response(req, "bednets/bednets_monthly.html")
 
 
 # Periodical Reporting  by day, week, month for supply
 #Builds daily supply reporting
 def supply_daily(req, locid):
-    return render_to_response(req, "nigeria/supply_daily.html")
+    return render_to_response(req, "bednets/supply_daily.html")
 
 #Builds weekly supply detail
 def supply_weekly(req, locid):
-    return render_to_response(req, "nigeria/supply_weekly.html")
+    return render_to_response(req, "bednets/supply_weekly.html")
 
 #Build Monthly supply detail
 def supply_monthly(req, locid):
-    return render_to_response(req, "nigeria/supply_monthly.html")
+    return render_to_response(req, "bednets/supply_monthly.html")
 
 
 def _get_stock_per_location_strings(locations):

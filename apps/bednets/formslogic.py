@@ -7,7 +7,7 @@ from apps.reporters.models import *
 from apps.form.formslogic import FormsLogic
 import re
 
-class NigeriaFormsLogic(FormsLogic):
+class BednetsFormsLogic(FormsLogic):
     ''' This class will hold the nigeria-specific forms logic.
         I'm not sure whether this will be the right structure
         this was just for getting something hooked up '''
@@ -169,5 +169,5 @@ class NigeriaFormsLogic(FormsLogic):
             # attr1=value1, attr2=value2
             response = response + ", ".join(["=".join(t) for t in attrs])
             if not instance.reporter:
-                response = response + ". Please register your phone"
+                response = response# + ". Please register your phone"
             message.respond(response, StatusCodes.OK)

@@ -1,7 +1,7 @@
 [
   {
     "pk": 1, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1384, 
       "reporter": null, 
@@ -15,7 +15,7 @@
   }, 
   {
     "pk": 2, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 918, 
       "reporter": null, 
@@ -29,7 +29,7 @@
   }, 
   {
     "pk": 3, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 757, 
       "reporter": null, 
@@ -43,7 +43,7 @@
   }, 
   {
     "pk": 4, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 288, 
       "reporter": null, 
@@ -57,7 +57,7 @@
   }, 
   {
     "pk": 5, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1068, 
       "reporter": null, 
@@ -71,7 +71,7 @@
   }, 
   {
     "pk": 6, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1104, 
       "reporter": null, 
@@ -85,7 +85,7 @@
   }, 
   {
     "pk": 7, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1542, 
       "reporter": null, 
@@ -99,7 +99,7 @@
   }, 
   {
     "pk": 8, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 177, 
       "reporter": null, 
@@ -113,7 +113,7 @@
   }, 
   {
     "pk": 9, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1505, 
       "reporter": null, 
@@ -127,7 +127,7 @@
   }, 
   {
     "pk": 10, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1779, 
       "reporter": null, 
@@ -141,7 +141,7 @@
   }, 
   {
     "pk": 11, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 359, 
       "reporter": null, 
@@ -155,7 +155,7 @@
   }, 
   {
     "pk": 12, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1881, 
       "reporter": null, 
@@ -169,7 +169,7 @@
   }, 
   {
     "pk": 13, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1815, 
       "reporter": null, 
@@ -183,7 +183,7 @@
   }, 
   {
     "pk": 14, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 56, 
       "reporter": null, 
@@ -197,7 +197,7 @@
   }, 
   {
     "pk": 15, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 577, 
       "reporter": null, 
@@ -211,7 +211,7 @@
   }, 
   {
     "pk": 16, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 327, 
       "reporter": null, 
@@ -225,7 +225,7 @@
   }, 
   {
     "pk": 17, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1009, 
       "reporter": null, 
@@ -239,7 +239,7 @@
   }, 
   {
     "pk": 18, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 440, 
       "reporter": null, 
@@ -253,7 +253,7 @@
   }, 
   {
     "pk": 19, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 649, 
       "reporter": null, 
@@ -267,7 +267,7 @@
   }, 
   {
     "pk": 20, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 617, 
       "reporter": null, 
@@ -281,7 +281,7 @@
   }, 
   {
     "pk": 21, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 507, 
       "reporter": null, 
@@ -295,7 +295,7 @@
   }, 
   {
     "pk": 22, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 910, 
       "reporter": null, 
@@ -309,7 +309,7 @@
   }, 
   {
     "pk": 23, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1164, 
       "reporter": null, 
@@ -323,7 +323,7 @@
   }, 
   {
     "pk": 24, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1867, 
       "reporter": null, 
@@ -337,7 +337,7 @@
   }, 
   {
     "pk": 25, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 46, 
       "reporter": null, 
@@ -351,7 +351,7 @@
   }, 
   {
     "pk": 26, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1410, 
       "reporter": null, 
@@ -365,7 +365,7 @@
   }, 
   {
     "pk": 27, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 646, 
       "reporter": null, 
@@ -379,7 +379,7 @@
   }, 
   {
     "pk": 28, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1097, 
       "reporter": null, 
@@ -393,7 +393,7 @@
   }, 
   {
     "pk": 29, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 380, 
       "reporter": null, 
@@ -407,7 +407,7 @@
   }, 
   {
     "pk": 30, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 92, 
       "reporter": null, 
@@ -421,7 +421,7 @@
   }, 
   {
     "pk": 31, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 514, 
       "reporter": null, 
@@ -435,7 +435,7 @@
   }, 
   {
     "pk": 32, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 106, 
       "reporter": null, 
@@ -449,7 +449,7 @@
   }, 
   {
     "pk": 33, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 167, 
       "reporter": null, 
@@ -463,7 +463,7 @@
   }, 
   {
     "pk": 34, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1397, 
       "reporter": null, 
@@ -477,7 +477,7 @@
   }, 
   {
     "pk": 35, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1369, 
       "reporter": null, 
@@ -491,7 +491,7 @@
   }, 
   {
     "pk": 36, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 512, 
       "reporter": null, 
@@ -505,7 +505,7 @@
   }, 
   {
     "pk": 37, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1016, 
       "reporter": null, 
@@ -519,7 +519,7 @@
   }, 
   {
     "pk": 38, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 15, 
       "reporter": null, 
@@ -533,7 +533,7 @@
   }, 
   {
     "pk": 39, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1440, 
       "reporter": null, 
@@ -547,7 +547,7 @@
   }, 
   {
     "pk": 40, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1484, 
       "reporter": null, 
@@ -561,7 +561,7 @@
   }, 
   {
     "pk": 41, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1791, 
       "reporter": null, 
@@ -575,7 +575,7 @@
   }, 
   {
     "pk": 42, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 296, 
       "reporter": null, 
@@ -589,7 +589,7 @@
   }, 
   {
     "pk": 43, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1722, 
       "reporter": null, 
@@ -603,7 +603,7 @@
   }, 
   {
     "pk": 44, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 45, 
       "reporter": null, 
@@ -617,7 +617,7 @@
   }, 
   {
     "pk": 45, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 431, 
       "reporter": null, 
@@ -631,7 +631,7 @@
   }, 
   {
     "pk": 46, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1923, 
       "reporter": null, 
@@ -645,7 +645,7 @@
   }, 
   {
     "pk": 47, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1856, 
       "reporter": null, 
@@ -659,7 +659,7 @@
   }, 
   {
     "pk": 48, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1975, 
       "reporter": null, 
@@ -673,7 +673,7 @@
   }, 
   {
     "pk": 49, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1609, 
       "reporter": null, 
@@ -687,7 +687,7 @@
   }, 
   {
     "pk": 50, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 55, 
       "reporter": null, 
@@ -701,7 +701,7 @@
   }, 
   {
     "pk": 51, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1796, 
       "reporter": null, 
@@ -715,7 +715,7 @@
   }, 
   {
     "pk": 52, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 297, 
       "reporter": null, 
@@ -729,7 +729,7 @@
   }, 
   {
     "pk": 53, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1852, 
       "reporter": null, 
@@ -743,7 +743,7 @@
   }, 
   {
     "pk": 54, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 131, 
       "reporter": null, 
@@ -757,7 +757,7 @@
   }, 
   {
     "pk": 55, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1754, 
       "reporter": null, 
@@ -771,7 +771,7 @@
   }, 
   {
     "pk": 56, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1617, 
       "reporter": null, 
@@ -785,7 +785,7 @@
   }, 
   {
     "pk": 57, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 622, 
       "reporter": null, 
@@ -799,7 +799,7 @@
   }, 
   {
     "pk": 58, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1263, 
       "reporter": null, 
@@ -813,7 +813,7 @@
   }, 
   {
     "pk": 59, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1457, 
       "reporter": null, 
@@ -827,7 +827,7 @@
   }, 
   {
     "pk": 60, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 103, 
       "reporter": null, 
@@ -841,7 +841,7 @@
   }, 
   {
     "pk": 61, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1744, 
       "reporter": null, 
@@ -855,7 +855,7 @@
   }, 
   {
     "pk": 62, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1396, 
       "reporter": null, 
@@ -869,7 +869,7 @@
   }, 
   {
     "pk": 63, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 839, 
       "reporter": null, 
@@ -883,7 +883,7 @@
   }, 
   {
     "pk": 64, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1713, 
       "reporter": null, 
@@ -897,7 +897,7 @@
   }, 
   {
     "pk": 65, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 570, 
       "reporter": null, 
@@ -911,7 +911,7 @@
   }, 
   {
     "pk": 66, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1165, 
       "reporter": null, 
@@ -925,7 +925,7 @@
   }, 
   {
     "pk": 67, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 800, 
       "reporter": null, 
@@ -939,7 +939,7 @@
   }, 
   {
     "pk": 68, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 507, 
       "reporter": null, 
@@ -953,7 +953,7 @@
   }, 
   {
     "pk": 69, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 640, 
       "reporter": null, 
@@ -967,7 +967,7 @@
   }, 
   {
     "pk": 70, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 334, 
       "reporter": null, 
@@ -981,7 +981,7 @@
   }, 
   {
     "pk": 71, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1444, 
       "reporter": null, 
@@ -995,7 +995,7 @@
   }, 
   {
     "pk": 72, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1958, 
       "reporter": null, 
@@ -1009,7 +1009,7 @@
   }, 
   {
     "pk": 73, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1514, 
       "reporter": null, 
@@ -1023,7 +1023,7 @@
   }, 
   {
     "pk": 74, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 466, 
       "reporter": null, 
@@ -1037,7 +1037,7 @@
   }, 
   {
     "pk": 75, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1224, 
       "reporter": null, 
@@ -1051,7 +1051,7 @@
   }, 
   {
     "pk": 76, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1144, 
       "reporter": null, 
@@ -1065,7 +1065,7 @@
   }, 
   {
     "pk": 77, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 589, 
       "reporter": null, 
@@ -1079,7 +1079,7 @@
   }, 
   {
     "pk": 78, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 856, 
       "reporter": null, 
@@ -1093,7 +1093,7 @@
   }, 
   {
     "pk": 79, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1282, 
       "reporter": null, 
@@ -1107,7 +1107,7 @@
   }, 
   {
     "pk": 80, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 896, 
       "reporter": null, 
@@ -1121,7 +1121,7 @@
   }, 
   {
     "pk": 81, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 344, 
       "reporter": null, 
@@ -1135,7 +1135,7 @@
   }, 
   {
     "pk": 82, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 538, 
       "reporter": null, 
@@ -1149,7 +1149,7 @@
   }, 
   {
     "pk": 83, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 765, 
       "reporter": null, 
@@ -1163,7 +1163,7 @@
   }, 
   {
     "pk": 84, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 106, 
       "reporter": null, 
@@ -1177,7 +1177,7 @@
   }, 
   {
     "pk": 85, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1726, 
       "reporter": null, 
@@ -1191,7 +1191,7 @@
   }, 
   {
     "pk": 86, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1086, 
       "reporter": null, 
@@ -1205,7 +1205,7 @@
   }, 
   {
     "pk": 87, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1228, 
       "reporter": null, 
@@ -1219,7 +1219,7 @@
   }, 
   {
     "pk": 88, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 910, 
       "reporter": null, 
@@ -1233,7 +1233,7 @@
   }, 
   {
     "pk": 89, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1842, 
       "reporter": null, 
@@ -1247,7 +1247,7 @@
   }, 
   {
     "pk": 90, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 115, 
       "reporter": null, 
@@ -1261,7 +1261,7 @@
   }, 
   {
     "pk": 91, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 159, 
       "reporter": null, 
@@ -1275,7 +1275,7 @@
   }, 
   {
     "pk": 92, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1173, 
       "reporter": null, 
@@ -1289,7 +1289,7 @@
   }, 
   {
     "pk": 93, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 458, 
       "reporter": null, 
@@ -1303,7 +1303,7 @@
   }, 
   {
     "pk": 94, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1294, 
       "reporter": null, 
@@ -1317,7 +1317,7 @@
   }, 
   {
     "pk": 95, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1520, 
       "reporter": null, 
@@ -1331,7 +1331,7 @@
   }, 
   {
     "pk": 96, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 818, 
       "reporter": null, 
@@ -1345,7 +1345,7 @@
   }, 
   {
     "pk": 97, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 292, 
       "reporter": null, 
@@ -1359,7 +1359,7 @@
   }, 
   {
     "pk": 98, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 552, 
       "reporter": null, 
@@ -1373,7 +1373,7 @@
   }, 
   {
     "pk": 99, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1675, 
       "reporter": null, 
@@ -1387,7 +1387,7 @@
   }, 
   {
     "pk": 100, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1325, 
       "reporter": null, 
@@ -1401,7 +1401,7 @@
   }, 
   {
     "pk": 101, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 474, 
       "reporter": null, 
@@ -1415,7 +1415,7 @@
   }, 
   {
     "pk": 102, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1, 
       "reporter": null, 
@@ -1429,7 +1429,7 @@
   }, 
   {
     "pk": 103, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 855, 
       "reporter": null, 
@@ -1443,7 +1443,7 @@
   }, 
   {
     "pk": 104, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 825, 
       "reporter": null, 
@@ -1457,7 +1457,7 @@
   }, 
   {
     "pk": 105, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 15, 
       "reporter": null, 
@@ -1471,7 +1471,7 @@
   }, 
   {
     "pk": 106, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1636, 
       "reporter": null, 
@@ -1485,7 +1485,7 @@
   }, 
   {
     "pk": 107, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 939, 
       "reporter": null, 
@@ -1499,7 +1499,7 @@
   }, 
   {
     "pk": 108, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 149, 
       "reporter": null, 
@@ -1513,7 +1513,7 @@
   }, 
   {
     "pk": 109, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1344, 
       "reporter": null, 
@@ -1527,7 +1527,7 @@
   }, 
   {
     "pk": 110, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 4, 
       "reporter": null, 
@@ -1541,7 +1541,7 @@
   }, 
   {
     "pk": 111, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 215, 
       "reporter": null, 
@@ -1555,7 +1555,7 @@
   }, 
   {
     "pk": 112, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 567, 
       "reporter": null, 
@@ -1569,7 +1569,7 @@
   }, 
   {
     "pk": 113, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1274, 
       "reporter": null, 
@@ -1583,7 +1583,7 @@
   }, 
   {
     "pk": 114, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 449, 
       "reporter": null, 
@@ -1597,7 +1597,7 @@
   }, 
   {
     "pk": 115, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 148, 
       "reporter": null, 
@@ -1611,7 +1611,7 @@
   }, 
   {
     "pk": 116, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 841, 
       "reporter": null, 
@@ -1625,7 +1625,7 @@
   }, 
   {
     "pk": 117, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 182, 
       "reporter": null, 
@@ -1639,7 +1639,7 @@
   }, 
   {
     "pk": 118, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 103, 
       "reporter": null, 
@@ -1653,7 +1653,7 @@
   }, 
   {
     "pk": 119, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1407, 
       "reporter": null, 
@@ -1667,7 +1667,7 @@
   }, 
   {
     "pk": 120, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1684, 
       "reporter": null, 
@@ -1681,7 +1681,7 @@
   }, 
   {
     "pk": 121, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1711, 
       "reporter": null, 
@@ -1695,7 +1695,7 @@
   }, 
   {
     "pk": 122, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1074, 
       "reporter": null, 
@@ -1709,7 +1709,7 @@
   }, 
   {
     "pk": 123, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1145, 
       "reporter": null, 
@@ -1723,7 +1723,7 @@
   }, 
   {
     "pk": 124, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 386, 
       "reporter": null, 
@@ -1737,7 +1737,7 @@
   }, 
   {
     "pk": 125, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1622, 
       "reporter": null, 
@@ -1751,7 +1751,7 @@
   }, 
   {
     "pk": 126, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1282, 
       "reporter": null, 
@@ -1765,7 +1765,7 @@
   }, 
   {
     "pk": 127, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1349, 
       "reporter": null, 
@@ -1779,7 +1779,7 @@
   }, 
   {
     "pk": 128, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 985, 
       "reporter": null, 
@@ -1793,7 +1793,7 @@
   }, 
   {
     "pk": 129, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1190, 
       "reporter": null, 
@@ -1807,7 +1807,7 @@
   }, 
   {
     "pk": 130, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1916, 
       "reporter": null, 
@@ -1821,7 +1821,7 @@
   }, 
   {
     "pk": 131, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 684, 
       "reporter": null, 
@@ -1835,7 +1835,7 @@
   }, 
   {
     "pk": 132, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1559, 
       "reporter": null, 
@@ -1849,7 +1849,7 @@
   }, 
   {
     "pk": 133, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 200, 
       "reporter": null, 
@@ -1863,7 +1863,7 @@
   }, 
   {
     "pk": 134, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 465, 
       "reporter": null, 
@@ -1877,7 +1877,7 @@
   }, 
   {
     "pk": 135, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 90, 
       "reporter": null, 
@@ -1891,7 +1891,7 @@
   }, 
   {
     "pk": 136, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 34, 
       "reporter": null, 
@@ -1905,7 +1905,7 @@
   }, 
   {
     "pk": 137, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 11, 
       "reporter": null, 
@@ -1919,7 +1919,7 @@
   }, 
   {
     "pk": 138, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1196, 
       "reporter": null, 
@@ -1933,7 +1933,7 @@
   }, 
   {
     "pk": 139, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1079, 
       "reporter": null, 
@@ -1947,7 +1947,7 @@
   }, 
   {
     "pk": 140, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1531, 
       "reporter": null, 
@@ -1961,7 +1961,7 @@
   }, 
   {
     "pk": 141, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 376, 
       "reporter": null, 
@@ -1975,7 +1975,7 @@
   }, 
   {
     "pk": 142, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 857, 
       "reporter": null, 
@@ -1989,7 +1989,7 @@
   }, 
   {
     "pk": 143, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 452, 
       "reporter": null, 
@@ -2003,7 +2003,7 @@
   }, 
   {
     "pk": 144, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1295, 
       "reporter": null, 
@@ -2017,7 +2017,7 @@
   }, 
   {
     "pk": 145, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 65, 
       "reporter": null, 
@@ -2031,7 +2031,7 @@
   }, 
   {
     "pk": 146, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 367, 
       "reporter": null, 
@@ -2045,7 +2045,7 @@
   }, 
   {
     "pk": 147, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 191, 
       "reporter": null, 
@@ -2059,7 +2059,7 @@
   }, 
   {
     "pk": 148, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 80, 
       "reporter": null, 
@@ -2073,7 +2073,7 @@
   }, 
   {
     "pk": 149, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1107, 
       "reporter": null, 
@@ -2087,7 +2087,7 @@
   }, 
   {
     "pk": 150, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 565, 
       "reporter": null, 
@@ -2101,7 +2101,7 @@
   }, 
   {
     "pk": 151, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1664, 
       "reporter": null, 
@@ -2115,7 +2115,7 @@
   }, 
   {
     "pk": 152, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1798, 
       "reporter": null, 
@@ -2129,7 +2129,7 @@
   }, 
   {
     "pk": 153, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1832, 
       "reporter": null, 
@@ -2143,7 +2143,7 @@
   }, 
   {
     "pk": 154, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 65, 
       "reporter": null, 
@@ -2157,7 +2157,7 @@
   }, 
   {
     "pk": 155, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1728, 
       "reporter": null, 
@@ -2171,7 +2171,7 @@
   }, 
   {
     "pk": 156, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1175, 
       "reporter": null, 
@@ -2185,7 +2185,7 @@
   }, 
   {
     "pk": 157, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 608, 
       "reporter": null, 
@@ -2199,7 +2199,7 @@
   }, 
   {
     "pk": 158, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 130, 
       "reporter": null, 
@@ -2213,7 +2213,7 @@
   }, 
   {
     "pk": 159, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1389, 
       "reporter": null, 
@@ -2227,7 +2227,7 @@
   }, 
   {
     "pk": 160, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1390, 
       "reporter": null, 
@@ -2241,7 +2241,7 @@
   }, 
   {
     "pk": 161, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1921, 
       "reporter": null, 
@@ -2255,7 +2255,7 @@
   }, 
   {
     "pk": 162, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 963, 
       "reporter": null, 
@@ -2269,7 +2269,7 @@
   }, 
   {
     "pk": 163, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 200, 
       "reporter": null, 
@@ -2283,7 +2283,7 @@
   }, 
   {
     "pk": 164, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1213, 
       "reporter": null, 
@@ -2297,7 +2297,7 @@
   }, 
   {
     "pk": 165, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1080, 
       "reporter": null, 
@@ -2311,7 +2311,7 @@
   }, 
   {
     "pk": 166, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 339, 
       "reporter": null, 
@@ -2325,7 +2325,7 @@
   }, 
   {
     "pk": 167, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 917, 
       "reporter": null, 
@@ -2339,7 +2339,7 @@
   }, 
   {
     "pk": 168, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 564, 
       "reporter": null, 
@@ -2353,7 +2353,7 @@
   }, 
   {
     "pk": 169, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 37, 
       "reporter": null, 
@@ -2367,7 +2367,7 @@
   }, 
   {
     "pk": 170, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1144, 
       "reporter": null, 
@@ -2381,7 +2381,7 @@
   }, 
   {
     "pk": 171, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 547, 
       "reporter": null, 
@@ -2395,7 +2395,7 @@
   }, 
   {
     "pk": 172, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1221, 
       "reporter": null, 
@@ -2409,7 +2409,7 @@
   }, 
   {
     "pk": 173, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1741, 
       "reporter": null, 
@@ -2423,7 +2423,7 @@
   }, 
   {
     "pk": 174, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1315, 
       "reporter": null, 
@@ -2437,7 +2437,7 @@
   }, 
   {
     "pk": 175, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 488, 
       "reporter": null, 
@@ -2451,7 +2451,7 @@
   }, 
   {
     "pk": 176, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 81, 
       "reporter": null, 
@@ -2465,7 +2465,7 @@
   }, 
   {
     "pk": 177, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1875, 
       "reporter": null, 
@@ -2479,7 +2479,7 @@
   }, 
   {
     "pk": 178, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1123, 
       "reporter": null, 
@@ -2493,7 +2493,7 @@
   }, 
   {
     "pk": 179, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1914, 
       "reporter": null, 
@@ -2507,7 +2507,7 @@
   }, 
   {
     "pk": 180, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 225, 
       "reporter": null, 
@@ -2521,7 +2521,7 @@
   }, 
   {
     "pk": 181, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 206, 
       "reporter": null, 
@@ -2535,7 +2535,7 @@
   }, 
   {
     "pk": 182, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1487, 
       "reporter": null, 
@@ -2549,7 +2549,7 @@
   }, 
   {
     "pk": 183, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 836, 
       "reporter": null, 
@@ -2563,7 +2563,7 @@
   }, 
   {
     "pk": 184, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 603, 
       "reporter": null, 
@@ -2577,7 +2577,7 @@
   }, 
   {
     "pk": 185, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 9, 
       "reporter": null, 
@@ -2591,7 +2591,7 @@
   }, 
   {
     "pk": 186, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1739, 
       "reporter": null, 
@@ -2605,7 +2605,7 @@
   }, 
   {
     "pk": 187, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1164, 
       "reporter": null, 
@@ -2619,7 +2619,7 @@
   }, 
   {
     "pk": 188, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 259, 
       "reporter": null, 
@@ -2633,7 +2633,7 @@
   }, 
   {
     "pk": 189, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 386, 
       "reporter": null, 
@@ -2647,7 +2647,7 @@
   }, 
   {
     "pk": 190, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 469, 
       "reporter": null, 
@@ -2661,7 +2661,7 @@
   }, 
   {
     "pk": 191, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1908, 
       "reporter": null, 
@@ -2675,7 +2675,7 @@
   }, 
   {
     "pk": 192, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 767, 
       "reporter": null, 
@@ -2689,7 +2689,7 @@
   }, 
   {
     "pk": 193, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1277, 
       "reporter": null, 
@@ -2703,7 +2703,7 @@
   }, 
   {
     "pk": 194, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1992, 
       "reporter": null, 
@@ -2717,7 +2717,7 @@
   }, 
   {
     "pk": 195, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 145, 
       "reporter": null, 
@@ -2731,7 +2731,7 @@
   }, 
   {
     "pk": 196, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1651, 
       "reporter": null, 
@@ -2745,7 +2745,7 @@
   }, 
   {
     "pk": 197, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1867, 
       "reporter": null, 
@@ -2759,7 +2759,7 @@
   }, 
   {
     "pk": 198, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 292, 
       "reporter": null, 
@@ -2773,7 +2773,7 @@
   }, 
   {
     "pk": 199, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1192, 
       "reporter": null, 
@@ -2787,7 +2787,7 @@
   }, 
   {
     "pk": 200, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 855, 
       "reporter": null, 
@@ -2801,7 +2801,7 @@
   }, 
   {
     "pk": 201, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1523, 
       "reporter": null, 
@@ -2815,7 +2815,7 @@
   }, 
   {
     "pk": 202, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1472, 
       "reporter": null, 
@@ -2829,7 +2829,7 @@
   }, 
   {
     "pk": 203, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 110, 
       "reporter": null, 
@@ -2843,7 +2843,7 @@
   }, 
   {
     "pk": 204, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 278, 
       "reporter": null, 
@@ -2857,7 +2857,7 @@
   }, 
   {
     "pk": 205, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 289, 
       "reporter": null, 
@@ -2871,7 +2871,7 @@
   }, 
   {
     "pk": 206, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1538, 
       "reporter": null, 
@@ -2885,7 +2885,7 @@
   }, 
   {
     "pk": 207, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1405, 
       "reporter": null, 
@@ -2899,7 +2899,7 @@
   }, 
   {
     "pk": 208, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 900, 
       "reporter": null, 
@@ -2913,7 +2913,7 @@
   }, 
   {
     "pk": 209, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 579, 
       "reporter": null, 
@@ -2927,7 +2927,7 @@
   }, 
   {
     "pk": 210, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 996, 
       "reporter": null, 
@@ -2941,7 +2941,7 @@
   }, 
   {
     "pk": 211, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1000, 
       "reporter": null, 
@@ -2955,7 +2955,7 @@
   }, 
   {
     "pk": 212, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1967, 
       "reporter": null, 
@@ -2969,7 +2969,7 @@
   }, 
   {
     "pk": 213, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 596, 
       "reporter": null, 
@@ -2983,7 +2983,7 @@
   }, 
   {
     "pk": 214, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1030, 
       "reporter": null, 
@@ -2997,7 +2997,7 @@
   }, 
   {
     "pk": 215, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1022, 
       "reporter": null, 
@@ -3011,7 +3011,7 @@
   }, 
   {
     "pk": 216, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1304, 
       "reporter": null, 
@@ -3025,7 +3025,7 @@
   }, 
   {
     "pk": 217, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1792, 
       "reporter": null, 
@@ -3039,7 +3039,7 @@
   }, 
   {
     "pk": 218, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1825, 
       "reporter": null, 
@@ -3053,7 +3053,7 @@
   }, 
   {
     "pk": 219, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1853, 
       "reporter": null, 
@@ -3067,7 +3067,7 @@
   }, 
   {
     "pk": 220, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1097, 
       "reporter": null, 
@@ -3081,7 +3081,7 @@
   }, 
   {
     "pk": 221, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 942, 
       "reporter": null, 
@@ -3095,7 +3095,7 @@
   }, 
   {
     "pk": 222, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1333, 
       "reporter": null, 
@@ -3109,7 +3109,7 @@
   }, 
   {
     "pk": 223, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1596, 
       "reporter": null, 
@@ -3123,7 +3123,7 @@
   }, 
   {
     "pk": 224, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1694, 
       "reporter": null, 
@@ -3137,7 +3137,7 @@
   }, 
   {
     "pk": 225, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1909, 
       "reporter": null, 
@@ -3151,7 +3151,7 @@
   }, 
   {
     "pk": 226, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 300, 
       "reporter": null, 
@@ -3165,7 +3165,7 @@
   }, 
   {
     "pk": 227, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1469, 
       "reporter": null, 
@@ -3179,7 +3179,7 @@
   }, 
   {
     "pk": 228, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 222, 
       "reporter": null, 
@@ -3193,7 +3193,7 @@
   }, 
   {
     "pk": 229, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1378, 
       "reporter": null, 
@@ -3207,7 +3207,7 @@
   }, 
   {
     "pk": 230, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 660, 
       "reporter": null, 
@@ -3221,7 +3221,7 @@
   }, 
   {
     "pk": 231, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 423, 
       "reporter": null, 
@@ -3235,7 +3235,7 @@
   }, 
   {
     "pk": 232, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1292, 
       "reporter": null, 
@@ -3249,7 +3249,7 @@
   }, 
   {
     "pk": 233, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1266, 
       "reporter": null, 
@@ -3263,7 +3263,7 @@
   }, 
   {
     "pk": 234, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 811, 
       "reporter": null, 
@@ -3277,7 +3277,7 @@
   }, 
   {
     "pk": 235, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1567, 
       "reporter": null, 
@@ -3291,7 +3291,7 @@
   }, 
   {
     "pk": 236, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 940, 
       "reporter": null, 
@@ -3305,7 +3305,7 @@
   }, 
   {
     "pk": 237, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1413, 
       "reporter": null, 
@@ -3319,7 +3319,7 @@
   }, 
   {
     "pk": 238, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 616, 
       "reporter": null, 
@@ -3333,7 +3333,7 @@
   }, 
   {
     "pk": 239, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 7, 
       "reporter": null, 
@@ -3347,7 +3347,7 @@
   }, 
   {
     "pk": 240, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 543, 
       "reporter": null, 
@@ -3361,7 +3361,7 @@
   }, 
   {
     "pk": 241, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 387, 
       "reporter": null, 
@@ -3375,7 +3375,7 @@
   }, 
   {
     "pk": 242, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 479, 
       "reporter": null, 
@@ -3389,7 +3389,7 @@
   }, 
   {
     "pk": 243, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 987, 
       "reporter": null, 
@@ -3403,7 +3403,7 @@
   }, 
   {
     "pk": 244, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 200, 
       "reporter": null, 
@@ -3417,7 +3417,7 @@
   }, 
   {
     "pk": 245, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 734, 
       "reporter": null, 
@@ -3431,7 +3431,7 @@
   }, 
   {
     "pk": 246, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 674, 
       "reporter": null, 
@@ -3445,7 +3445,7 @@
   }, 
   {
     "pk": 247, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1015, 
       "reporter": null, 
@@ -3459,7 +3459,7 @@
   }, 
   {
     "pk": 248, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1486, 
       "reporter": null, 
@@ -3473,7 +3473,7 @@
   }, 
   {
     "pk": 249, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 201, 
       "reporter": null, 
@@ -3487,7 +3487,7 @@
   }, 
   {
     "pk": 250, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 146, 
       "reporter": null, 
@@ -3501,7 +3501,7 @@
   }, 
   {
     "pk": 251, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1962, 
       "reporter": null, 
@@ -3515,7 +3515,7 @@
   }, 
   {
     "pk": 252, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 878, 
       "reporter": null, 
@@ -3529,7 +3529,7 @@
   }, 
   {
     "pk": 253, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 917, 
       "reporter": null, 
@@ -3543,7 +3543,7 @@
   }, 
   {
     "pk": 254, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1043, 
       "reporter": null, 
@@ -3557,7 +3557,7 @@
   }, 
   {
     "pk": 255, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1578, 
       "reporter": null, 
@@ -3571,7 +3571,7 @@
   }, 
   {
     "pk": 256, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1573, 
       "reporter": null, 
@@ -3585,7 +3585,7 @@
   }, 
   {
     "pk": 257, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 789, 
       "reporter": null, 
@@ -3599,7 +3599,7 @@
   }, 
   {
     "pk": 258, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1564, 
       "reporter": null, 
@@ -3613,7 +3613,7 @@
   }, 
   {
     "pk": 259, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 21, 
       "reporter": null, 
@@ -3627,7 +3627,7 @@
   }, 
   {
     "pk": 260, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1212, 
       "reporter": null, 
@@ -3641,7 +3641,7 @@
   }, 
   {
     "pk": 261, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1507, 
       "reporter": null, 
@@ -3655,7 +3655,7 @@
   }, 
   {
     "pk": 262, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 224, 
       "reporter": null, 
@@ -3669,7 +3669,7 @@
   }, 
   {
     "pk": 263, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1398, 
       "reporter": null, 
@@ -3683,7 +3683,7 @@
   }, 
   {
     "pk": 264, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 271, 
       "reporter": null, 
@@ -3697,7 +3697,7 @@
   }, 
   {
     "pk": 265, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 830, 
       "reporter": null, 
@@ -3711,7 +3711,7 @@
   }, 
   {
     "pk": 266, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1325, 
       "reporter": null, 
@@ -3725,7 +3725,7 @@
   }, 
   {
     "pk": 267, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 94, 
       "reporter": null, 
@@ -3739,7 +3739,7 @@
   }, 
   {
     "pk": 268, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1479, 
       "reporter": null, 
@@ -3753,7 +3753,7 @@
   }, 
   {
     "pk": 269, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1594, 
       "reporter": null, 
@@ -3767,7 +3767,7 @@
   }, 
   {
     "pk": 270, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 422, 
       "reporter": null, 
@@ -3781,7 +3781,7 @@
   }, 
   {
     "pk": 271, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 516, 
       "reporter": null, 
@@ -3795,7 +3795,7 @@
   }, 
   {
     "pk": 272, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 443, 
       "reporter": null, 
@@ -3809,7 +3809,7 @@
   }, 
   {
     "pk": 273, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1439, 
       "reporter": null, 
@@ -3823,7 +3823,7 @@
   }, 
   {
     "pk": 274, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 518, 
       "reporter": null, 
@@ -3837,7 +3837,7 @@
   }, 
   {
     "pk": 275, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1404, 
       "reporter": null, 
@@ -3851,7 +3851,7 @@
   }, 
   {
     "pk": 276, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1729, 
       "reporter": null, 
@@ -3865,7 +3865,7 @@
   }, 
   {
     "pk": 277, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 511, 
       "reporter": null, 
@@ -3879,7 +3879,7 @@
   }, 
   {
     "pk": 278, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 584, 
       "reporter": null, 
@@ -3893,7 +3893,7 @@
   }, 
   {
     "pk": 279, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 499, 
       "reporter": null, 
@@ -3907,7 +3907,7 @@
   }, 
   {
     "pk": 280, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1605, 
       "reporter": null, 
@@ -3921,7 +3921,7 @@
   }, 
   {
     "pk": 281, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 367, 
       "reporter": null, 
@@ -3935,7 +3935,7 @@
   }, 
   {
     "pk": 282, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 258, 
       "reporter": null, 
@@ -3949,7 +3949,7 @@
   }, 
   {
     "pk": 283, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 552, 
       "reporter": null, 
@@ -3963,7 +3963,7 @@
   }, 
   {
     "pk": 284, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1895, 
       "reporter": null, 
@@ -3977,7 +3977,7 @@
   }, 
   {
     "pk": 285, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 991, 
       "reporter": null, 
@@ -3991,7 +3991,7 @@
   }, 
   {
     "pk": 286, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1347, 
       "reporter": null, 
@@ -4005,7 +4005,7 @@
   }, 
   {
     "pk": 287, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 420, 
       "reporter": null, 
@@ -4019,7 +4019,7 @@
   }, 
   {
     "pk": 288, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 998, 
       "reporter": null, 
@@ -4033,7 +4033,7 @@
   }, 
   {
     "pk": 289, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 11, 
       "reporter": null, 
@@ -4047,7 +4047,7 @@
   }, 
   {
     "pk": 290, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1383, 
       "reporter": null, 
@@ -4061,7 +4061,7 @@
   }, 
   {
     "pk": 291, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 919, 
       "reporter": null, 
@@ -4075,7 +4075,7 @@
   }, 
   {
     "pk": 292, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 73, 
       "reporter": null, 
@@ -4089,7 +4089,7 @@
   }, 
   {
     "pk": 293, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1563, 
       "reporter": null, 
@@ -4103,7 +4103,7 @@
   }, 
   {
     "pk": 294, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 969, 
       "reporter": null, 
@@ -4117,7 +4117,7 @@
   }, 
   {
     "pk": 295, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 44, 
       "reporter": null, 
@@ -4131,7 +4131,7 @@
   }, 
   {
     "pk": 296, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 859, 
       "reporter": null, 
@@ -4145,7 +4145,7 @@
   }, 
   {
     "pk": 297, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 517, 
       "reporter": null, 
@@ -4159,7 +4159,7 @@
   }, 
   {
     "pk": 298, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1557, 
       "reporter": null, 
@@ -4173,7 +4173,7 @@
   }, 
   {
     "pk": 299, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 90, 
       "reporter": null, 
@@ -4187,7 +4187,7 @@
   }, 
   {
     "pk": 300, 
-    "model": "nigeria.netdistribution", 
+    "model": "bednets.netdistribution", 
     "fields": {
       "actual": 1200, 
       "reporter": null, 
@@ -4201,7 +4201,7 @@
   }, 
   {
     "pk": 1, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 505, 
       "settlements": 4, 
@@ -4214,7 +4214,7 @@
   }, 
   {
     "pk": 2, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 204, 
       "settlements": 27, 
@@ -4227,7 +4227,7 @@
   }, 
   {
     "pk": 3, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 397, 
       "settlements": 25, 
@@ -4240,7 +4240,7 @@
   }, 
   {
     "pk": 4, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 210, 
       "settlements": 5, 
@@ -4253,7 +4253,7 @@
   }, 
   {
     "pk": 5, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 99, 
       "settlements": 48, 
@@ -4266,7 +4266,7 @@
   }, 
   {
     "pk": 6, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 203, 
       "settlements": 48, 
@@ -4279,7 +4279,7 @@
   }, 
   {
     "pk": 7, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 574, 
       "settlements": 49, 
@@ -4292,7 +4292,7 @@
   }, 
   {
     "pk": 8, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 326, 
       "settlements": 13, 
@@ -4305,7 +4305,7 @@
   }, 
   {
     "pk": 9, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 359, 
       "settlements": 22, 
@@ -4318,7 +4318,7 @@
   }, 
   {
     "pk": 10, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 324, 
       "settlements": 50, 
@@ -4331,7 +4331,7 @@
   }, 
   {
     "pk": 11, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 174, 
       "settlements": 48, 
@@ -4344,7 +4344,7 @@
   }, 
   {
     "pk": 12, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 177, 
       "settlements": 20, 
@@ -4357,7 +4357,7 @@
   }, 
   {
     "pk": 13, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 566, 
       "settlements": 36, 
@@ -4370,7 +4370,7 @@
   }, 
   {
     "pk": 14, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 189, 
       "settlements": 22, 
@@ -4383,7 +4383,7 @@
   }, 
   {
     "pk": 15, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 469, 
       "settlements": 50, 
@@ -4396,7 +4396,7 @@
   }, 
   {
     "pk": 16, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 519, 
       "settlements": 12, 
@@ -4409,7 +4409,7 @@
   }, 
   {
     "pk": 17, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 346, 
       "settlements": 25, 
@@ -4422,7 +4422,7 @@
   }, 
   {
     "pk": 18, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 318, 
       "settlements": 20, 
@@ -4435,7 +4435,7 @@
   }, 
   {
     "pk": 19, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 324, 
       "settlements": 19, 
@@ -4448,7 +4448,7 @@
   }, 
   {
     "pk": 20, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 316, 
       "settlements": 47, 
@@ -4461,7 +4461,7 @@
   }, 
   {
     "pk": 21, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 322, 
       "settlements": 5, 
@@ -4474,7 +4474,7 @@
   }, 
   {
     "pk": 22, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 370, 
       "settlements": 9, 
@@ -4487,7 +4487,7 @@
   }, 
   {
     "pk": 23, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 399, 
       "settlements": 16, 
@@ -4500,7 +4500,7 @@
   }, 
   {
     "pk": 24, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 391, 
       "settlements": 28, 
@@ -4513,7 +4513,7 @@
   }, 
   {
     "pk": 25, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 132, 
       "settlements": 46, 
@@ -4526,7 +4526,7 @@
   }, 
   {
     "pk": 26, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 512, 
       "settlements": 46, 
@@ -4539,7 +4539,7 @@
   }, 
   {
     "pk": 27, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 87, 
       "settlements": 32, 
@@ -4552,7 +4552,7 @@
   }, 
   {
     "pk": 28, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 407, 
       "settlements": 26, 
@@ -4565,7 +4565,7 @@
   }, 
   {
     "pk": 29, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 163, 
       "settlements": 11, 
@@ -4578,7 +4578,7 @@
   }, 
   {
     "pk": 30, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 361, 
       "settlements": 39, 
@@ -4591,7 +4591,7 @@
   }, 
   {
     "pk": 31, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 552, 
       "settlements": 24, 
@@ -4604,7 +4604,7 @@
   }, 
   {
     "pk": 32, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 453, 
       "settlements": 34, 
@@ -4617,7 +4617,7 @@
   }, 
   {
     "pk": 33, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 221, 
       "settlements": 25, 
@@ -4630,7 +4630,7 @@
   }, 
   {
     "pk": 34, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 405, 
       "settlements": 20, 
@@ -4643,7 +4643,7 @@
   }, 
   {
     "pk": 35, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 180, 
       "settlements": 50, 
@@ -4656,7 +4656,7 @@
   }, 
   {
     "pk": 36, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 560, 
       "settlements": 42, 
@@ -4669,7 +4669,7 @@
   }, 
   {
     "pk": 37, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 442, 
       "settlements": 41, 
@@ -4682,7 +4682,7 @@
   }, 
   {
     "pk": 38, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 387, 
       "settlements": 48, 
@@ -4695,7 +4695,7 @@
   }, 
   {
     "pk": 39, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 440, 
       "settlements": 41, 
@@ -4708,7 +4708,7 @@
   }, 
   {
     "pk": 40, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 245, 
       "settlements": 28, 
@@ -4721,7 +4721,7 @@
   }, 
   {
     "pk": 41, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 65, 
       "settlements": 15, 
@@ -4734,7 +4734,7 @@
   }, 
   {
     "pk": 42, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 137, 
       "settlements": 50, 
@@ -4747,7 +4747,7 @@
   }, 
   {
     "pk": 43, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 112, 
       "settlements": 14, 
@@ -4760,7 +4760,7 @@
   }, 
   {
     "pk": 44, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 223, 
       "settlements": 12, 
@@ -4773,7 +4773,7 @@
   }, 
   {
     "pk": 45, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 470, 
       "settlements": 3, 
@@ -4786,7 +4786,7 @@
   }, 
   {
     "pk": 46, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 113, 
       "settlements": 16, 
@@ -4799,7 +4799,7 @@
   }, 
   {
     "pk": 47, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 356, 
       "settlements": 15, 
@@ -4812,7 +4812,7 @@
   }, 
   {
     "pk": 48, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 259, 
       "settlements": 8, 
@@ -4825,7 +4825,7 @@
   }, 
   {
     "pk": 49, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 402, 
       "settlements": 32, 
@@ -4838,7 +4838,7 @@
   }, 
   {
     "pk": 50, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 327, 
       "settlements": 29, 
@@ -4851,7 +4851,7 @@
   }, 
   {
     "pk": 51, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 508, 
       "settlements": 21, 
@@ -4864,7 +4864,7 @@
   }, 
   {
     "pk": 52, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 202, 
       "settlements": 49, 
@@ -4877,7 +4877,7 @@
   }, 
   {
     "pk": 53, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 469, 
       "settlements": 48, 
@@ -4890,7 +4890,7 @@
   }, 
   {
     "pk": 54, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 248, 
       "settlements": 4, 
@@ -4903,7 +4903,7 @@
   }, 
   {
     "pk": 55, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 578, 
       "settlements": 45, 
@@ -4916,7 +4916,7 @@
   }, 
   {
     "pk": 56, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 334, 
       "settlements": 44, 
@@ -4929,7 +4929,7 @@
   }, 
   {
     "pk": 57, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 356, 
       "settlements": 50, 
@@ -4942,7 +4942,7 @@
   }, 
   {
     "pk": 58, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 145, 
       "settlements": 31, 
@@ -4955,7 +4955,7 @@
   }, 
   {
     "pk": 59, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 160, 
       "settlements": 7, 
@@ -4968,7 +4968,7 @@
   }, 
   {
     "pk": 60, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 212, 
       "settlements": 48, 
@@ -4981,7 +4981,7 @@
   }, 
   {
     "pk": 61, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 126, 
       "settlements": 18, 
@@ -4994,7 +4994,7 @@
   }, 
   {
     "pk": 62, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 595, 
       "settlements": 7, 
@@ -5007,7 +5007,7 @@
   }, 
   {
     "pk": 63, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 350, 
       "settlements": 42, 
@@ -5020,7 +5020,7 @@
   }, 
   {
     "pk": 64, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 461, 
       "settlements": 25, 
@@ -5033,7 +5033,7 @@
   }, 
   {
     "pk": 65, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 126, 
       "settlements": 34, 
@@ -5046,7 +5046,7 @@
   }, 
   {
     "pk": 66, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 457, 
       "settlements": 36, 
@@ -5059,7 +5059,7 @@
   }, 
   {
     "pk": 67, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 329, 
       "settlements": 16, 
@@ -5072,7 +5072,7 @@
   }, 
   {
     "pk": 68, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 61, 
       "settlements": 16, 
@@ -5085,7 +5085,7 @@
   }, 
   {
     "pk": 69, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 393, 
       "settlements": 24, 
@@ -5098,7 +5098,7 @@
   }, 
   {
     "pk": 70, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 591, 
       "settlements": 41, 
@@ -5111,7 +5111,7 @@
   }, 
   {
     "pk": 71, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 209, 
       "settlements": 44, 
@@ -5124,7 +5124,7 @@
   }, 
   {
     "pk": 72, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 314, 
       "settlements": 24, 
@@ -5137,7 +5137,7 @@
   }, 
   {
     "pk": 73, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 257, 
       "settlements": 24, 
@@ -5150,7 +5150,7 @@
   }, 
   {
     "pk": 74, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 398, 
       "settlements": 31, 
@@ -5163,7 +5163,7 @@
   }, 
   {
     "pk": 75, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 250, 
       "settlements": 33, 
@@ -5176,7 +5176,7 @@
   }, 
   {
     "pk": 76, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 234, 
       "settlements": 4, 
@@ -5189,7 +5189,7 @@
   }, 
   {
     "pk": 77, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 188, 
       "settlements": 11, 
@@ -5202,7 +5202,7 @@
   }, 
   {
     "pk": 78, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 116, 
       "settlements": 21, 
@@ -5215,7 +5215,7 @@
   }, 
   {
     "pk": 79, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 180, 
       "settlements": 15, 
@@ -5228,7 +5228,7 @@
   }, 
   {
     "pk": 80, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 298, 
       "settlements": 12, 
@@ -5241,7 +5241,7 @@
   }, 
   {
     "pk": 81, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 570, 
       "settlements": 36, 
@@ -5254,7 +5254,7 @@
   }, 
   {
     "pk": 82, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 95, 
       "settlements": 11, 
@@ -5267,7 +5267,7 @@
   }, 
   {
     "pk": 83, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 528, 
       "settlements": 34, 
@@ -5280,7 +5280,7 @@
   }, 
   {
     "pk": 84, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 452, 
       "settlements": 38, 
@@ -5293,7 +5293,7 @@
   }, 
   {
     "pk": 85, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 536, 
       "settlements": 41, 
@@ -5306,7 +5306,7 @@
   }, 
   {
     "pk": 86, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 238, 
       "settlements": 33, 
@@ -5319,7 +5319,7 @@
   }, 
   {
     "pk": 87, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 217, 
       "settlements": 43, 
@@ -5332,7 +5332,7 @@
   }, 
   {
     "pk": 88, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 274, 
       "settlements": 26, 
@@ -5345,7 +5345,7 @@
   }, 
   {
     "pk": 89, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 446, 
       "settlements": 24, 
@@ -5358,7 +5358,7 @@
   }, 
   {
     "pk": 90, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 433, 
       "settlements": 45, 
@@ -5371,7 +5371,7 @@
   }, 
   {
     "pk": 91, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 65, 
       "settlements": 48, 
@@ -5384,7 +5384,7 @@
   }, 
   {
     "pk": 92, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 578, 
       "settlements": 19, 
@@ -5397,7 +5397,7 @@
   }, 
   {
     "pk": 93, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 574, 
       "settlements": 10, 
@@ -5410,7 +5410,7 @@
   }, 
   {
     "pk": 94, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 370, 
       "settlements": 4, 
@@ -5423,7 +5423,7 @@
   }, 
   {
     "pk": 95, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 164, 
       "settlements": 48, 
@@ -5436,7 +5436,7 @@
   }, 
   {
     "pk": 96, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 110, 
       "settlements": 28, 
@@ -5449,7 +5449,7 @@
   }, 
   {
     "pk": 97, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 195, 
       "settlements": 29, 
@@ -5462,7 +5462,7 @@
   }, 
   {
     "pk": 98, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 501, 
       "settlements": 3, 
@@ -5475,7 +5475,7 @@
   }, 
   {
     "pk": 99, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 312, 
       "settlements": 37, 
@@ -5488,7 +5488,7 @@
   }, 
   {
     "pk": 100, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 290, 
       "settlements": 17, 
@@ -5501,7 +5501,7 @@
   }, 
   {
     "pk": 101, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 366, 
       "settlements": 5, 
@@ -5514,7 +5514,7 @@
   }, 
   {
     "pk": 102, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 581, 
       "settlements": 19, 
@@ -5527,7 +5527,7 @@
   }, 
   {
     "pk": 103, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 258, 
       "settlements": 16, 
@@ -5540,7 +5540,7 @@
   }, 
   {
     "pk": 104, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 439, 
       "settlements": 44, 
@@ -5553,7 +5553,7 @@
   }, 
   {
     "pk": 105, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 220, 
       "settlements": 39, 
@@ -5566,7 +5566,7 @@
   }, 
   {
     "pk": 106, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 583, 
       "settlements": 29, 
@@ -5579,7 +5579,7 @@
   }, 
   {
     "pk": 107, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 89, 
       "settlements": 24, 
@@ -5592,7 +5592,7 @@
   }, 
   {
     "pk": 108, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 552, 
       "settlements": 48, 
@@ -5605,7 +5605,7 @@
   }, 
   {
     "pk": 109, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 323, 
       "settlements": 49, 
@@ -5618,7 +5618,7 @@
   }, 
   {
     "pk": 110, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 478, 
       "settlements": 6, 
@@ -5631,7 +5631,7 @@
   }, 
   {
     "pk": 111, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 428, 
       "settlements": 19, 
@@ -5644,7 +5644,7 @@
   }, 
   {
     "pk": 112, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 242, 
       "settlements": 14, 
@@ -5657,7 +5657,7 @@
   }, 
   {
     "pk": 113, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 80, 
       "settlements": 48, 
@@ -5670,7 +5670,7 @@
   }, 
   {
     "pk": 114, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 135, 
       "settlements": 34, 
@@ -5683,7 +5683,7 @@
   }, 
   {
     "pk": 115, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 476, 
       "settlements": 49, 
@@ -5696,7 +5696,7 @@
   }, 
   {
     "pk": 116, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 286, 
       "settlements": 43, 
@@ -5709,7 +5709,7 @@
   }, 
   {
     "pk": 117, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 197, 
       "settlements": 30, 
@@ -5722,7 +5722,7 @@
   }, 
   {
     "pk": 118, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 127, 
       "settlements": 13, 
@@ -5735,7 +5735,7 @@
   }, 
   {
     "pk": 119, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 246, 
       "settlements": 18, 
@@ -5748,7 +5748,7 @@
   }, 
   {
     "pk": 120, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 237, 
       "settlements": 21, 
@@ -5761,7 +5761,7 @@
   }, 
   {
     "pk": 121, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 300, 
       "settlements": 24, 
@@ -5774,7 +5774,7 @@
   }, 
   {
     "pk": 122, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 375, 
       "settlements": 49, 
@@ -5787,7 +5787,7 @@
   }, 
   {
     "pk": 123, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 242, 
       "settlements": 11, 
@@ -5800,7 +5800,7 @@
   }, 
   {
     "pk": 124, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 181, 
       "settlements": 3, 
@@ -5813,7 +5813,7 @@
   }, 
   {
     "pk": 125, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 220, 
       "settlements": 7, 
@@ -5826,7 +5826,7 @@
   }, 
   {
     "pk": 126, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 304, 
       "settlements": 47, 
@@ -5839,7 +5839,7 @@
   }, 
   {
     "pk": 127, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 366, 
       "settlements": 40, 
@@ -5852,7 +5852,7 @@
   }, 
   {
     "pk": 128, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 389, 
       "settlements": 32, 
@@ -5865,7 +5865,7 @@
   }, 
   {
     "pk": 129, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 416, 
       "settlements": 34, 
@@ -5878,7 +5878,7 @@
   }, 
   {
     "pk": 130, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 402, 
       "settlements": 21, 
@@ -5891,7 +5891,7 @@
   }, 
   {
     "pk": 131, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 381, 
       "settlements": 27, 
@@ -5904,7 +5904,7 @@
   }, 
   {
     "pk": 132, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 232, 
       "settlements": 19, 
@@ -5917,7 +5917,7 @@
   }, 
   {
     "pk": 133, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 485, 
       "settlements": 47, 
@@ -5930,7 +5930,7 @@
   }, 
   {
     "pk": 134, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 566, 
       "settlements": 45, 
@@ -5943,7 +5943,7 @@
   }, 
   {
     "pk": 135, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 527, 
       "settlements": 6, 
@@ -5956,7 +5956,7 @@
   }, 
   {
     "pk": 136, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 146, 
       "settlements": 46, 
@@ -5969,7 +5969,7 @@
   }, 
   {
     "pk": 137, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 174, 
       "settlements": 11, 
@@ -5982,7 +5982,7 @@
   }, 
   {
     "pk": 138, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 576, 
       "settlements": 9, 
@@ -5995,7 +5995,7 @@
   }, 
   {
     "pk": 139, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 552, 
       "settlements": 34, 
@@ -6008,7 +6008,7 @@
   }, 
   {
     "pk": 140, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 229, 
       "settlements": 29, 
@@ -6021,7 +6021,7 @@
   }, 
   {
     "pk": 141, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 356, 
       "settlements": 33, 
@@ -6034,7 +6034,7 @@
   }, 
   {
     "pk": 142, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 461, 
       "settlements": 12, 
@@ -6047,7 +6047,7 @@
   }, 
   {
     "pk": 143, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 494, 
       "settlements": 5, 
@@ -6060,7 +6060,7 @@
   }, 
   {
     "pk": 144, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 102, 
       "settlements": 50, 
@@ -6073,7 +6073,7 @@
   }, 
   {
     "pk": 145, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 443, 
       "settlements": 16, 
@@ -6086,7 +6086,7 @@
   }, 
   {
     "pk": 146, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 492, 
       "settlements": 39, 
@@ -6099,7 +6099,7 @@
   }, 
   {
     "pk": 147, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 436, 
       "settlements": 45, 
@@ -6112,7 +6112,7 @@
   }, 
   {
     "pk": 148, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 600, 
       "settlements": 30, 
@@ -6125,7 +6125,7 @@
   }, 
   {
     "pk": 149, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 241, 
       "settlements": 4, 
@@ -6138,7 +6138,7 @@
   }, 
   {
     "pk": 150, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 477, 
       "settlements": 22, 
@@ -6151,7 +6151,7 @@
   }, 
   {
     "pk": 151, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 381, 
       "settlements": 48, 
@@ -6164,7 +6164,7 @@
   }, 
   {
     "pk": 152, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 232, 
       "settlements": 20, 
@@ -6177,7 +6177,7 @@
   }, 
   {
     "pk": 153, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 244, 
       "settlements": 13, 
@@ -6190,7 +6190,7 @@
   }, 
   {
     "pk": 154, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 405, 
       "settlements": 33, 
@@ -6203,7 +6203,7 @@
   }, 
   {
     "pk": 155, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 454, 
       "settlements": 24, 
@@ -6216,7 +6216,7 @@
   }, 
   {
     "pk": 156, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 151, 
       "settlements": 46, 
@@ -6229,7 +6229,7 @@
   }, 
   {
     "pk": 157, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 280, 
       "settlements": 20, 
@@ -6242,7 +6242,7 @@
   }, 
   {
     "pk": 158, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 282, 
       "settlements": 26, 
@@ -6255,7 +6255,7 @@
   }, 
   {
     "pk": 159, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 569, 
       "settlements": 7, 
@@ -6268,7 +6268,7 @@
   }, 
   {
     "pk": 160, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 582, 
       "settlements": 13, 
@@ -6281,7 +6281,7 @@
   }, 
   {
     "pk": 161, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 72, 
       "settlements": 44, 
@@ -6294,7 +6294,7 @@
   }, 
   {
     "pk": 162, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 176, 
       "settlements": 32, 
@@ -6307,7 +6307,7 @@
   }, 
   {
     "pk": 163, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 492, 
       "settlements": 17, 
@@ -6320,7 +6320,7 @@
   }, 
   {
     "pk": 164, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 574, 
       "settlements": 14, 
@@ -6333,7 +6333,7 @@
   }, 
   {
     "pk": 165, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 465, 
       "settlements": 39, 
@@ -6346,7 +6346,7 @@
   }, 
   {
     "pk": 166, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 111, 
       "settlements": 18, 
@@ -6359,7 +6359,7 @@
   }, 
   {
     "pk": 167, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 518, 
       "settlements": 49, 
@@ -6372,7 +6372,7 @@
   }, 
   {
     "pk": 168, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 308, 
       "settlements": 42, 
@@ -6385,7 +6385,7 @@
   }, 
   {
     "pk": 169, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 275, 
       "settlements": 29, 
@@ -6398,7 +6398,7 @@
   }, 
   {
     "pk": 170, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 275, 
       "settlements": 42, 
@@ -6411,7 +6411,7 @@
   }, 
   {
     "pk": 171, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 116, 
       "settlements": 41, 
@@ -6424,7 +6424,7 @@
   }, 
   {
     "pk": 172, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 383, 
       "settlements": 23, 
@@ -6437,7 +6437,7 @@
   }, 
   {
     "pk": 173, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 558, 
       "settlements": 25, 
@@ -6450,7 +6450,7 @@
   }, 
   {
     "pk": 174, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 543, 
       "settlements": 45, 
@@ -6463,7 +6463,7 @@
   }, 
   {
     "pk": 175, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 457, 
       "settlements": 16, 
@@ -6476,7 +6476,7 @@
   }, 
   {
     "pk": 176, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 507, 
       "settlements": 15, 
@@ -6489,7 +6489,7 @@
   }, 
   {
     "pk": 177, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 535, 
       "settlements": 31, 
@@ -6502,7 +6502,7 @@
   }, 
   {
     "pk": 178, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 442, 
       "settlements": 46, 
@@ -6515,7 +6515,7 @@
   }, 
   {
     "pk": 179, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 155, 
       "settlements": 24, 
@@ -6528,7 +6528,7 @@
   }, 
   {
     "pk": 180, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 207, 
       "settlements": 46, 
@@ -6541,7 +6541,7 @@
   }, 
   {
     "pk": 181, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 503, 
       "settlements": 27, 
@@ -6554,7 +6554,7 @@
   }, 
   {
     "pk": 182, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 409, 
       "settlements": 39, 
@@ -6567,7 +6567,7 @@
   }, 
   {
     "pk": 183, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 512, 
       "settlements": 50, 
@@ -6580,7 +6580,7 @@
   }, 
   {
     "pk": 184, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 99, 
       "settlements": 27, 
@@ -6593,7 +6593,7 @@
   }, 
   {
     "pk": 185, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 64, 
       "settlements": 36, 
@@ -6606,7 +6606,7 @@
   }, 
   {
     "pk": 186, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 256, 
       "settlements": 40, 
@@ -6619,7 +6619,7 @@
   }, 
   {
     "pk": 187, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 163, 
       "settlements": 38, 
@@ -6632,7 +6632,7 @@
   }, 
   {
     "pk": 188, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 443, 
       "settlements": 40, 
@@ -6645,7 +6645,7 @@
   }, 
   {
     "pk": 189, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 390, 
       "settlements": 18, 
@@ -6658,7 +6658,7 @@
   }, 
   {
     "pk": 190, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 397, 
       "settlements": 43, 
@@ -6671,7 +6671,7 @@
   }, 
   {
     "pk": 191, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 69, 
       "settlements": 48, 
@@ -6684,7 +6684,7 @@
   }, 
   {
     "pk": 192, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 422, 
       "settlements": 12, 
@@ -6697,7 +6697,7 @@
   }, 
   {
     "pk": 193, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 239, 
       "settlements": 8, 
@@ -6710,7 +6710,7 @@
   }, 
   {
     "pk": 194, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 146, 
       "settlements": 32, 
@@ -6723,7 +6723,7 @@
   }, 
   {
     "pk": 195, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 583, 
       "settlements": 13, 
@@ -6736,7 +6736,7 @@
   }, 
   {
     "pk": 196, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 239, 
       "settlements": 38, 
@@ -6749,7 +6749,7 @@
   }, 
   {
     "pk": 197, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 167, 
       "settlements": 43, 
@@ -6762,7 +6762,7 @@
   }, 
   {
     "pk": 198, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 158, 
       "settlements": 5, 
@@ -6775,7 +6775,7 @@
   }, 
   {
     "pk": 199, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 546, 
       "settlements": 46, 
@@ -6788,7 +6788,7 @@
   }, 
   {
     "pk": 200, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 544, 
       "settlements": 44, 
@@ -6801,7 +6801,7 @@
   }, 
   {
     "pk": 201, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 410, 
       "settlements": 5, 
@@ -6814,7 +6814,7 @@
   }, 
   {
     "pk": 202, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 96, 
       "settlements": 38, 
@@ -6827,7 +6827,7 @@
   }, 
   {
     "pk": 203, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 475, 
       "settlements": 31, 
@@ -6840,7 +6840,7 @@
   }, 
   {
     "pk": 204, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 99, 
       "settlements": 21, 
@@ -6853,7 +6853,7 @@
   }, 
   {
     "pk": 205, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 206, 
       "settlements": 41, 
@@ -6866,7 +6866,7 @@
   }, 
   {
     "pk": 206, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 417, 
       "settlements": 46, 
@@ -6879,7 +6879,7 @@
   }, 
   {
     "pk": 207, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 357, 
       "settlements": 24, 
@@ -6892,7 +6892,7 @@
   }, 
   {
     "pk": 208, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 95, 
       "settlements": 25, 
@@ -6905,7 +6905,7 @@
   }, 
   {
     "pk": 209, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 340, 
       "settlements": 10, 
@@ -6918,7 +6918,7 @@
   }, 
   {
     "pk": 210, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 201, 
       "settlements": 5, 
@@ -6931,7 +6931,7 @@
   }, 
   {
     "pk": 211, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 144, 
       "settlements": 47, 
@@ -6944,7 +6944,7 @@
   }, 
   {
     "pk": 212, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 504, 
       "settlements": 7, 
@@ -6957,7 +6957,7 @@
   }, 
   {
     "pk": 213, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 259, 
       "settlements": 6, 
@@ -6970,7 +6970,7 @@
   }, 
   {
     "pk": 214, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 290, 
       "settlements": 20, 
@@ -6983,7 +6983,7 @@
   }, 
   {
     "pk": 215, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 540, 
       "settlements": 47, 
@@ -6996,7 +6996,7 @@
   }, 
   {
     "pk": 216, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 232, 
       "settlements": 6, 
@@ -7009,7 +7009,7 @@
   }, 
   {
     "pk": 217, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 237, 
       "settlements": 12, 
@@ -7022,7 +7022,7 @@
   }, 
   {
     "pk": 218, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 297, 
       "settlements": 12, 
@@ -7035,7 +7035,7 @@
   }, 
   {
     "pk": 219, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 51, 
       "settlements": 21, 
@@ -7048,7 +7048,7 @@
   }, 
   {
     "pk": 220, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 513, 
       "settlements": 32, 
@@ -7061,7 +7061,7 @@
   }, 
   {
     "pk": 221, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 96, 
       "settlements": 43, 
@@ -7074,7 +7074,7 @@
   }, 
   {
     "pk": 222, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 598, 
       "settlements": 28, 
@@ -7087,7 +7087,7 @@
   }, 
   {
     "pk": 223, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 383, 
       "settlements": 44, 
@@ -7100,7 +7100,7 @@
   }, 
   {
     "pk": 224, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 224, 
       "settlements": 38, 
@@ -7113,7 +7113,7 @@
   }, 
   {
     "pk": 225, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 143, 
       "settlements": 20, 
@@ -7126,7 +7126,7 @@
   }, 
   {
     "pk": 226, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 507, 
       "settlements": 10, 
@@ -7139,7 +7139,7 @@
   }, 
   {
     "pk": 227, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 347, 
       "settlements": 20, 
@@ -7152,7 +7152,7 @@
   }, 
   {
     "pk": 228, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 492, 
       "settlements": 27, 
@@ -7165,7 +7165,7 @@
   }, 
   {
     "pk": 229, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 591, 
       "settlements": 50, 
@@ -7178,7 +7178,7 @@
   }, 
   {
     "pk": 230, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 87, 
       "settlements": 45, 
@@ -7191,7 +7191,7 @@
   }, 
   {
     "pk": 231, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 424, 
       "settlements": 33, 
@@ -7204,7 +7204,7 @@
   }, 
   {
     "pk": 232, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 330, 
       "settlements": 30, 
@@ -7217,7 +7217,7 @@
   }, 
   {
     "pk": 233, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 189, 
       "settlements": 45, 
@@ -7230,7 +7230,7 @@
   }, 
   {
     "pk": 234, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 438, 
       "settlements": 40, 
@@ -7243,7 +7243,7 @@
   }, 
   {
     "pk": 235, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 123, 
       "settlements": 44, 
@@ -7256,7 +7256,7 @@
   }, 
   {
     "pk": 236, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 489, 
       "settlements": 32, 
@@ -7269,7 +7269,7 @@
   }, 
   {
     "pk": 237, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 229, 
       "settlements": 44, 
@@ -7282,7 +7282,7 @@
   }, 
   {
     "pk": 238, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 70, 
       "settlements": 46, 
@@ -7295,7 +7295,7 @@
   }, 
   {
     "pk": 239, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 173, 
       "settlements": 46, 
@@ -7308,7 +7308,7 @@
   }, 
   {
     "pk": 240, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 333, 
       "settlements": 50, 
@@ -7321,7 +7321,7 @@
   }, 
   {
     "pk": 241, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 355, 
       "settlements": 3, 
@@ -7334,7 +7334,7 @@
   }, 
   {
     "pk": 242, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 518, 
       "settlements": 9, 
@@ -7347,7 +7347,7 @@
   }, 
   {
     "pk": 243, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 288, 
       "settlements": 37, 
@@ -7360,7 +7360,7 @@
   }, 
   {
     "pk": 244, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 429, 
       "settlements": 40, 
@@ -7373,7 +7373,7 @@
   }, 
   {
     "pk": 245, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 245, 
       "settlements": 47, 
@@ -7386,7 +7386,7 @@
   }, 
   {
     "pk": 246, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 439, 
       "settlements": 5, 
@@ -7399,7 +7399,7 @@
   }, 
   {
     "pk": 247, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 414, 
       "settlements": 26, 
@@ -7412,7 +7412,7 @@
   }, 
   {
     "pk": 248, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 74, 
       "settlements": 38, 
@@ -7425,7 +7425,7 @@
   }, 
   {
     "pk": 249, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 485, 
       "settlements": 28, 
@@ -7438,7 +7438,7 @@
   }, 
   {
     "pk": 250, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 256, 
       "settlements": 49, 
@@ -7451,7 +7451,7 @@
   }, 
   {
     "pk": 251, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 219, 
       "settlements": 41, 
@@ -7464,7 +7464,7 @@
   }, 
   {
     "pk": 252, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 297, 
       "settlements": 41, 
@@ -7477,7 +7477,7 @@
   }, 
   {
     "pk": 253, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 72, 
       "settlements": 8, 
@@ -7490,7 +7490,7 @@
   }, 
   {
     "pk": 254, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 370, 
       "settlements": 46, 
@@ -7503,7 +7503,7 @@
   }, 
   {
     "pk": 255, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 553, 
       "settlements": 45, 
@@ -7516,7 +7516,7 @@
   }, 
   {
     "pk": 256, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 72, 
       "settlements": 15, 
@@ -7529,7 +7529,7 @@
   }, 
   {
     "pk": 257, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 399, 
       "settlements": 21, 
@@ -7542,7 +7542,7 @@
   }, 
   {
     "pk": 258, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 230, 
       "settlements": 28, 
@@ -7555,7 +7555,7 @@
   }, 
   {
     "pk": 259, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 66, 
       "settlements": 45, 
@@ -7568,7 +7568,7 @@
   }, 
   {
     "pk": 260, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 245, 
       "settlements": 5, 
@@ -7581,7 +7581,7 @@
   }, 
   {
     "pk": 261, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 566, 
       "settlements": 47, 
@@ -7594,7 +7594,7 @@
   }, 
   {
     "pk": 262, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 403, 
       "settlements": 37, 
@@ -7607,7 +7607,7 @@
   }, 
   {
     "pk": 263, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 388, 
       "settlements": 20, 
@@ -7620,7 +7620,7 @@
   }, 
   {
     "pk": 264, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 458, 
       "settlements": 17, 
@@ -7633,7 +7633,7 @@
   }, 
   {
     "pk": 265, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 277, 
       "settlements": 15, 
@@ -7646,7 +7646,7 @@
   }, 
   {
     "pk": 266, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 419, 
       "settlements": 11, 
@@ -7659,7 +7659,7 @@
   }, 
   {
     "pk": 267, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 298, 
       "settlements": 8, 
@@ -7672,7 +7672,7 @@
   }, 
   {
     "pk": 268, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 594, 
       "settlements": 32, 
@@ -7685,7 +7685,7 @@
   }, 
   {
     "pk": 269, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 237, 
       "settlements": 24, 
@@ -7698,7 +7698,7 @@
   }, 
   {
     "pk": 270, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 330, 
       "settlements": 26, 
@@ -7711,7 +7711,7 @@
   }, 
   {
     "pk": 271, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 513, 
       "settlements": 25, 
@@ -7724,7 +7724,7 @@
   }, 
   {
     "pk": 272, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 476, 
       "settlements": 38, 
@@ -7737,7 +7737,7 @@
   }, 
   {
     "pk": 273, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 168, 
       "settlements": 19, 
@@ -7750,7 +7750,7 @@
   }, 
   {
     "pk": 274, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 565, 
       "settlements": 50, 
@@ -7763,7 +7763,7 @@
   }, 
   {
     "pk": 275, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 551, 
       "settlements": 37, 
@@ -7776,7 +7776,7 @@
   }, 
   {
     "pk": 276, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 255, 
       "settlements": 48, 
@@ -7789,7 +7789,7 @@
   }, 
   {
     "pk": 277, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 503, 
       "settlements": 20, 
@@ -7802,7 +7802,7 @@
   }, 
   {
     "pk": 278, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 578, 
       "settlements": 50, 
@@ -7815,7 +7815,7 @@
   }, 
   {
     "pk": 279, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 80, 
       "settlements": 30, 
@@ -7828,7 +7828,7 @@
   }, 
   {
     "pk": 280, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 324, 
       "settlements": 30, 
@@ -7841,7 +7841,7 @@
   }, 
   {
     "pk": 281, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 179, 
       "settlements": 16, 
@@ -7854,7 +7854,7 @@
   }, 
   {
     "pk": 282, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 143, 
       "settlements": 30, 
@@ -7867,7 +7867,7 @@
   }, 
   {
     "pk": 283, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 290, 
       "settlements": 48, 
@@ -7880,7 +7880,7 @@
   }, 
   {
     "pk": 284, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 517, 
       "settlements": 12, 
@@ -7893,7 +7893,7 @@
   }, 
   {
     "pk": 285, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 213, 
       "settlements": 16, 
@@ -7906,7 +7906,7 @@
   }, 
   {
     "pk": 286, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 551, 
       "settlements": 26, 
@@ -7919,7 +7919,7 @@
   }, 
   {
     "pk": 287, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 223, 
       "settlements": 38, 
@@ -7932,7 +7932,7 @@
   }, 
   {
     "pk": 288, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 427, 
       "settlements": 30, 
@@ -7945,7 +7945,7 @@
   }, 
   {
     "pk": 289, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 208, 
       "settlements": 40, 
@@ -7958,7 +7958,7 @@
   }, 
   {
     "pk": 290, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 387, 
       "settlements": 12, 
@@ -7971,7 +7971,7 @@
   }, 
   {
     "pk": 291, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 308, 
       "settlements": 28, 
@@ -7984,7 +7984,7 @@
   }, 
   {
     "pk": 292, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 578, 
       "settlements": 46, 
@@ -7997,7 +7997,7 @@
   }, 
   {
     "pk": 293, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 365, 
       "settlements": 42, 
@@ -8010,7 +8010,7 @@
   }, 
   {
     "pk": 294, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 515, 
       "settlements": 10, 
@@ -8023,7 +8023,7 @@
   }, 
   {
     "pk": 295, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 404, 
       "settlements": 40, 
@@ -8036,7 +8036,7 @@
   }, 
   {
     "pk": 296, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 460, 
       "settlements": 20, 
@@ -8049,7 +8049,7 @@
   }, 
   {
     "pk": 297, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 371, 
       "settlements": 46, 
@@ -8062,7 +8062,7 @@
   }, 
   {
     "pk": 298, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 179, 
       "settlements": 38, 
@@ -8075,7 +8075,7 @@
   }, 
   {
     "pk": 299, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 56, 
       "settlements": 29, 
@@ -8088,7 +8088,7 @@
   }, 
   {
     "pk": 300, 
-    "model": "nigeria.carddistribution", 
+    "model": "bednets.carddistribution", 
     "fields": {
       "people": 549, 
       "settlements": 17, 
