@@ -119,7 +119,6 @@ class App (rapidsms.app.App):
                 if re.match(r"^\d{4}$", study_time):
                     hour = int(study_time[0:2])
                     minute = int(study_time[2:4])
-                    print "hour: %s minute: %s" % (hour, minute)
                     if hour < 0 or hour >= 24 or minute < 0 or minute >= 60:
                         message.respond("Error %s. Time must be 4 numeric digits between 0000 and 2359. You sent %s" % (id, study_time))
                         return
@@ -213,7 +212,7 @@ class App (rapidsms.app.App):
                 message.respond(_(strings["bad_pin_format"], language) % {"alias": reporter.study_id})
         return True
     
-    def _initiate_tree_sequence(self, user, language, initiator=None):
+    def _initiate_tree_sequence(self, user, survey_type, initiator=None):
         user_conn = user.connection()
         if user_conn:
             db_backend = user_conn.backend
@@ -222,9 +221,9 @@ class App (rapidsms.app.App):
             real_backend = self.router.get_backend(db_backend.slug)
             if real_backend:
                 connection = Connection(real_backend, user_conn.identity)
-                text = self._get_tree_sequence(language)
+                text = self._get_tree_sequence(survey_type)
                 if not text:
-                    return _(strings["unknown_language"],language) % ({"language":language, "alias":user.study_id})
+                    return _(strings["unknown_language"], survey_type) % ({"language":survey_type, "alias":user.study_id})
                 else:
                     # first ask the tree app to end any sessions it has open
                     if self.tree_app:
@@ -248,13 +247,21 @@ class App (rapidsms.app.App):
             self.error(error)
             return error
 
-    def _get_tree_sequence(self, language):
-        if re.match(r"^(ug[a-z]*)$", language, re.IGNORECASE):
+    def _get_tree_sequence(self, survey_type):
+        if re.match(r"^(ug[a-z]*)$", survey_type, re.IGNORECASE):
             return "iavi uganda"
-        elif re.match(r"^(ke[a-z]*|sw[a-z]*)$", language, re.IGNORECASE):
+        elif re.match(r"^(ke[a-z]*|sw[a-z]*)$", survey_type, re.IGNORECASE):
             return "iavi kenya"
         else:
             return None
+    
+    def _get_survey_type(self, location):
+        if "uganda" in location.type.name.lower():
+            return "ug"
+        elif "kenya" in location.type.name.lower():
+            return "ke"
+        else:
+            raise Exception("Can't initiate survey for unknown location type %s" % location.type)
     
     def _get_column(self, state):
         # this is just hard coded. *sigh*
@@ -404,10 +411,30 @@ class App (rapidsms.app.App):
         '''This loops and initiates surveys with registered participants
            based on some criteria (like daily)'''
         self.info("Starting survey initiator...")
+        prev_time = datetime.now().time()
         while True:
             # wait for some condition to be true, and when it is
             # start a survey
-            reporter = IaviReporter()
+            next_time = datetime.now().time()
+            # conditions are that the 
+            # notification time is between the previous seen time
+            # and the next time, the start date was sometime before
+            # or equal to today, and the end date is either null
+            # or after or equal to today
+            to_initiate = StudyParticipant.objects.filter\
+                (notification_time__gt=prev_time).filter\
+                (notification_time__lte=next_time).filter\
+                (start_date__lte=datetime.today())
+            for participant in to_initiate:
+                errors = self._initiate_tree_sequence(participant.reporter, 
+                                                      self._get_survey_type(participant.reporter.location))
+                # unfortunately I'm not sure what else we can do if something
+                # goes wrong here
+                if errors:
+                    self.error(errors)
+            
+            #update the previous time
+            prev_time = next_time
             
             # wait until it's time to check again
             time.sleep(seconds)
