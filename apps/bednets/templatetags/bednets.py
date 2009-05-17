@@ -50,6 +50,14 @@ def bednets_stats():
             "caption": "Net Cards Distributed",
             "value":   sum(CardDistribution.objects.values_list("distributed", flat=True))
         },
+        {
+            "caption": "Net Reports",
+            "value":   NetDistribution.objects.count()
+        },
+        {
+            "caption": "Nets Distributed",
+            "value":   sum(NetDistribution.objects.values_list("distributed", flat=True))
+        },
 #        {
 #            "caption": "Coupon Recipients",
 #            "value":   sum(CardDistribution.objects.values_list("people", flat=True))
