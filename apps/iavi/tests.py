@@ -27,13 +27,13 @@ class TestApp (TestScript):
             reg_2 < Error 002. Unknown location 34
             # bad participant ids
             reg_3 > *#En#22##*
-            reg_3 < Error . Id must be 3 numeric digits. You sent 
+            reg_3 < Error. Id must be 3 numeric digits. You sent 
             reg_3 > *#En#22#03#*
-            reg_3 < Error 03. Id must be 3 numeric digits. You sent 03 
+            reg_3 < Error. Id must be 3 numeric digits. You sent 03 
             reg_3 > *#En#22#0003#*
-            reg_3 < Error 0003. Id must be 3 numeric digits. You sent 0003 
+            reg_3 < Error. Id must be 3 numeric digits. You sent 0003 
             reg_3 > *#En#22#o003#*
-            reg_3 < Error o003. Id must be 3 numeric digits. You sent o003 
+            reg_3 < Error. Id must be 3 numeric digits. You sent o003 
             # test a duplicate id
             reg_4 > *#En#22#001#*
             # but allow them to register with the same id in a different location
@@ -259,7 +259,7 @@ class TestApp (TestScript):
         
     def testUgandaLocalization(self):
         # and again in another language
-        self._register(**{"phone":"ugb_2", "id": "002", "language":"ug"})
+        self._register(**{"phone":"ugb_2", "id": "002", "language":"lg"})
         script = """
             ugb_2 > iavi uganda
             ugb_2 < Ssebo/Nnyabo Yingiza ennamba yo eye'kyaama mu ssimu yo. Era ennamba eyo giwereze ku kompyuta yaffe.

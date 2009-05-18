@@ -5,7 +5,7 @@ from rapidsms.message import Message
 from apps.reporters.models import Reporter, Location
 from models import *
 from apps.i18n.utils import get_translation as _
-from apps.i18n.utils import get_language
+from apps.i18n.utils import get_language_code
 from strings import strings
 import threading
 import time
@@ -57,7 +57,7 @@ class App (rapidsms.app.App):
         
         # we'll be using the language in all our responses so
         # keep it handy
-        language = get_language(message.persistant_connection)
+        language = get_language_code(message.persistant_connection)
         
         # check pin conditions and process if they match
         if message.reporter and message.reporter.pk in self.pending_pins:
@@ -101,16 +101,16 @@ class App (rapidsms.app.App):
                 elif len(body_groups) == 4:
                     language, site, id, study_time = body_groups
                 else:
-                    message.respond(_(strings["unknown_format"], get_language(message.persistant_connection)))
+                    message.respond(_(strings["unknown_format"], get_language_code(message.persistant_connection)))
                 
                 # validate the format of the id, existence of location
                 if not re.match(r"^\d{3}$", id):
-                    message.respond("Error %s. Id must be 3 numeric digits. You sent %s" % (id, id))
+                    message.respond(_(strings["id_format"], get_language_code(message.persistant_connection)) % {"alias" : id})
                     return True
                 try:
                     location = Location.objects.get(code=site)
                 except Location.DoesNotExist:
-                    message.respond("Error %s. Unknown location %s" % (id, site))
+                    message.respond(_(strings["unknown_location"], get_language_code(message.persistant_connection)) % {"alias" : id, "location" : site})
                     return True
                 
                 # TODO: validate the language
@@ -120,11 +120,11 @@ class App (rapidsms.app.App):
                     hour = int(study_time[0:2])
                     minute = int(study_time[2:4])
                     if hour < 0 or hour >= 24 or minute < 0 or minute >= 60:
-                        message.respond("Error %s. Time must be 4 numeric digits between 0000 and 2359. You sent %s" % (id, study_time))
+                        message.respond(_(strings["time_format"], get_language_code(message.persistant_connection)) % {"alias" : id, "time" : study_time})
                         return
                     real_time = dtt(hour, minute)
                 else:
-                    message.respond("Error %s. Time must be 4 numeric digits between 0000 and 2359. You sent %s" % (id, study_time))
+                    message.respond(_(strings["time_format"], get_language_code(message.persistant_connection)) % {"alias" : id, "time" : study_time})
                     return 
                 
                 # user ids are unique per-location so use location-id
@@ -150,7 +150,7 @@ class App (rapidsms.app.App):
                 message.persistant_connection.reporter=reporter
                 message.persistant_connection.save()
                 
-                message.respond("Confirm %s Registration is Complete" % id)
+                message.respond(_(strings["registration_complete"], language) % {"alias": id })
                 
                 # also send the PIN request and add this user to the 
                 # pending pins
@@ -180,13 +180,13 @@ class App (rapidsms.app.App):
             if iavi_reporter.pin:
                 return True
             else:
-                message.respond(_(strings["rejection_no_pin"], get_language(message.persistant_connection)))
+                message.respond(_(strings["rejection_no_pin"], get_language_code(message.persistant_connection)))
         else:
-            message.respond(_(strings["rejection_unknown_user"], get_language(message.persistant_connection)))
+            message.respond(_(strings["rejection_unknown_user"], get_language_code(message.persistant_connection)))
         return False
             
     def _process_pin(self, message):
-        language = get_language(message.persistant_connection)
+        language = get_language_code(message.persistant_connection)
         incoming_pin = message.text.strip()
         reporter = IaviReporter.objects.get(pk=message.reporter.pk)
         if self.pending_pins[reporter.pk]:
@@ -331,10 +331,10 @@ class App (rapidsms.app.App):
                 test_session = TestSession.objects.get(tree_session=session)
                 if session.canceled:
                     test_session.status = "F"
-                    response = _(strings["test_fail"], get_language(test_session.initiator)) % ({"alias": iavi_reporter.study_id})
+                    response = _(strings["test_fail"], get_language_code(test_session.initiator)) % ({"alias": iavi_reporter.study_id})
                 else:
                     test_session.status = "P"
-                    response = _(strings["test_pass"], get_language(test_session.initiator)) % ({"alias": iavi_reporter.study_id})
+                    response = _(strings["test_pass"], get_language_code(test_session.initiator)) % ({"alias": iavi_reporter.study_id})
                 
                 test_session.save()
                 
