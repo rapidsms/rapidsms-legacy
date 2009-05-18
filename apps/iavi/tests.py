@@ -199,9 +199,9 @@ class TestApp (TestScript):
             pin_logic < Hello, Please Reply With Your PIN
             pin_logic > 1234
             # I would prefer this response was improved
-            pin_logic < "1234" is not a valid answer. You must enter your 4-digit PIN
+            pin_logic < Sorry, that wasn't the right PIN. Please try sending your 4-digit PIN again
             pin_logic > 1235
-            pin_logic < "1235" is not a valid answer. You must enter your 4-digit PIN
+            pin_logic < Sorry, that wasn't the right PIN. Please try sending your 4-digit PIN again
             # succeed
             pin_logic > 5555
             pin_logic < Did you have sex with your main partner in the last 24 hours? 
@@ -213,29 +213,29 @@ class TestApp (TestScript):
             pin_logic_2 > iavi uganda
             pin_logic_2 < Hello, Please Reply With Your PIN
             pin_logic_2 > 1234
-            pin_logic_2 < "1234" is not a valid answer. You must enter your 4-digit PIN
+            pin_logic_2 < Sorry, that wasn't the right PIN. Please try sending your 4-digit PIN again
             pin_logic_2 > 1235
-            pin_logic_2 < "1235" is not a valid answer. You must enter your 4-digit PIN
+            pin_logic_2 < Sorry, that wasn't the right PIN. Please try sending your 4-digit PIN again
             pin_logic_2 > 5555
-            pin_logic_2 < "5555" is not a valid answer. You must enter your 4-digit PIN
+            pin_logic_2 < Sorry, that wasn't the right PIN. Please try sending your 4-digit PIN again
             pin_logic_2 > abcd
-            pin_logic_2 < "abcd" is not a valid answer. You must enter your 4-digit PIN
+            pin_logic_2 < Sorry, that wasn't the right PIN. Please try sending your 4-digit PIN again 
             pin_logic_2 > 7777
-            pin_logic_2 < "7777" is not a valid answer. You must enter your 4-digit PIN
+            pin_logic_2 < Sorry, that wasn't the right PIN. Please try sending your 4-digit PIN again
             pin_logic_2 < Sorry, invalid answer 5 times. Your session will now end. Please try again later.
             # make sure we got bounced and test the other tree
             pin_logic_2 > iavi kenya
             pin_logic_2 < Hello, Please Reply With Your PIN
             pin_logic_2 > 1234
-            pin_logic_2 < "1234" is not a valid answer. You must enter your 4-digit PIN
+            pin_logic_2 < Sorry, that wasn't the right PIN. Please try sending your 4-digit PIN again 
             pin_logic_2 > 1235
-            pin_logic_2 < "1235" is not a valid answer. You must enter your 4-digit PIN
+            pin_logic_2 < Sorry, that wasn't the right PIN. Please try sending your 4-digit PIN again 
             pin_logic_2 > 5555
-            pin_logic_2 < "5555" is not a valid answer. You must enter your 4-digit PIN
+            pin_logic_2 < Sorry, that wasn't the right PIN. Please try sending your 4-digit PIN again 
             pin_logic_2 > abcd
-            pin_logic_2 < "abcd" is not a valid answer. You must enter your 4-digit PIN
+            pin_logic_2 < Sorry, that wasn't the right PIN. Please try sending your 4-digit PIN again 
             pin_logic_2 > 7777
-            pin_logic_2 < "7777" is not a valid answer. You must enter your 4-digit PIN
+            pin_logic_2 < Sorry, that wasn't the right PIN. Please try sending your 4-digit PIN again 
             pin_logic_2 < Sorry, invalid answer 5 times. Your session will now end. Please try again later.
         """
         self.runScript(script)
@@ -304,11 +304,11 @@ class TestApp (TestScript):
             kenya_1 < How many times did you have sex in the last 24 hours?
             kenya_1 > 50
             # this is ugly too.
-            kenya_1 < "50" is not a valid answer. You must enter a number between 1 and 19 or 0
+            kenya_1 < "50" is not a valid answer. You must enter a number between 0 and 19
             kenya_1 > a
-            kenya_1 < "a" is not a valid answer. You must enter a number between 1 and 19 or 0
+            kenya_1 < "a" is not a valid answer. You must enter a number between 0 and 19
             kenya_1 > -3
-            kenya_1 < "-3" is not a valid answer. You must enter a number between 1 and 19 or 0
+            kenya_1 < "-3" is not a valid answer. You must enter a number between 0 and 19
             kenya_1 < Sorry, invalid answer 3 times. Your session will now end. Please try again later.
             kenya_1 > iavi kenya
             kenya_1 < Hello, Please Reply With Your PIN

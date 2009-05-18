@@ -149,7 +149,7 @@
     "model": "tree.question", 
     "fields": {
       "text": "Hello, Please Reply With Your PIN", 
-      "error_response": null
+      "error_response": "Sorry, that wasn't the right PIN. Please try sending your 4-digit PIN again"
     }
   }, 
   {
@@ -181,7 +181,7 @@
     "model": "tree.question", 
     "fields": {
       "text": "How many times did you have sex in the last 24 hours?", 
-      "error_response": null
+      "error_response": "\"%(answer)s\" is not a valid answer. You must enter a number between 0 and 19"
     }
   }, 
   {
