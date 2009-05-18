@@ -27,7 +27,7 @@
     "pk": 4, 
     "model": "patterns.pattern", 
     "fields": {
-      "regex": "(n|no|ne|ned|nedd|neda|nedda)", 
+      "regex": "(n|no|ne|ned|nedd|neda|nedda|2)", 
       "name": "uganda no"
     }
   }, 
@@ -35,7 +35,7 @@
     "pk": 5, 
     "model": "patterns.pattern", 
     "fields": {
-      "regex": "(y|yes|ye|yee|yea)", 
+      "regex": "(y|yes|ye|yee|yea|1)", 
       "name": "uganda yes"
     }
   }, 
@@ -227,17 +227,17 @@
       "answer": "(y|yes|ye|yee|yea|1)", 
       "type": "R", 
       "name": "uganda yes", 
-      "description": "yes"
+      "description": "1 for yes"
     }
   }, 
   {
     "pk": 3, 
     "model": "tree.answer", 
     "fields": {
-      "answer": "(n|no|ne|ned|nedd|neda|nedda)", 
+      "answer": "(n|no|ne|ned|nedd|neda|nedda|2)", 
       "type": "R", 
       "name": "uganda no", 
-      "description": "no"
+      "description": "2 for no"
     }
   }, 
   {
