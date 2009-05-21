@@ -29,9 +29,9 @@ class App(rapidsms.app.App):
         # which registers the regex and function that this will dispatch to 
         self._form_app.add_message_handler_to(self)
         # this tells the form app that this is also a form handler 
-        self._form_app.add_form_handler("nigeria", NigeriaFormsLogic())
+        self._form_app.add_form_handler("bednets", BednetsFormsLogic())
         # initialize the supply app
-        self._supply_app = supply_app.App("Nigeria Supplies", self.router)
+        self._supply_app = supply_app.App("Bednets Supplies", self.router)
         # this tells the supply app to register with the forms app as a form handler
         self._supply_app.add_form_handler_to(self._form_app)
 

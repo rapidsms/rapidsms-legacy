@@ -9,18 +9,18 @@ register = template.Library()
 from datetime import datetime, timedelta
 from apps.reporters.models import *
 from apps.supply.models import *
-from apps.nigeria.models import *
-from apps.nigeria import constants
+from apps.bednets import constants
+from apps.bednets.models import *
 
-@register.inclusion_tag("nigeria/partials/recent.html")
+@register.inclusion_tag("bednets/partials/recent.html")
 def recent_reporters(number=4):
     last_connections = PersistantConnection.objects.filter(reporter__isnull=False).order_by("-last_seen")[:number]
     last_reporters = [conn.reporter for conn in last_connections]
     return { "reporters": last_reporters }
 
 
-@register.inclusion_tag("nigeria/partials/stats.html")
-def nigeria_stats():
+@register.inclusion_tag("bednets/partials/stats.html")
+def bednets_stats():
     return { "stats": [
 #        {
 #            "caption": "Callers",
@@ -47,6 +47,14 @@ def nigeria_stats():
             "caption": "Net Cards Distributed",
             "value":   sum(CardDistribution.objects.values_list("distributed", flat=True))
         },
+        {
+            "caption": "Net Reports",
+            "value":   NetDistribution.objects.count()
+        },
+        {
+            "caption": "Nets Distributed",
+            "value":   sum(NetDistribution.objects.values_list("distributed", flat=True))
+        },
 #        {
 #            "caption": "Coupon Recipients",
 #            "value":   sum(CardDistribution.objects.values_list("people", flat=True))
@@ -54,7 +62,7 @@ def nigeria_stats():
     ]}
 
 
-@register.inclusion_tag("nigeria/partials/progress.html")
+@register.inclusion_tag("bednets/partials/progress.html")
 def daily_progress():
     start = datetime(2009, 05, 04)
     end = datetime(2009, 05, 18)
@@ -122,7 +130,7 @@ def daily_progress():
             "total_beneficiaries": total_beneficiaries}
 
 
-@register.inclusion_tag("nigeria/partials/pilot.html")
+@register.inclusion_tag("bednets/partials/pilot.html")
 def pilot_summary():
     
     # fetch all of the LGAs that we want to display
@@ -202,7 +210,7 @@ def pilot_summary():
     return { "pilot_lgas": map(__lga_data, lgas) }
 
 
-@register.inclusion_tag("nigeria/partials/logistics.html")
+@register.inclusion_tag("bednets/partials/logistics.html")
 def logistics_summary():
 
     # called to fetch and assemble the data structure

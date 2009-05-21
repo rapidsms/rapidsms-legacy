@@ -12,8 +12,6 @@
 <script src="/static/nigeria/jquery-treeview/jquery.treeview.js" type="text/javascript"></script>
 <script src="/static/nigeria/jquery-treeview/jquery.treeview.async.js" type="text/javascript"></script>
 <script type="text/javascript" src="/static/nigeria/javascripts/treeview.js"></script>
-<script>
-</script>
 {% endblock %}
 {% block content %}
 
@@ -21,7 +19,7 @@
 {% if location %}
 <h2>Report Summary for {{location.name}} {{location.type}}</h2>
 {% if location.parent %} 
-    <a href="/reports/summary/{{location.parent.pk}}/">Go to parent ({{location.parent.name}} {{location.parent.type}}) </a>
+    <a href="/bednets/summary/{{location.parent.pk}}/">Go to parent ({{location.parent.name}} {{location.parent.type}}) </a>
 {% endif %}
 <table class="datatable" width="100%"><thead><tr>
 <th scope="col" class="first"><b>State/LGA/Ward</b></th>
@@ -38,14 +36,12 @@
 <li>
   <span>{{location}}</span>
     <span class="field">
-        <span class="datafield"><a href="/reports/logistics/summary/{{location.pk}}">{{location.stock.balance}}</a></span> 
-        <span><a href="/reports/coupons/summary/{{location.pk}}/">{{location.card_data.distributed}}</a></span> 
-        <span><a href="/reports/bednets/summary/{{location.pk}}/">{{location.net_data.distributed}}</a></span>
+        <span class="datafield"><a href="/bednets/logistics/summary/{{location.pk}}">{{location.stock.balance}}</a></span> 
+        <span><a href="/bednets/coupons/summary/{{location.pk}}/">{{location.card_data.distributed}}</a></span> 
+        <span><a href="/bednets/bednets/summary/{{location.pk}}/">{{location.net_data.distributed}}</a></span>
     </span>
 	<ul id="lgas">
 	</ul>
-</li>
-</ul>
 {% endif %}
 </div>
 {% endblock %} 

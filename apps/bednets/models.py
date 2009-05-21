@@ -24,6 +24,18 @@ class NetDistribution(models.Model):
                 "expected": sum(all.values_list("expected", flat=True)),
                 "actual": sum(all.values_list("actual", flat=True)),
                 "discrepancy": sum(all.values_list("discrepancy", flat=True))}
+    
+    class Meta:
+        # FIXME tell django the old table name (since app has been renamed)
+        db_table = "nigeria_netdistribution"
+
+        # define a permission for this app to use the @permission_required
+        # decorator in bednet's views
+        # in the admin's auth section, we have a group called 'llin' whose
+        # users have this permission -- and are able to see this section
+        permissions = (
+            ("can_view", "Can view"),
+        )
 
     @staticmethod
     def net_data_total(location):
@@ -66,3 +78,6 @@ class CardDistribution(models.Model):
         return {"distributed": sum(all.values_list("distributed", flat=True)), 
                 "settlements": sum(all.values_list("settlements", flat=True)),
                 "people": sum(all.values_list("people", flat=True))}
+    class Meta:
+        # FIXME tell django the old table name (since app has been renamed)
+        db_table = "nigeria_carddistribution"
