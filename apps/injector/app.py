@@ -40,7 +40,7 @@ class App(rapidsms.app.App):
         # check that the target backend was valid
         if backend is None:
             msg.respond("There is no backend named: %s. Try one of: %s" %
-                (be_name, ", ".join([be.name for be in self.router.backends])))
+                (be_name, ", ".join([be.slug for be in self.router.backends])))
         
         # create and send te message, as if it
         # had originated from the named backend
