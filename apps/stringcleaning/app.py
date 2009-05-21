@@ -5,7 +5,7 @@ class App (rapidsms.app.App):
 
     def parse (self, message):
         ''' Cleans up messages by removing punctuation, and replacing intended
-            numbers with numerals:
+            numbers with numerals, for example:
 
             original:         "hello".,  2lli.o .2.o.i. d.s. 12.1. 'l3oii user4' "o0,oo", o0.oo,"o0. oo", oo0. ooo0"
             shiny new: hello   2111.0 2.0.1 ds 12.1 13011 user4 00 oo  00.00 00 oo  000 ooo0'''
@@ -14,6 +14,7 @@ class App (rapidsms.app.App):
         msgtxt = message.text
 
         # remove leading/trailing whitespace
+        # get out your featherduster
         msgtxt = msgtxt.strip()
 
         # replace separation marks with a space
