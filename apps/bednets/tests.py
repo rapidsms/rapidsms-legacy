@@ -276,7 +276,7 @@ class TestApp (TestScript):
         dumpdata = Command()
         filename = os.path.abspath(os.path.join(os.path.dirname(__file__),"fixtures/test_net_data.json"))
         options = { "indent" : 2 }
-        datadump = dumpdata.handle("nigeria", **options)
+        datadump = dumpdata.handle("bednets", **options)
         # uncomment these lines to save the fixture
 #        file = open(filename, "w")
 #        file.write(datadump)
