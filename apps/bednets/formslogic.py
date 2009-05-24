@@ -169,5 +169,5 @@ class BednetsFormsLogic(FormsLogic):
             # attr1=value1, attr2=value2
             response = response + ", ".join(["=".join(t) for t in attrs])
             if not instance.reporter:
-                response = response# + ". Please register your phone"
+                response = response + ". Please register your phone"
             message.respond(response, StatusCodes.OK)
