@@ -1,8 +1,8 @@
 {% load query_log %}
 {% query_log_vars %}
 
-<div id="query-log" class="module">
-	<div>
+<div id="query-log" class="module{% if warn %} warn{% endif %}">
+	<div style="padding: 1em;">
 		<h2>Query Log</h2>
 		<table>
 			<thead>
@@ -19,6 +19,13 @@
 					<td>{{ q.sql }}</td>
 				</tr>{% endfor %}
 			</tbody>
+			<tfoot>
+				<tr>
+					<td colspan="2">
+						<span>{{ queries|length }} Queries in {{ total_time }} seconds</span>
+					</td>
+				</tr>
+			</tfoot>
 		</table>
 	</div>
 </div>
@@ -36,13 +43,23 @@
 		 * here, rather than in the HTML, since the event won't
 		 * fire unless Javascript is enabled (and the query log
 		 * won't be hidden, anyway) */
-		container.append(
+		var trigger =
 		  	$('<div class="trigger"></div>').
-		  	text("Show {{ queries|length }} SQL Queries").
+		  	text($("tfoot", container).text()).
+		  	attr("title", "Click to show the Query Log").
 		  	click(function(ev) {
-		  		$(ev.target).hide();
-		  		log.slideDown();
+		  		trigger.hide();
+		  		log.show();
 		  	})
-		);
+		
+		/* if the query-log is marked as WARNING (too many SQL
+		 * queries, or too much time spent in the DB), copy it
+		 * to the trigger, to make it bright and bold */
+		if(container.hasClass("warn")) {
+			trigger.addClass("warn");
+		}
+		
+		/* inject the trigger into the DOM */
+		container.append(trigger);
 	});
 </script>

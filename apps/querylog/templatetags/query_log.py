@@ -11,6 +11,8 @@ register = template.Library()
 class QueryLogVarsNode(template.Node):
     def render(self, context):
         context["queries"] = connection.queries
+        context["total_time"] = sum(map(lambda q: float(q["time"]), connection.queries))
+        context["warn"] = (len(context["queries"]) > 20) or (context["total_time"] > 1)
         return "<!-- loaded query log vars -->"
 
 
