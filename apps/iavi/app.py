@@ -69,13 +69,13 @@ class App (rapidsms.app.App):
         if match:
             self.info("Message matches! %s", message)
             body_groups = match.groups()[0].split("#")
-            if len(body_groups)== 4 and body_groups[0] == "8377":
+            if len(body_groups)== 3 and body_groups[0] == "8377":
                 # this is the testing format
                 # this is the (extremely ugly) format of testing
-                # *#8377#<Country/Language Group>#<Site Number>#<Last 4 Digits of Participant ID>#*
+                # *#8377#<Site Number>#<Last 4 Digits of Participant ID>#*
                 # TODO: implement testing
                 
-                code, language, site, id = body_groups
+                code, site, id = body_groups
                 alias = IaviReporter.get_alias(site, id)
                 try: 
                     # lookup the user in question and initiate the tree
@@ -83,7 +83,7 @@ class App (rapidsms.app.App):
                     # with them
                     user = IaviReporter.objects.get(alias=alias)
                     
-                    errors = self._initiate_tree_sequence(user, language, message.persistant_connection)
+                    errors = self._initiate_tree_sequence(user, message.persistant_connection)
                     if errors:
                         message.respond(errors)
                 except IaviReporter.DoesNotExist:
@@ -212,7 +212,7 @@ class App (rapidsms.app.App):
                 message.respond(_(strings["bad_pin_format"], language) % {"alias": reporter.study_id})
         return True
     
-    def _initiate_tree_sequence(self, user, survey_type, initiator=None):
+    def _initiate_tree_sequence(self, user, initiator=None):
         user_conn = user.connection()
         if user_conn:
             db_backend = user_conn.backend
@@ -221,9 +221,9 @@ class App (rapidsms.app.App):
             real_backend = self.router.get_backend(db_backend.slug)
             if real_backend:
                 connection = Connection(real_backend, user_conn.identity)
-                text = self._get_tree_sequence(survey_type)
+                text = self._get_tree_sequence(user)
                 if not text:
-                    return _(strings["unknown_language"], survey_type) % ({"language":survey_type, "alias":user.study_id})
+                    return _(strings["unknown_survey_location"], get_language_code(user.connection)) % ({"location":user.location, "alias":user.study_id})
                 else:
                     # first ask the tree app to end any sessions it has open
                     if self.tree_app:
@@ -247,21 +247,14 @@ class App (rapidsms.app.App):
             self.error(error)
             return error
 
-    def _get_tree_sequence(self, survey_type):
-        if re.match(r"^(ug[a-z]*)$", survey_type, re.IGNORECASE):
-            return "iavi uganda"
-        elif re.match(r"^(ke[a-z]*|sw[a-z]*)$", survey_type, re.IGNORECASE):
+    def _get_tree_sequence(self, user):
+        # this is very hacky
+        if user.location.type.name == "Kenya Location":
             return "iavi kenya"
+        elif  user.location.type.name == "Uganda Location":
+            return "iavi uganda"
         else:
             return None
-    
-    def _get_survey_type(self, location):
-        if "uganda" in location.type.name.lower():
-            return "ug"
-        elif "kenya" in location.type.name.lower():
-            return "ke"
-        else:
-            raise Exception("Can't initiate survey for unknown location type %s" % location.type)
     
     def _get_column(self, state):
         # this is just hard coded. *sigh*
@@ -426,8 +419,8 @@ class App (rapidsms.app.App):
                 (notification_time__lte=next_time).filter\
                 (start_date__lte=datetime.today())
             for participant in to_initiate:
-                errors = self._initiate_tree_sequence(participant.reporter, 
-                                                      self._get_survey_type(participant.reporter.location))
+                errors = self._initiate_tree_sequence(participant.reporter) 
+                                                      
                 # unfortunately I'm not sure what else we can do if something
                 # goes wrong here
                 if errors:

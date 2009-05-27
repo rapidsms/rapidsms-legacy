@@ -14,7 +14,7 @@ strings = {
     "unknown_location":         "Error %(alias)s. Unknown location %(location)s",
     "unknown_format":           "Sorry, we didn't understand that message. Please try again.",
     "unknown_user":             "Error %(alias)s. Unknown user.",
-    "unknown_language":         "Error %(alias)s. Unknown language/region: %(language)s.",
+    "unknown_survey_location":  "Error %(alias)s. Unknown survey location: %(location)s.",
     "registration_complete":    "Confirm %(alias)s Registration is Complete",
     #"unknown_reporter":         "Error %(alias)s. Unknown language/region: %(language)s.",
     "test_pass":                "%(alias)s Passes Test",
