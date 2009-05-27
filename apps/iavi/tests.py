@@ -156,6 +156,11 @@ class TestApp (TestScript):
         self.assertEqual(0, len(Report.objects.all()))
         self.assertEqual(3, len(TestSession.objects.all()))
         for session in TestSession.objects.all():
+            # the users were marked as passed
+            self.assertEqual("P", session.status)
+            self.assertEqual(nurse.connection(), session.initiator)
+        for session in TestSession.objects.all():
+            # the users were marked as passed
             self.assertEqual("P", session.status)
             self.assertEqual(nurse.connection(), session.initiator)
         
@@ -380,6 +385,22 @@ class TestApp (TestScript):
             kenya_2 < Kwa masaa hiyo kumi na nne iliopita, ulitumia mipira ya Kondom mara ngapi ulipofanya mapenzi?
             kenya_2 > 2
             kenya_2 < Maswali yamekwisha. Kumbuka kutumia mpira mpya wa kondom kila unavyo fanya mapenzi na kumeza dawa kama ulivyoshauriwa. Asante sana
+        """
+        self.runScript(script)
+        # test error messages
+        script = """
+            kenya_2 > iavi kenya
+            kenya_2 < Tafadhali peana jibu ukitumia nambari yako binafsi ya kujitambulisha
+            kenya_2 > 1235
+            kenya_2 < Samahani, nambari uliyopeana sio sahihi. Tafadhali jaribu kubonyeza nambari yako ya kujitambulisha tena
+            kenya_2 > 1234
+            kenya_2 < Umefanya mapenzi mara ngapi kwa masaa ishirini na nne iliopita?
+            kenya_2 > abc
+            kenya_2 < "abc" sio jibu sahihi. Lazima ubonyeze nambari kati ya sufuri hadi kumi na tisa
+            kenya_2 > 2
+            kenya_2 < Kwa masaa hiyo kumi na nne iliopita, ulitumia mipira ya Kondom mara ngapi ulipofanya mapenzi?
+            kenya_2 > 6
+            kenya_2 < "6" silo jibu sahihi. Lazima ubonyeze nambari inayolingana au iliyo chini ya jibu uliopeana hapo awali
         """
         self.runScript(script)
     

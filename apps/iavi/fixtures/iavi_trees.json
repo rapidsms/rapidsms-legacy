@@ -39,6 +39,7 @@
       "name": "uganda yes"
     }
   }, 
+
   {
     "pk": 1, 
     "model": "i18n.language", 
@@ -144,6 +145,69 @@
       "language": 3
     }
   }, 
+  {
+    "pk": 10, 
+    "model": "i18n.translation", 
+    "fields": {
+      "translation": "\"%(answer)s\" silo jibu sahihi.", 
+      "original": "\"%(answer)s\" is not a valid answer. ", 
+      "language": 3
+    }
+  }, 
+  {
+    "pk": 11, 
+    "model": "i18n.translation", 
+    "fields": {
+      "translation": "Samahani, jibu lisilo sahihi mara %(retries)s. Muda wako umekwisha. Tafadhali jaribu tena baadaye", 
+      "original": "Sorry, invalid answer %(retries)s times. Your session will now end. Please try again later.", 
+      "language": 3
+    }
+  }, 
+  {
+    "pk": 12, 
+    "model": "i18n.translation", 
+    "fields": {
+      "translation": "Samahani, nambari uliyopeana sio sahihi. Tafadhali jaribu kubonyeza nambari yako ya kujitambulisha tena", 
+      "original": "Sorry, that wasn't the right PIN. Please try sending your 4-digit PIN again", 
+      "language": 3
+    }
+  }, 
+  {
+    "pk": 13, 
+    "model": "i18n.translation", 
+    "fields": {
+      "translation": "\"%(answer)s\" silo jibu sahihi. Lazima ubonyeze ndio au la", 
+      "original": "\"%(answer)s\" is not a valid answer. You must enter yes or no", 
+      "language": 3
+    }
+  }, 
+  {
+    "pk": 14, 
+    "model": "i18n.translation", 
+    "fields": {
+      "translation": "\"%(answer)s\" sio jibu sahihi. Lazima ubonyeze nambari kati ya sufuri hadi kumi na tisa", 
+      "original": "\"%(answer)s\" is not a valid answer. You must enter a number between 0 and 19", 
+      "language": 3
+    }
+  }, 
+  {
+    "pk": 15, 
+    "model": "i18n.translation", 
+    "fields": {
+      "translation": "\"%(answer)s\" silo jibu sahihi. Lazima ubonyeze %(hint)s", 
+      "original": "\"%(answer)s\" is not a valid answer. You must enter %(hint)s", 
+      "language": 3
+    }
+  },
+  {
+    "pk": 16, 
+    "model": "i18n.translation", 
+    "fields": {
+      "translation": "nambari inayolingana au iliyo chini ya jibu uliopeana hapo awali", 
+      "original": "a number less than or equal to the previous answer",  
+      "language": 3
+    }
+  },
   {
     "pk": 1, 
     "model": "tree.question", 
