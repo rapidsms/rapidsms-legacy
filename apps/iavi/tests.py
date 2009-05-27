@@ -401,6 +401,11 @@ class TestApp (TestScript):
             kenya_2 < Kwa masaa hiyo kumi na nne iliopita, ulitumia mipira ya Kondom mara ngapi ulipofanya mapenzi?
             kenya_2 > 6
             kenya_2 < "6" silo jibu sahihi. Lazima ubonyeze nambari inayolingana au iliyo chini ya jibu uliopeana hapo awali
+            kenya_2 > 6
+            kenya_2 < "6" silo jibu sahihi. Lazima ubonyeze nambari inayolingana au iliyo chini ya jibu uliopeana hapo awali
+            kenya_2 > 6
+            kenya_2 < "6" silo jibu sahihi. Lazima ubonyeze nambari inayolingana au iliyo chini ya jibu uliopeana hapo awali
+            kenya_2 < Samahani, jibu lisilo sahihi mara 3. Muda wako umekwisha. Tafadhali jaribu tena baadaye
         """
         self.runScript(script)
     
