@@ -2,7 +2,7 @@ from rapidsms.tests.scripted import TestScript
 from apps.form.models import *
 from apps.reporters.models import *
 import apps.reporters.app as reporter_app
-import apps.nigeria.app as nigeria_app
+import apps.bednets.app as nigeria_app
 import apps.form.app as form_app
 from app import App
 from models import *
