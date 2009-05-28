@@ -243,7 +243,7 @@ class App (rapidsms.app.App):
                 self.error(error)
                 return error
         else:
-            error = "Can't find connection %s.  Messages will not be sent" % connection
+            error = "Can't find connection %s.  Messages will not be sent" % user_conn
             self.error(error)
             return error
 
