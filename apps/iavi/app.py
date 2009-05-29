@@ -406,7 +406,7 @@ class App (rapidsms.app.App):
         '''This loops and initiates surveys with registered participants
            based on some criteria (like daily)'''
         self.info("Starting survey initiator...")
-        prev_time = (datetime.now() + timedelta(hours=3)).time()
+        prev_time = (datetime.now() + timedelta(hours=2)).time()
         while True:
             # wait for the time to pass when they registered to start a survey
             # and when it is, start it
@@ -414,7 +414,7 @@ class App (rapidsms.app.App):
             # super hack... add 3 hours because of the time zone difference
             # i'm sure there is a better way to do this with real time zones
             # but i'm also sure I don't want to figure it out right nowx 
-            now_adjusted =  datetime.now() + timedelta(hours=3) 
+            now_adjusted =  datetime.now() + timedelta(hours=2) 
             next_time = now_adjusted.time()
             self.debug("Adjusted time: %s, checking for participants to notify" % next_time)
             # conditions are that the 
