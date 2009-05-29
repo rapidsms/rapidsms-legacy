@@ -205,10 +205,11 @@ class TestApp (TestScript):
             # test mismatch
             pin_3 < Please Enter Your PIN Code Again
             pin_3 > 1235
-            pin_3 < Error 003. PINs did not match.
-            # todo - implement and test that bit of functionality
-            # pin_3 < Error 003. PINs did not match.  Respond with "iavi set pin" to try again.
-
+            pin_3 < Error 003. PINs did not match. Please enter your PIN Code
+            pin_3 > 1234
+            pin_3 < Please Enter Your PIN Code Again
+            pin_3 > 1235
+            pin_3 < Error 003. PINs did not match. Please enter your PIN Code
         """
         self.runScript(pin_script)
         

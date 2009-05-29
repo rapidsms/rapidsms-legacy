@@ -201,6 +201,8 @@ class App (rapidsms.app.App):
             else:
                 # oops they didn't match.  send a failure string
                 message.respond(_(strings["pin_mismatch"], language) % {"alias": reporter.study_id})
+                # put an empty value back in the list of pins
+                self.pending_pins[reporter.pk] = None
         else:
             # this is their first try.  make sure 
             # it's 4 numeric digits and if so ask for confirmation
