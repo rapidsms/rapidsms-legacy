@@ -87,7 +87,7 @@
     "model": "i18n.translation", 
     "fields": {
       "translation": "Wetabyeeko mu kikolwa ky'omukwano n'omwagalwawo omulala yenna mu lunaku lumu oluyise?", 
-      "original": "Did you have vaginal sex with any other partner in the last 24 hours?", 
+      "original": "Did you have sex with any other partner in the last 24 hours?", 
       "language": 2
     }
   }, 
@@ -236,7 +236,7 @@
     "pk": 4, 
     "model": "tree.question", 
     "fields": {
-      "text": "Did you have vaginal sex with any other partner in the last 24 hours?", 
+      "text": "Did you have sex with any other partner in the last 24 hours?", 
       "error_response": null
     }
   }, 
