@@ -1,6 +1,8 @@
 from django.db import models
-from apps.reporters.models import Reporter, PersistantConnection 
+from apps.reporters.models import Reporter, PersistantConnection, Location 
 from apps.tree.models import Session
+from django.contrib.auth.models import User
+
 
 class IaviReporter(Reporter):
     """This model represents a reporter in IAVI.  They are an extension of
@@ -21,8 +23,22 @@ class IaviReporter(Reporter):
         return location + "-" + study_id
     
     def __unicode__(self):
-        return self.connection().identity
+        if self.connection():
+            return self.connection().identity
+        return self.alias
         
+        
+class IaviProfile(models.Model):
+    """ A user profile for IAVI website users.  This allows us to attach
+        additional information to the users so that we can access these
+        fields from within our views """
+    # This is a required field for Django's profile settings
+    user = models.ForeignKey(User, unique=True)
+    # Optionally tie this to an SMS reporter
+    reporter = models.ForeignKey(IaviReporter, null=True, blank=True)
+    # Users can be associated with zero or more locations
+    locations = models.ManyToManyField(Location, null=True, blank=True)
+    
 class StudyParticipant(models.Model):
     """ This represents a participant in the IAVI study. """
     reporter = models.ForeignKey(IaviReporter)
