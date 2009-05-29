@@ -9,7 +9,7 @@ from apps.i18n.utils import get_language_code
 from strings import strings
 import threading
 import time
-from datetime import datetime
+from datetime import datetime, timedelta
 from datetime import time as dtt
 
 class App (rapidsms.app.App):
@@ -408,9 +408,15 @@ class App (rapidsms.app.App):
         self.info("Starting survey initiator...")
         prev_time = datetime.now().time()
         while True:
-            # wait for some condition to be true, and when it is
-            # start a survey
-            next_time = datetime.now().time()
+            # wait for the time to pass when they registered to start a survey
+            # and when it is, start it
+            
+            # super hack... add 3 hours because of the time zone difference
+            # i'm sure there is a better way to do this with real time zones
+            # but i'm also sure I don't want to figure it out right nowx 
+            now_adjusted =  datetime.now() + timedelta(hours=3) 
+            next_time = now_adjusted.time()
+            
             # conditions are that the 
             # notification time is between the previous seen time
             # and the next time, the start date was sometime before
@@ -419,7 +425,7 @@ class App (rapidsms.app.App):
             to_initiate = StudyParticipant.objects.filter\
                 (notification_time__gt=prev_time).filter\
                 (notification_time__lte=next_time).filter\
-                (start_date__lte=datetime.today())
+                (start_date__lte=now_adjusted.date())
             for participant in to_initiate:
                 errors = self._initiate_tree_sequence(participant.reporter) 
                                                       
