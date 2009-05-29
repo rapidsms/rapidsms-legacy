@@ -406,7 +406,7 @@ class App (rapidsms.app.App):
         '''This loops and initiates surveys with registered participants
            based on some criteria (like daily)'''
         self.info("Starting survey initiator...")
-        prev_time = datetime.now().time()
+        prev_time = (datetime.now() + timedelta(hours=3)).time()
         while True:
             # wait for the time to pass when they registered to start a survey
             # and when it is, start it
@@ -416,7 +416,7 @@ class App (rapidsms.app.App):
             # but i'm also sure I don't want to figure it out right nowx 
             now_adjusted =  datetime.now() + timedelta(hours=3) 
             next_time = now_adjusted.time()
-            
+            self.debug("Adjusted time: %s, checking for participants to notify" % next_time)
             # conditions are that the 
             # notification time is between the previous seen time
             # and the next time, the start date was sometime before
@@ -427,6 +427,7 @@ class App (rapidsms.app.App):
                 (notification_time__lte=next_time).filter\
                 (start_date__lte=now_adjusted.date())
             for participant in to_initiate:
+                self.debug("Initiating sequence for %s" % participant.reporter);
                 errors = self._initiate_tree_sequence(participant.reporter) 
                                                       
                 # unfortunately I'm not sure what else we can do if something
