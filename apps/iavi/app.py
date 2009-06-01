@@ -429,19 +429,26 @@ class App (rapidsms.app.App):
                     (start_date__lte=now_adjusted.date())
                 for participant in to_initiate:
                     self.debug("Initiating sequence for %s" % participant.reporter);
-                    errors = self._initiate_tree_sequence(participant.reporter) 
-                                                          
-                    # unfortunately I'm not sure what else we can do if something
-                    # goes wrong here
-                    if errors:
-                        self.error(errors)
-                
+                    try:
+                        errors = self._initiate_tree_sequence(participant.reporter) 
+                        # unfortunately I'm not sure what else we can do if something
+                        # goes wrong here
+                        if errors:
+                            self.debug("unable to initiate sequence for %s" % participant)
+                            self.error(errors)
+                    except Exception, e:
+                        self.debug("unable to initiate sequence for %s" % participant)
+                        print e
+                        self.error(e)
+                    
                 #update the previous time
                 prev_time = next_time
                 
                 # wait until it's time to check again
                 time.sleep(seconds)
             except Exception, e:
+                # if something goes wrong log it, but don't kill the entire loop
+                self.debug("survey initiation loop failure")
                 print e
                 self.debug(e)
 
