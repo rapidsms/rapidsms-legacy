@@ -411,34 +411,38 @@ class App (rapidsms.app.App):
             # wait for the time to pass when they registered to start a survey
             # and when it is, start it
             
-            # super hack... add 3 hours because of the time zone difference
-            # i'm sure there is a better way to do this with real time zones
-            # but i'm also sure I don't want to figure it out right nowx 
-            now_adjusted =  datetime.now() + timedelta(hours=2) 
-            next_time = now_adjusted.time()
-            self.debug("Adjusted time: %s, checking for participants to notify" % next_time)
-            # conditions are that the 
-            # notification time is between the previous seen time
-            # and the next time, the start date was sometime before
-            # or equal to today, and the end date is either null
-            # or after or equal to today
-            to_initiate = StudyParticipant.objects.filter\
-                (notification_time__gt=prev_time).filter\
-                (notification_time__lte=next_time).filter\
-                (start_date__lte=now_adjusted.date())
-            for participant in to_initiate:
-                self.debug("Initiating sequence for %s" % participant.reporter);
-                errors = self._initiate_tree_sequence(participant.reporter) 
-                                                      
-                # unfortunately I'm not sure what else we can do if something
-                # goes wrong here
-                if errors:
-                    self.error(errors)
-            
-            #update the previous time
-            prev_time = next_time
-            
-            # wait until it's time to check again
-            time.sleep(seconds)
+            try: 
+                # super hack... add 3 hours because of the time zone difference
+                # i'm sure there is a better way to do this with real time zones
+                # but i'm also sure I don't want to figure it out right nowx 
+                now_adjusted =  datetime.now() + timedelta(hours=2) 
+                next_time = now_adjusted.time()
+                self.debug("Adjusted time: %s, checking for participants to notify" % next_time)
+                # conditions are that the 
+                # notification time is between the previous seen time
+                # and the next time, the start date was sometime before
+                # or equal to today, and the end date is either null
+                # or after or equal to today
+                to_initiate = StudyParticipant.objects.filter\
+                    (notification_time__gt=prev_time).filter\
+                    (notification_time__lte=next_time).filter\
+                    (start_date__lte=now_adjusted.date())
+                for participant in to_initiate:
+                    self.debug("Initiating sequence for %s" % participant.reporter);
+                    errors = self._initiate_tree_sequence(participant.reporter) 
+                                                          
+                    # unfortunately I'm not sure what else we can do if something
+                    # goes wrong here
+                    if errors:
+                        self.error(errors)
+                
+                #update the previous time
+                prev_time = next_time
+                
+                # wait until it's time to check again
+                time.sleep(seconds)
+            except Exception, e:
+                print e
+                self.debug(e)
 
     
