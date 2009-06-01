@@ -12,7 +12,20 @@ def index(req):
 @login_required
 def compliance(req):
     template_name="iavi/compliance.html"
-    reporters = IaviReporter.objects.all()
+    user = req.user
+    try:
+        profile = user.get_profile()
+        locations = profile.locations.all()
+    except IaviProfile.DoesNotExist:
+        # if they don't have a profile they aren't associated with
+        # any locations and therefore can't view anything.  Only
+        # exceptions are the superusers
+        if user.is_superuser:
+            locations = Location.objects.all()
+        else:
+            return render_to_response(req, "iavi/no_profile.html", {"user": user})
+    
+    reporters = IaviReporter.objects.filter(location__in=locations)
     seven_days = timedelta(days=7)
     thirty_days = timedelta(days=30)
     tomorrow = datetime.today() + timedelta(days=1)
@@ -59,12 +72,26 @@ def data(req):
     uganda_reports = UgandaReport.objects.filter(started__gte=tomorrow-seven_days).filter(reporter__location__in=locations).order_by("-started")
     return render_to_response(req, template_name, {"kenya_reports":kenya_reports, "uganda_reports":uganda_reports})
 
+
 @login_required
 @permission_required("iavi.can_read_users")
 def participants(req):
-    print "hello"
     template_name="iavi/participants.html"
-    return render_to_response(req, template_name, {"reporters" : IaviReporter.objects.all()})
+    user = req.user
+    try:
+        profile = user.get_profile()
+        locations = profile.locations.all()
+    except IaviProfile.DoesNotExist:
+        # if they don't have a profile they aren't associated with
+        # any locations and therefore can't view anything.  Only
+        # exceptions are the superusers
+        if user.is_superuser:
+            locations = Location.objects.all()
+        else:
+            return render_to_response(req, "iavi/no_profile.html", {"user": user})
+    
+    reporters = IaviReporter.objects.filter(location__in=locations)
+    return render_to_response(req, template_name, {"reporters" : reporters })
 
 
 @login_required
