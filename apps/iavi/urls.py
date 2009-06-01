@@ -11,4 +11,6 @@ urlpatterns = patterns('',
     url(r'^iavi/data/?$', views.data),
     url(r'^iavi/participants/?$', views.participants),
     url(r'^iavi/participants/(?P<id>\d*)/?$', views.participant_summary),
+    url(r'^iavi/participants/(?P<id>\d*)/edit/?$', views.participant_edit),
+    
 )

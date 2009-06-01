@@ -1,11 +1,15 @@
 from rapidsms.webui.utils import render_to_response
 from models import *
+from forms import IaviReporterForm
 from datetime import datetime, timedelta
+from django.http import HttpResponseRedirect
+from django.contrib.auth.decorators import login_required, permission_required
 
 def index(req):
     template_name="iavi/index.html"
     return render_to_response(req, template_name, {})
 
+@login_required
 def compliance(req):
     template_name="iavi/compliance.html"
     reporters = IaviReporter.objects.all()
@@ -29,26 +33,90 @@ def compliance(req):
         
     return render_to_response(req, template_name, {"reporters":reporters})
 
+@login_required
+@permission_required("iavi.can_see_data")
 def data(req):
     template_name="iavi/data.html"
+    user = req.user
+    try:
+        profile = user.get_profile()
+        locations = profile.locations.all()
+    except IaviProfile.DoesNotExist:
+        # if they don't have a profile they aren't associated with
+        # any locations and therefore can't view anything.  Only
+        # exceptions are the superusers
+        if user.is_superuser:
+            # todo: allow access to everything
+            locations = Location.objects.all()
+        else:
+            return render_to_response(req, "iavi/no_profile.html", {"user": user})
     
     seven_days = timedelta(days=7)
-    thirty_days = timedelta(days=30)
+    #thirty_days = timedelta(days=30)
     tomorrow = datetime.today() + timedelta(days=1)
-    kenya_reports = KenyaReport.objects.filter(started__gte=tomorrow-seven_days).order_by("-started")
-    uganda_reports = UgandaReport.objects.filter(started__gte=tomorrow-seven_days).order_by("-started")
+    
+    kenya_reports = KenyaReport.objects.filter(started__gte=tomorrow-seven_days).filter(reporter__location__in=locations).order_by("-started")
+    uganda_reports = UgandaReport.objects.filter(started__gte=tomorrow-seven_days).filter(reporter__location__in=locations).order_by("-started")
     return render_to_response(req, template_name, {"kenya_reports":kenya_reports, "uganda_reports":uganda_reports})
 
+@login_required
+@permission_required("iavi.can_read_users")
 def participants(req):
+    print "hello"
     template_name="iavi/participants.html"
     return render_to_response(req, template_name, {"reporters" : IaviReporter.objects.all()})
 
+
+@login_required
 def participant_summary(req, id):
     template_name="iavi/participant_summary.html"
     try:
         reporter = IaviReporter.objects.get(pk=id)
     except IaviReporter.NotFound:
         reporter = None 
+    # todo - see if we wnat to put these back in
     kenya_reports = KenyaReport.objects.filter(reporter=reporter).order_by("-started")
     uganda_reports = UgandaReport.objects.filter(reporter=reporter).order_by("-started")
     return render_to_response(req, template_name, {"reporter" : reporter,"kenya_reports":kenya_reports, "uganda_reports":uganda_reports})
+
+@login_required
+@permission_required("iavi.can_write_users")
+def participant_edit(req, id):
+    reporter = None
+    if req.method == 'POST': 
+        form = IaviReporterForm(req.POST) 
+        if form.is_valid():
+            # Process the data in form.cleaned_data
+            id = req.POST["reporter_id"]
+            if not id: 
+                # should puke.  should also not be possible through the UI
+                raise Exception("Reporter ID not set in form.  How did you get here?")
+            reporter = IaviReporter.objects.get(id=id)
+            reporter.pin = form.cleaned_data["pin"]
+            reporter.location = form.cleaned_data["location"]
+            print reporter.location
+            print form.cleaned_data
+            #print form.pin
+            #print form.participant_id
+            print form.clean_pin()
+            print form.clean_participant_id()
+            reporter.alias = IaviReporter.get_alias(reporter.location.code, form.cleaned_data["participant_id"])
+            reporter.save()
+            conn = reporter.connection() 
+            conn.identity = form.cleaned_data["phone"]
+            conn.save()
+            return HttpResponseRedirect('/iavi/participants/%s/' % id) 
+    else:
+        try:
+            reporter = IaviReporter.objects.get(pk=id)
+            if reporter.location:
+                form = IaviReporterForm(initial={"participant_id" :reporter.study_id, "location" : reporter.location.pk,
+                                                 "pin" : reporter.pin, "phone" : reporter.connection().identity } )
+            else: 
+                form = IaviReporterForm({"participant_id" :reporter.study_id, 
+                                         "pin" : reporter.pin, "phone" : reporter.connection().identity } )
+        except IaviReporter.NotFound:
+            form = IaviReporterForm()
+
+    template_name="iavi/participant_edit.html"
+    return render_to_response(req, template_name, {"form" : form, "reporter" : reporter})

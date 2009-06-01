@@ -39,6 +39,16 @@ class IaviProfile(models.Model):
     # Users can be associated with zero or more locations
     locations = models.ManyToManyField(Location, null=True, blank=True)
     
+    class Meta:
+        permissions = (
+            ("can_read_users", "Can view user data"),
+            ("can_write_users", "Can edit user data"),
+            ("can_see_data", "Can view study data"),
+        )
+
+    def __unicode__(self):
+        return "%s --> %s" % (self.user, self.reporter)
+    
 class StudyParticipant(models.Model):
     """ This represents a participant in the IAVI study. """
     reporter = models.ForeignKey(IaviReporter)

@@ -10,4 +10,4 @@ admin.site.register(TestSession)
 admin.site.register(KenyaReport)
 admin.site.register(UgandaReport)
 admin.site.register(Report)
-
+admin.site.register(IaviProfile)
