@@ -219,7 +219,7 @@ def participant_summary(req, id):
 @login_required
 @permission_required("iavi.can_write_participants")
 def participant_edit(req, id):
-    reporter = None
+    reporter = IaviReporter.objects.get(pk=id)
     if req.method == 'POST': 
         form = IaviReporterForm(req.POST) 
         if form.is_valid():
