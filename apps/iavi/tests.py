@@ -81,16 +81,20 @@ class TestApp (TestScript):
         rep = IaviReporter.objects.get(alias="22-004")
         time_status = StudyParticipant.objects.get(reporter=rep)
         self.assertEqual(time_status.notification_time, datetime.time(0,0))
+        tomorrow = (datetime.datetime.now() + datetime.timedelta(days=1)).date()
+        self.assertEqual(time_status.start_date, tomorrow)
         
         # this one should get the default (1600)
         rep = IaviReporter.objects.get(alias="22-005")
         time_status = StudyParticipant.objects.get(reporter=rep)
         self.assertEqual(time_status.notification_time, datetime.time(16,0))
+        self.assertEqual(time_status.start_date, tomorrow)
         
         # this one should be 1838
         rep = IaviReporter.objects.get(alias="22-006")
         time_status = StudyParticipant.objects.get(reporter=rep)
         self.assertEqual(time_status.notification_time, datetime.time(18,38))
+        self.assertEqual(time_status.start_date, tomorrow)
         
     
         
@@ -112,7 +116,7 @@ class TestApp (TestScript):
         self.assertEqual(nurse.connection(),session.initiator)
         self.assertEqual("A",session.status)
         script = """
-            tester < Did you have vaginal sex with any other partner in the last 24 hours?
+            tester < Did you have sex with any other partner in the last 24 hours?
             tester > NO
             # due to some minor quirkiness, the nurse's message actually comes first
             nurse < 001 Passes Test            
@@ -299,7 +303,7 @@ class TestApp (TestScript):
             ugb_1 > yes
             ugb_1 < Did you use a condom?
             ugb_1 > YES
-            ugb_1 < Did you have vaginal sex with any other partner in the last 24 hours?
+            ugb_1 < Did you have sex with any other partner in the last 24 hours?
             ugb_1 > no
             ugb_1 < Questionnaire is complete. Thank you.
         """
@@ -457,7 +461,7 @@ class TestApp (TestScript):
             session_listener_2 > 1234
             session_listener_2 < Did you have sex with your main partner in the last 24 hours?
             session_listener_2 > NO!
-            session_listener_2 < Did you have vaginal sex with any other partner in the last 24 hours?
+            session_listener_2 < Did you have sex with any other partner in the last 24 hours?
             session_listener_2 > yep
             session_listener_2 < Did you use a condom?
             session_listener_2 > yessir

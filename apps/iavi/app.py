@@ -141,9 +141,10 @@ class App (rapidsms.app.App):
                 reporter.save()
                 
                 # create the study participant for this too.  Assume they're starting
-                # today and don't set a stop date.  This logic may be revisited
+                # tomorrow and don't set a stop date.  
+                start_date = (datetime.today() + timedelta(days=1)).date()
                 participant = StudyParticipant.objects.create(reporter=reporter, 
-                                                              start_date = datetime.now(),
+                                                              start_date = start_date,
                                                               notification_time = real_time)
                 
                 # also attach the reporter to the connection 
@@ -438,18 +439,16 @@ class App (rapidsms.app.App):
                             self.error(errors)
                     except Exception, e:
                         self.debug("unable to initiate sequence for %s" % participant)
-                        print e
                         self.error(e)
                     
                 #update the previous time
                 prev_time = next_time
                 
-                # wait until it's time to check again
-                time.sleep(seconds)
             except Exception, e:
                 # if something goes wrong log it, but don't kill the entire loop
                 self.debug("survey initiation loop failure")
-                print e
                 self.debug(e)
+            # wait until it's time to check again
+            time.sleep(seconds)
 
     
