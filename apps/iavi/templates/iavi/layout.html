@@ -1,7 +1,11 @@
 {% extends "layout.html" %}
 {% block content %}
-<a href="/iavi/participants">Participants</a> | 
-<a href="/iavi/data">Survey Data</a> | 
+{% if perms.iavi.can_read_users %}
+<a href="/iavi/participants">Participants</a> |
+{% endif %}
+{% if perms.iavi.can_see_data %}
+<a href="/iavi/data">Survey Data</a> |
+{% endif %} 
 <a href="/iavi/compliance">Compliance</a>
 <br>
 <br>
