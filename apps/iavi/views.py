@@ -4,6 +4,7 @@ from forms import IaviReporterForm
 from datetime import datetime, timedelta
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required, permission_required
+from django.conf import settings
 
 def index(req):
     template_name="iavi/index.html"
@@ -12,6 +13,7 @@ def index(req):
 @login_required
 def compliance(req):
     template_name="iavi/compliance.html"
+    
     user = req.user
     try:
         profile = user.get_profile()
@@ -44,7 +46,7 @@ def compliance(req):
         reporter.past_30_reports = len(last_30)
         reporter.past_30_compliant = len(last_30.filter(status="F"))
         
-    return render_to_response(req, template_name, {"reporters":reporters})
+    return render_to_response(req, template_name, {"reporters":reporters })
 
 @login_required
 @permission_required("iavi.can_see_data")
@@ -121,12 +123,6 @@ def participant_edit(req, id):
             reporter = IaviReporter.objects.get(id=id)
             reporter.pin = form.cleaned_data["pin"]
             reporter.location = form.cleaned_data["location"]
-            print reporter.location
-            print form.cleaned_data
-            #print form.pin
-            #print form.participant_id
-            print form.clean_pin()
-            print form.clean_participant_id()
             reporter.alias = IaviReporter.get_alias(reporter.location.code, form.cleaned_data["participant_id"])
             reporter.save()
             conn = reporter.connection() 
