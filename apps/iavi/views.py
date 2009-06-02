@@ -1,10 +1,12 @@
 from rapidsms.webui.utils import render_to_response
 from models import *
-from forms import IaviReporterForm
+from forms import *
 from datetime import datetime, timedelta
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required, permission_required
 from django.conf import settings
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import AdminPasswordChangeForm
 
 def index(req):
     template_name="iavi/index.html"
@@ -25,7 +27,7 @@ def compliance(req):
         if user.is_superuser:
             locations = Location.objects.all()
         else:
-            return render_to_response(req, "iavi/no_profile.html", {"user": user})
+            return render_to_response(req, "iavi/no_profile.html", {})
     
     reporters = IaviReporter.objects.filter(location__in=locations)
     seven_days = timedelta(days=7)
@@ -64,7 +66,7 @@ def data(req):
             # todo: allow access to everything
             locations = Location.objects.all()
         else:
-            return render_to_response(req, "iavi/no_profile.html", {"user": user})
+            return render_to_response(req, "iavi/no_profile.html", { } )
     
     seven_days = timedelta(days=7)
     #thirty_days = timedelta(days=30)
@@ -74,9 +76,114 @@ def data(req):
     uganda_reports = UgandaReport.objects.filter(started__gte=tomorrow-seven_days).filter(reporter__location__in=locations).order_by("-started")
     return render_to_response(req, template_name, {"kenya_reports":kenya_reports, "uganda_reports":uganda_reports})
 
+@login_required
+@permission_required("iavi.is_admin")
+def users(req):
+    template_name="iavi/users.html"
+    current_user = req.user
+    try:
+        profile = current_user.get_profile()
+        locations = profile.locations.all()
+    except IaviProfile.DoesNotExist:
+        # if they don't have a profile they aren't associated with
+        # any locations and therefore can't view anything.  Only
+        # exceptions are the superusers
+        if current_user.is_superuser:
+            # todo: allow access to everything
+            locations = Location.objects.all()
+        else:
+            return render_to_response(req, "iavi/no_profile.html", {})
+    
+    all_users = User.objects.all()
+    for user in all_users:
+        try:
+            profile = user.get_profile()
+            # set some fields in the user object so we can access them in the template
+            location_strings = [str(location) for location in profile.locations.all()]
+            user.locations = ", ".join(location_strings)
+        except IaviProfile.DoesNotExist:
+            user.locations = ""
+        if user.is_superuser:
+            user.permission_string = "Administrator"
+        else: 
+            user.permission_string = ", ".join([str(group) for group in user.groups.all()])
+        
+    return render_to_response(req, template_name, { "all_users" : all_users })
+
 
 @login_required
-@permission_required("iavi.can_read_users")
+@permission_required("iavi.is_admin")
+def user_edit(req, id):
+    user_to_edit = User.objects.get(id=id)
+    try:
+        profile = user_to_edit.get_profile()
+    except IaviProfile.DoesNotExist:
+        profile = None
+    if req.method == 'POST': 
+        user_form = UserForm(req.POST, instance=user_to_edit) 
+        profile_form = IaviProfileForm(req.POST, instance=profile) 
+        if user_form.is_valid() and profile_form.is_valid():
+            user = user_form.save()
+            if user.is_superuser:
+                # make sure any super user is also staff so they
+                # can easily change passwords
+                user.is_staff = True;
+                user.save()
+            profile_form.save()
+            return HttpResponseRedirect('/iavi/users')
+    else:
+        user_form =  UserForm(instance=user_to_edit)
+        profile_form = IaviProfileForm(instance=profile)
+    template_name="iavi/user_edit.html"
+    return render_to_response(req, template_name, {"current_user" : user_to_edit,
+                                                   "user_form" : user_form,
+                                                   "profile_form" : profile_form })
+
+@login_required
+@permission_required("iavi.is_admin")
+def new_user(req):
+    if req.method == 'POST': 
+        user_form = UserForm(req.POST)
+        profile_form = IaviProfileForm(req.POST)
+        if user_form.is_valid() and profile_form.is_valid():
+            user = user_form.save()
+            if user.is_superuser:
+                # make sure any super user is also staff so they
+                # can easily change passwords through the admin
+                user.is_staff = True;
+                user.save()
+            profile = profile_form.save(commit=False)
+            profile.user = user
+            profile.save()
+            profile_form.save_m2m()
+            return HttpResponseRedirect('/iavi/users')
+    else:
+        user_form =  UserForm()
+        profile_form = IaviProfileForm()
+    template_name="iavi/user_edit.html"
+    return render_to_response(req, template_name, {"user_form" : user_form,
+                                                   "profile_form" : profile_form })
+
+
+
+def password_change(req, id):
+    user_to_edit = User.objects.get(id=id)
+    print req.user
+    if req.method == 'POST': 
+        password_form = AdminPasswordChangeForm(user_to_edit, req.POST)
+        if password_form.is_valid():
+            password_form.save()
+            return HttpResponseRedirect('/iavi/users/%s/edit' % user_to_edit.id)
+    else:
+        password_form = AdminPasswordChangeForm(user_to_edit)
+    template_name="iavi/password_change.html"
+    return render_to_response(req, template_name, {"current_user" : user_to_edit,
+                                                   "form" : password_form})
+    
+    
+
+@login_required
+@permission_required("iavi.can_read_participants")
 def participants(req):
     template_name="iavi/participants.html"
     user = req.user
@@ -90,14 +197,14 @@ def participants(req):
         if user.is_superuser:
             locations = Location.objects.all()
         else:
-            return render_to_response(req, "iavi/no_profile.html", {"user": user})
+            return render_to_response(req, "iavi/no_profile.html", {})
     
     reporters = IaviReporter.objects.filter(location__in=locations)
     return render_to_response(req, template_name, {"reporters" : reporters })
 
 
 @login_required
-@permission_required("iavi.can_read_users")
+@permission_required("iavi.can_read_participants")
 def participant_summary(req, id):
     template_name="iavi/participant_summary.html"
     try:
@@ -110,7 +217,7 @@ def participant_summary(req, id):
     return render_to_response(req, template_name, {"reporter" : reporter,"kenya_reports":kenya_reports, "uganda_reports":uganda_reports})
 
 @login_required
-@permission_required("iavi.can_write_users")
+@permission_required("iavi.can_write_participants")
 def participant_edit(req, id):
     reporter = None
     if req.method == 'POST': 
