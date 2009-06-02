@@ -27,11 +27,13 @@
         <td><b>{{reporter.pin}}</b></td>
     </tr>
 </table>
+{% if perms.iavi.can_see_data %}
 <br>
 <br>
 {% include "iavi/partials/kenya_data.html" %} 
 <br><br>
 {% include "iavi/partials/uganda_data.html" %} 
 <br>
+{% endif %}
 <a href="/iavi/participants">back to participant list</a>
 {% endblock %}
