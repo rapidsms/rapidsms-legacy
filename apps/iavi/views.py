@@ -97,6 +97,7 @@ def participants(req):
 
 
 @login_required
+@permission_required("iavi.can_read_users")
 def participant_summary(req, id):
     template_name="iavi/participant_summary.html"
     try:
