@@ -131,7 +131,7 @@
     "pk": 8, 
     "model": "i18n.translation", 
     "fields": {
-      "translation": "Kwa masaa hiyo kumi na nne iliopita, ulitumia mipira ya Kondom mara ngapi ulipofanya mapenzi?", 
+      "translation": "Kwa masaa hiyo ishirini na nne iliopita, ulitumia mipira ya Kondom mara ngapi ulipofanya mapenzi?", 
       "original": "Of the number of times that you had sex in the last 24 hours, how many times were condoms used?", 
       "language": 3
     }
