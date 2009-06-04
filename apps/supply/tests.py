@@ -9,6 +9,7 @@ from models import *
 from django.core.management.commands.dumpdata import Command
 import random
 import time
+import os
 from datetime import datetime, timedelta
 
 class TestApp (TestScript):
