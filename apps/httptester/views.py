@@ -72,8 +72,9 @@ def basic_ui(req, number, skip_post=False, form_class=MessageForm):
            urllib2.urlopen(url)
            #return render_to_response('shared/thanks.html')
            return basic_ui(req, msg.phone_number, True)
-       else: 
-           print "something bad happened"
+       else:
+           pass
+           
     return render_to_response(req, template_name, {
         "form": form_instance,
         "msgs": msgs,

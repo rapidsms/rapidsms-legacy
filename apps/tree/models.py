@@ -7,47 +7,40 @@ from apps.reporters.models import Reporter, PersistantConnection
 import re
 
 
-# some really bare bones models for localization
-# TODO this should be moved to its own app or something 
-class Language(models.Model):
-    code = models.CharField(max_length = 10) # e.g. "en"
-    name = models.CharField(max_length = 50) # e.g. "English"
-
-    def __unicode__(self):
-        return "%s (%s)" % (self.name, self.code)
-
-class Translation(models.Model):
-    language = models.ForeignKey(Language)
-    
-    # The actual original (probably english) string will be 
-    # used as the key into the other languages.  This is 
-    # similar to the python/django _() i18n support.  
-    original = models.TextField()
-    translation = models.TextField()
-
-    def __unicode__(self):
-        return "%s --> %s (%s)" % (self.original, self.translation, self.language.name)
-
 class Question(models.Model):
     text = models.TextField()
+    # allow the question to specify a default error
+    # message
+    error_response = models.TextField(null=True, blank=True)
     
     def __unicode__(self):
         return "Q%s: %s" % (
             self.pk,
             self.text)
 
-
 class Tree(models.Model):
     trigger = models.CharField(max_length=30, help_text="The incoming message which triggers this Tree")
     #root_question = models.ForeignKey("Question", related_name="tree_set", help_text="The first Question sent when this Tree is triggered, which may lead to many more")
     # making this compatible with the UI
     root_state = models.ForeignKey("TreeState", null=True, blank=True, related_name="tree_set", help_text="The first Question sent when this Tree is triggered, which may lead to many more")
-    
+    completion_text = models.CharField(max_length=160, null=True, blank=True, help_text="The message that will be sent when the tree is completed")
+     
     def __unicode__(self):
         return "T%s: %s -> %s" % (
             self.pk,
             self.trigger,
             self.root_state)
+
+    def has_loops(self):
+        return self.root_state.has_loops_below()
+
+      
+    def get_all_states(self):
+        all_states = []
+        all_states.append(self.root_state)
+        self.root_state.add_all_unique_children(all_states)
+        return all_states
+
 
 
 class Answer(models.Model):
@@ -58,7 +51,6 @@ class Answer(models.Model):
     )
     name = models.CharField(max_length=30)
     type = models.CharField(max_length=1, choices=ANSWER_TYPES)
-    # I'm not sure if it's easier or harder to make this an Answer or just a CharField.  Leaving as a charfield for now.
     answer = models.CharField(max_length=160)
     description = models.CharField(max_length=100, null=True)
     
@@ -82,23 +74,67 @@ class Answer(models.Model):
             # this might be ugly
             return self.answer
     
-    
 
 class TreeState(models.Model):
-    #tree = models.ForeignKey(Tree)
+    """ A TreeState is a location in a tree.  It is 
+        associated with a question and a set of answers
+        (transitions) that allow traversal to other states """ 
     name = models.CharField(max_length=100)
     question = models.ForeignKey(Question, blank=True, null=True)
+    # the number of tries they have to get out of this state
+    # if empty there is no limit.  When the num_retries is hit
+    # a user's session will be terminated.
+    num_retries = models.PositiveIntegerField(blank=True,null=True)
+
+    def has_loops_below(self):
+        return TreeState.path_has_loops([self])
     
+    @classmethod
+    def path_has_loops(klass, path):
+        # we're going to get all unique paths through the this
+        # (or until we hit a loop)
+        # a path is defined as an ordered set of states
+        # if at any point in a path we reach a state we've 
+        # already seen then we have a loop
+        # this is basically a depth first search
+        last_node = path[len(path) - 1]
+        transitions = last_node.transition_set.all()
+        for transition in transitions:
+          if transition.next_state:
+              # Base case.  We have already seen this state in the path
+              if path.__contains__(transition.next_state):
+                  return True
+              next_path = path[:]
+              next_path.append(transition.next_state)
+              # recursive case - there is a loop somewhere below this path
+              if TreeState.path_has_loops(next_path):
+                  return True
+        # we trickle down to here - went all the way through without finding any loops
+        return False
+        
+    def add_all_unique_children(self, added):
+        ''' Adds all unique children of the state to the passed in list.  
+            This happens recursively.'''
+        transitions = self.transition_set.all()
+        for transition in transitions:
+            if transition.next_state:
+                if transition.next_state not in added:
+                    added.append(transition.next_state)
+                    transition.next_state.add_all_unique_children(added)
+                
+
     def __unicode__(self):
         return ("State %s, Question: %s" % (
             self.name,
             self.question))
     
 class Transition(models.Model):
+    """ A Transition is a way to navigate from one
+        TreeState to another, via an appropriate 
+        Answer. """ 
     current_state = models.ForeignKey(TreeState)
     answer = models.ForeignKey(Answer)
     next_state = models.ForeignKey(TreeState, blank=True, null=True, related_name='next_state')     
-    
     
     def __unicode__(self):
         return ("%s : %s --> %s" % 
@@ -107,11 +143,21 @@ class Transition(models.Model):
              self.next_state))
  
 class Session(models.Model):
-    # We might want to make these reporters
+    """ A Session represents a single person's current 
+        status traversing through a Tree. It is a way
+        to persist information about what state they
+        are in, how many retries they have had, etc. so 
+        that we aren't storing all of that in-memory. """ 
     connection = models.ForeignKey(PersistantConnection)
     tree = models.ForeignKey(Tree)
     start_date = models.DateTimeField(auto_now_add=True)
     state = models.ForeignKey(TreeState, blank=True, null=True) # none if the session is complete
+    # the number of times the user has tried to answer 
+    # this question
+    num_tries = models.PositiveIntegerField()
+    # this flag stores the difference between completed
+    # on its own, or manually canceled.
+    canceled = models.BooleanField(blank=True, null=True) 
      
     def __unicode__(self):
         if self.state:
@@ -121,6 +167,9 @@ class Session(models.Model):
         return ("%s : %s" % (self.connection.identity, text))
 
 class Entry(models.Model):
+    """ An Entry is a single successful movement within
+        a Session.  It represents an accepted Transition 
+        from one state to another within the tree. """ 
     session = models.ForeignKey(Session)
     sequence_id = models.IntegerField()
     transition = models.ForeignKey(Transition)
@@ -144,14 +193,3 @@ class Entry(models.Model):
     
     class Meta:
         verbose_name_plural="Entries"
-
-'''class Message(models.Model):
-    connection = models.CharField(max_length=100, blank=True, null=True)
-    time = models.DateTimeField(auto_now_add=True)
-    text = models.CharField(max_length=160)
-    is_outgoing = models.BooleanField()
-
-    def __unicode__(self):
-        return self.text
-
-'''
