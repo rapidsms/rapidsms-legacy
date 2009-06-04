@@ -1,6 +1,10 @@
+#!/usr/bin/env python
+# vim: ai ts=4 sts=4 et sw=4
+
+
 from django.db import models
 
-# Create your Django models here, if you need them.
+
 class Pattern(models.Model):
     name = models.CharField(max_length=160)
     regex = models.CharField(max_length=160)
@@ -16,7 +20,5 @@ class Pattern(models.Model):
         regex = '|'.join(patterns.values_list('regex', flat=True))
         return regex.replace(')|(', '|')
 
-
     def __unicode__(self):
         return "%s %s" % (self.name, self.regex)
-
