@@ -1,4 +1,4 @@
-{% extends "layout.html" %}
+{% extends base_template %}
 {% block title %}Daily Bednets Distribution Summary{% endblock %}
 {% block javascripts %}
 <script language="javascript" type="text/javascript" src="/static/bednets/js/jquery.flot.js"></script>
@@ -109,7 +109,7 @@ $(document).ready(function() {
 </script>
 
 {% endblock %}
-{% block stylesheets %}
+{% block page_stylesheets %}
 <style>
 #data_summary th, #data_summary td { text-align: center; }
 </style>
