@@ -1,4 +1,4 @@
-{% extends "layout.html" %}
+{% extends base_template %}
 {% block title %}Logistics Summary{% endblock %}
 {% block javascripts %}
 <!--[if IE]><script language="javascript" type="text/javascript" src="/static/bednets/js/excanvas.pack.js"></script><![endif]-->
@@ -80,7 +80,7 @@ $('#sl_ot_children').bind( 'plotmousemove', function( e, pos ) {
 
 </script>
 {% endblock %}
-{% block stylesheets %}
+{% block page_stylesheets %}
 <style>
 td {border-top: none}
 tr.variant-amount { background-color: #FFD6DD; }
