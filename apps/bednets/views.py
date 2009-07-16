@@ -4,10 +4,10 @@
 from django.contrib.auth.decorators import permission_required
 from django.http import HttpResponse, HttpResponseNotAllowed, HttpResponseServerError, Http404
 from django.template import RequestContext
-from apps.reporters.models import Location, LocationType
-from apps.supply.models import Shipment, Transaction, Stock, PartialTransaction
-from apps.bednets import constants
-from apps.bednets.models import NetDistribution, CardDistribution 
+from reporters.models import Location, LocationType
+from supply.models import Shipment, Transaction, Stock, PartialTransaction
+from bednets import constants
+from bednets.models import NetDistribution, CardDistribution 
 from rapidsms.webui.utils import render_to_response
 from django.db import models
 # The import here newly added for serializations

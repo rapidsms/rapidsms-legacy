@@ -3,7 +3,7 @@
 
 from django import forms
 from models import *
-from apps.reporters.models import Location, Reporter
+from reporters.models import Location, Reporter
 from django.contrib.auth.models import User
 
 class IaviReporterForm(forms.Form):

@@ -1,6 +1,6 @@
 from django.db import models
-from apps.reporters.models import Reporter, PersistantConnection, Location 
-from apps.tree.models import Session
+from reporters.models import Reporter, PersistantConnection, Location 
+from tree.models import Session
 from django.contrib.auth.models import User
 
 
