@@ -2,7 +2,7 @@
 # vim: ai ts=4 sts=4 et sw=4
 
 from django.contrib import admin
-from apps.iavi.models import *
+from iavi.models import *
 
 admin.site.register(IaviReporter)
 admin.site.register(StudyParticipant)

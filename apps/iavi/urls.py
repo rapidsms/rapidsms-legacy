@@ -3,7 +3,7 @@
 
 import os
 from django.conf.urls.defaults import *
-import apps.iavi.views as views
+import iavi.views as views
 
 urlpatterns = patterns('',
     url(r'^iavi/?$', views.index),
