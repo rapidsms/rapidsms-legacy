@@ -1,10 +1,10 @@
 from rapidsms.tests.scripted import TestScript
 from app import App
 from models import *
-import apps.reporters.app as reporters_app
-import apps.tree.app as tree_app
-#import apps.i18n.app as i18n_app
-from apps.reporters.models import Reporter
+import reporters.app as reporters_app
+import tree.app as tree_app
+#import i18n.app as i18n_app
+from reporters.models import Reporter
 import datetime
 
 class TestApp (TestScript):
