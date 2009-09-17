@@ -39,6 +39,7 @@ class PermCheck(template.Node):
     def render(self, context):
         try:
             # get the values of app and user variables
+
             app = self.app_name.resolve(context)
             user = self.user.resolve(context)
             # construct the permission we will check for
@@ -52,7 +53,7 @@ class PermCheck(template.Node):
             elif user.is_anonymous():
                 # for anonymous users, check against anon_perms
                 # defined in the webui section of rapidsms.ini 
-                if app_conf['webapp']:
+                if app_conf['webapp'] and "anon_perms" in app_conf["webapp"]:
                     if permission in app_conf['webapp']['anon_perms']:
                         display =  self.nodelist.render(context)
             return display
