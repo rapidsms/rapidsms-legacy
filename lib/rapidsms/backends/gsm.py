@@ -12,6 +12,7 @@ from rapidsms.backends import Backend
 import backend
 from rapidsms import log
 from rapidsms import utils
+from datetime import datetime
 
 POLL_INTERVAL=2 # num secs to wait between checking for inbound texts
 LOG_LEVEL_MAP = {
@@ -81,12 +82,21 @@ class Backend(Backend):
         
             if msg is not None:
                 # we got an sms! create RapidSMS Connection and
-                # Message objects, and hand it off to the router
+                # Message objects, and hand it off to the router 
                 c = Connection(self, msg.sender)
+                
+                # Try to use message sent date as timestamp
+                # SOMETIMES this doesn't come over, in which
+                # case use the current time
+                try:
+                    date=utils.to_naive_utc_dt(msg.sent)
+                except:
+                    date=datetime.utcnow()
+
                 m = Message(
                             connection=c, 
                             text=msg.text,
-                            date=utils.to_naive_utc_dt(msg.sent)
+                            date=date
                             )
                 self.router.send(m)
                 
