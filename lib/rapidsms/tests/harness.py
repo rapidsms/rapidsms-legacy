@@ -45,7 +45,14 @@ class MockRouter (Router):
 
     def stop (self):
         self.running = False
+        self.stop_all_apps()
         self.stop_all_backends()
+        
+    def send(self, message):
+        # in the MockRouter, override send because the mock router doesn't actually
+        # run()
+        super(Router, self).send(message)
+        self.run()
 
 class MockBackend (Backend):
     def start (self):

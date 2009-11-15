@@ -90,7 +90,6 @@ class TestScript (TestCase):
                 msg = self.backend.message(num, txt)
                 msg.date = date 
                 self.backend.route(msg)  
-                self.router.run()
             elif dir == '<':
                 msg = self.backend.next_message()
                 self.assertTrue(msg is not None, 

@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# vim: ai ts=4 sts=4 et sw=4
+# vim: ai ts=4 sts=4 et sw=4 encoding=utf-8
 
 import time, datetime, os, heapq
 import threading
@@ -139,6 +139,24 @@ class Router (component.Receiver):
         # False, to warn that _something_ is wrong
         return not raised
 
+    def stop_all_apps (self):
+        """Calls the _stop_ method of each app registed via
+           Router.add_app, logging any exceptions raised, but
+           not allowing them to propagate. Returns True if all
+           of the apps stopped without raising."""
+
+        raised = False
+        for app in self.apps:
+            try:
+                app.stop()
+
+            except Exception, e:
+                self.log_last_exception("The %s app failed to stop" % app.slug)
+                raised = True
+
+        # if any of the apps raised, we'll return
+        # False, to warn that _something_ is wrong
+        return not raised
 
     def start_all_backends (self):
         """Starts all backends registed via Router.add_backend,
@@ -235,6 +253,7 @@ class Router (component.Receiver):
             except SystemExit:
                 break
         
+        self.stop_all_apps()
         self.stop_all_backends()
         self.running = False
 
