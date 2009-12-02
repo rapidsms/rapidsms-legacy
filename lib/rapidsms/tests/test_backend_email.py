@@ -14,7 +14,7 @@ from rapidsms.backends.email import Backend, Connection
 
 
 CONF = {"smtp_host": "smtp.gmail.com",
-        "smtp_port": 465,
+        "smtp_port": 587,
         "imap_host": "imap.gmail.com",
         "imap_port": 993,
         "username": "rapidsms.org@gmail.com",
@@ -24,13 +24,13 @@ CONF = {"smtp_host": "smtp.gmail.com",
         }
 CONF2 = {
         "smtp_host": "smtp.gmail.com",
-        "smtp_port": 465,
+        "smtp_port": 587,
         "imap_host": "imap.gmail.com",
         "imap_port": 993,
         "username": "rapidsms.org2@gmail.com",
         "password": "rapidsms123",
         "use_tls": True,
-        "poll_interval": 30
+        "poll_interval": 3
         }
 
     
@@ -106,7 +106,11 @@ class TestBackendEmail(unittest.TestCase):
         msg['Subject'] = subject
         msg['From'] = conf["username"]
         msg['To'] = to_addr
-        s = smtplib.SMTP_SSL(host=conf["smtp_host"], port=conf["smtp_port"])
+        
+        s = smtplib.SMTP(host=conf["smtp_host"], port=conf["smtp_port"])
+        s.ehlo()
+        if conf["use_tls"]:
+            s.starttls()
         s.login(conf["username"], conf["password"])
         s.sendmail(conf["username"], [to_addr], msg.as_string())
         s.quit()

@@ -37,13 +37,13 @@ class Backend(backend.Backend):
         # the default information will not work, users need to configure this
         # in their settings
         self.smtp_host = smtp_host
-        self.smtp_port = smtp_port
+        self.smtp_port = int(smtp_port)
         self.imap_host = imap_host
-        self.imap_port = imap_port
+        self.imap_port = int(imap_port)
         self.username = username 
         self.password = password
         self.use_tls = use_tls 
-        self.poll_interval = poll_interval
+        self.poll_interval = int(poll_interval)
         
     def _send(self, email_message):
         # Create a text/plain message for now
@@ -52,12 +52,10 @@ class Backend(backend.Backend):
         msg['Subject'] = getattr(email_message, "subject", None)
         msg['From'] = self.username 
         msg['To'] = email_message.peer
-
+        s = smtplib.SMTP(host=self.smtp_host, port=self.smtp_port)
+        s.ehlo()
         if self.use_tls:
-            s = smtplib.SMTP_SSL(host=self.smtp_host, port=self.smtp_port)
-        else:
-            s = smtplib.SMTP(host=self.smtp_host, port=self.smtp_port)
-            
+            s.starttls()
         s.login(self.username, self.password)
         s.sendmail(self.username, [email_message.peer], msg.as_string())
         s.quit()
@@ -113,6 +111,18 @@ class Backend(backend.Backend):
         """From an IMAP message object, get a rapidsms message object"""
         parsed = message_from_string(imap_mail)
         from_user = parsed["From"] 
+        # if the from format was something like:
+        # "Bob User" <bob@users.com>
+        # just pull out the relevant address part from within the carats.
+        # Note that we don't currently do anything smart parsing email
+        # addresses to make sure they are valid, we either just take
+        # what we get, or take what we get between <>.    
+        match = re.match(r"^.*<\s*(\S+)\s*>", from_user)
+        if match:
+            new_addr = match.groups()[0]
+            self.debug("converting %s to %s" % (from_user, new_addr))
+            from_user = new_addr
+            
         subject = parsed["Subject"]
         date_string = parsed["Date"]
         # TODO: until we figure out how to generically parse dates, just use
