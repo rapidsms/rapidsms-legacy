@@ -28,9 +28,17 @@ class Backend(Backend):
     _title = "pyGSM"
     
     def _log(self, modem, msg, level):
-        # convert GsmModem levels to levels understood by
-        # the rapidsms logger
-        level = LOG_LEVEL_MAP[level]
+        """
+        convert GsmModem levels to levels understood by
+        the rapidsms logger
+        
+        """
+        level = 'info'
+        try:
+            level = LOG_LEVEL_MAP[level]
+        except:
+            # inbound level was bofus
+            pass
         
         if self.modem_logger is not None:
             self.modem_logger.write(self,level,msg)
