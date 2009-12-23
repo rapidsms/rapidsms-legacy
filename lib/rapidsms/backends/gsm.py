@@ -33,17 +33,17 @@ class Backend(Backend):
         the rapidsms logger
         
         """
-        level = 'info'
+        logger_level = 'info'
         try:
-            level = LOG_LEVEL_MAP[level]
+            logger_level = LOG_LEVEL_MAP[level]
         except:
             # inbound level was bofus
             pass
         
         if self.modem_logger is not None:
-            self.modem_logger.write(self,level,msg)
+            self.modem_logger.write(self,logger_level,msg)
         else:
-            self.router.log(level, msg)
+            self.router.log(logger_level, msg)
 
     def configure(self, *args, **kwargs):
         self.modem = None
