@@ -1,7 +1,8 @@
 #!/usr/bin/env python
-# vim: ai ts=4 sts=4 et sw=4
+# vim: ai ts=4 sts=4 et sw=4 encoding=utf-8
 
 import os, time
+import i18n
 
 
 DEBUG = True
@@ -26,6 +27,9 @@ SITE_ID = 1
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
 USE_I18N = True
+
+# Django i18n searches for translation files (django.po) within this dir
+LOCALE_PATHS=['contrib/locale']
 
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
@@ -54,6 +58,7 @@ TEMPLATE_LOADERS = (
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
 )
 
@@ -107,6 +112,27 @@ RAPIDSMS_APPS = dict([
     for app in RAPIDSMS_CONF["rapidsms"]["apps"]])
 
 
+# this code bootstraps the i18n logic configuration, if 
+# it is in the settings
+
+def _i18n_to_django_setting(language_settings):
+    languages = []
+    for language in language_settings:
+        if len(language) >= 2:
+            languages.append( (language[0],language[1]) )
+    return tuple(languages)
+    
+# Import i18n settings from rapidsms.ini for sms
+if "i18n" in RAPIDSMS_CONF:
+    RAPIDSMS_I18N = True
+    if "web_languages" in RAPIDSMS_CONF["i18n"]:
+        LANGUAGES = _i18n_to_django_setting( RAPIDSMS_CONF["i18n"]["web_languages"] )
+    elif "languages" in RAPIDSMS_CONF["i18n"]:
+        LANGUAGES = _i18n_to_django_setting( RAPIDSMS_CONF["i18n"]["languages"] )
+    
+    # allow you to specify the static paths for translation files
+    if "locale_paths" in RAPIDSMS_CONF["i18n"]:
+        LOCALE_PATHS = RAPIDSMS_CONF["i18n"]["locale_paths"]
 
 
 # ==========================
