@@ -1,5 +1,6 @@
 # vim: ai ts=4 sts=4 et sw=4 encoding=utf-8
 
+import sys
 from django.utils.encoding import smart_str
 from harness import MockRouter, EchoApp
 from rapidsms.backends.backend import Backend
@@ -93,24 +94,45 @@ class TestScript (TestCase):
                 self.backend.route(msg)  
             elif dir == '<':
                 msg = self.backend.next_message()
-                # smart_str is a django util that prevents dumb terminals
-                # from barfing on strange character sets 
-                # see http://code.djangoproject.com/ticket/10183
-                last_msg, msg.text, txt = map(smart_str, [last_msg, msg.text, txt])
-                self.assertTrue(msg is not None, 
-                    "message was returned.\nMessage: '%s'\nExpecting: '%s')" % (last_msg, txt))
+                if sys.stdout.encoding:
+                    # Encode 'strange' characters for proper output on the console
+                    # so we don't get 'unprintable assertion errors'
+                    try:
+                        txt = txt.encode(sys.stdout.encoding, 'replace')
+                    except UnicodeDecodeError:
+                        # This error occurs when the input is not standardized (i.e. unicode)
+                        self.fail("Could not encode unit test string to stdout character encoding. Make sure your RapidSMS unit tests are unicode strings!")
+
+                # The following 3 try...catch blocks handle the case where the unit test strings
+                # are not properly decoded in tests.py. Basically, there is no way to reliably
+                # determine the encoding of a character > 127 bits a posteriori. The best we can
+                # do is catch errors when these strings prove incompatible and then print out
+                # as much as we can.
                 try:
-                    assertEqualsErrorMsg1 = "Expected to send to %s, but message was sent to %s\nMessage: '%s'\nReceived: '%s'\nExpecting: '%s'" % \
-                        (num, msg.peer,last_msg, msg.text, txt)
-                    assertEqualsErrorMsg2 = "\nMessage: %s\nReceived text: %s\nExpected text: %s\n" % \
-                        (last_msg, msg.text, txt)
+                    msgIsNotNoneMsg = "Message was not returned.\nMessage: '%s'\nExpecting: '%s')" % (last_msg, txt)
                 except UnicodeDecodeError:
-                    # TODO - track down this problem properly. I have no idea why this works in eclipse.
-                    raise Exception("There has been a problem interpreting non-ascii. " +
-                                    "Try running this in eclipse.")
-                self.assertEquals(msg.peer, num, assertEqualsErrorMsg1)
-                self.assertEquals(msg.text.strip(), txt.strip(),assertEqualsErrorMsg2)
-            last_msg = txt
+                    msgIsNotNoneMsg = "Message was not returned.\nMessage: '%s')" % (last_msg)
+                self.assertTrue(msg is not None, msgIsNotNoneMsg)
+                
+                if sys.stdout.encoding:
+                    msg.text = msg.text.encode(sys.stdout.encoding, 'replace')
+
+                try:
+                    msgWrongRecipient = "Expected to send to %s, but message was sent to %s\nMessage: '%s'" % \
+                                        (num, msg.peer, last_msg)
+                except UnicodeDecodeError:
+                    msgWrongRecipient = "Expected to send to one number but got sent to another. \nMessage: '%s'" % (last_msg)
+                self.assertEquals(msg.peer, num, msgWrongRecipient)
+                
+                try:
+                    msgUnexpectedReceipt = "\nMessage: %s\nReceived text: %s\nExpected text: %s\n" % \
+                                          (last_msg, msg.text, txt)
+                except UnicodeDecodeError: 
+                    msgUnexpectedReceipt = "Unexpected response. \nResponse: %s" % \
+                                          (msg.text)                    
+                self.assertEquals(msg.text.strip(), txt.strip(), msgUnexpectedReceipt)
+
+                last_msg = txt
         self.router.stop()
 
     def runScript (self, script):

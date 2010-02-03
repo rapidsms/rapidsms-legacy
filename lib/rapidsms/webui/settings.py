@@ -2,7 +2,7 @@
 # vim: ai ts=4 sts=4 et sw=4 encoding=utf-8
 
 import os, time
-import i18n
+import rapidsms.i18n
 
 
 DEBUG = True
@@ -122,18 +122,27 @@ def _i18n_to_django_setting(language_settings):
             languages.append( (language[0],language[1]) )
     return tuple(languages)
     
-# Import i18n settings from rapidsms.ini for sms
-if "i18n" in RAPIDSMS_CONF:
-    RAPIDSMS_I18N = True
-    if "web_languages" in RAPIDSMS_CONF["i18n"]:
-        LANGUAGES = _i18n_to_django_setting( RAPIDSMS_CONF["i18n"]["web_languages"] )
-    elif "languages" in RAPIDSMS_CONF["i18n"]:
-        LANGUAGES = _i18n_to_django_setting( RAPIDSMS_CONF["i18n"]["languages"] )
+def import_i18n_web_settings(conf):
+    """ Import i18n settings from rapidsms.ini for sms """
+    if "i18n" in conf:
+        global RAPIDSMS_I18N
+        RAPIDSMS_I18N = True
+        if "default_language" in conf["i18n"]:
+            # retardedly, django unit tests fail if default language is set to non-latin character language
+            global LANGUAGE_CODE
+            LANGUAGE_CODE = conf["i18n"]["default_language"]
+        global LANGUAGES
+        if "web_languages" in conf["i18n"]:
+            LANGUAGES = _i18n_to_django_setting( conf["i18n"]["web_languages"] )
+        elif "languages" in conf["i18n"]:
+            LANGUAGES = _i18n_to_django_setting( conf["i18n"]["languages"] )
     
-    # allow you to specify the static paths for translation files
-    if "locale_paths" in RAPIDSMS_CONF["i18n"]:
-        LOCALE_PATHS = RAPIDSMS_CONF["i18n"]["locale_paths"]
+        # allow you to specify the static paths for translation files
+        if "locale_paths" in conf["i18n"]:
+            global LOCALE_PATHS
+            LOCALE_PATHS = conf["i18n"]["locale_paths"]
 
+import_i18n_web_settings(RAPIDSMS_CONF)
 
 # ==========================
 # LOAD OTHER DJANGO SETTINGS

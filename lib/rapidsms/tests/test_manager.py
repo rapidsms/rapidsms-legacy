@@ -3,10 +3,8 @@ import os
 
 from rapidsms.manager import Manager
 from rapidsms.manager import import_local_settings
-from rapidsms.manager import import_i18n_web_settings
 from rapidsms.manager import import_i18n_sms_settings
 from rapidsms.config import Config
-from django.conf import settings
 import rapidsms.i18n as i18n
 
 class TestSettings (object):
@@ -42,56 +40,55 @@ class TestManager (unittest.TestCase):
         self.assertEquals(settings.overridden, "overridden")
 
     def test_i18n_web_settings_1 (self):
-        import_i18n_web_settings(self.settings, self.conf)
+        self.settings.import_i18n_web_settings(self.conf)
         self.assertFalse( hasattr(self.settings,"RAPIDSMS_I18N") )
-        self.assertEquals( settings.LANGUAGE_CODE, "en-us")
-        # django's got some ridiculous number of built-in languages
-        self.assertTrue( len(settings.LANGUAGES)>45 )
+        self.assertEquals( self.settings.LANGUAGE_CODE, "en-us")
+        self.assertFalse( hasattr(self.settings, "LANGUAGES") )
 
     def test_i18n_web_settings_2 (self):
         self.conf["i18n"] = {}
-        import_i18n_web_settings(self.settings, self.conf)
+        self.settings.import_i18n_web_settings(self.conf)
         self.assertEquals(self.settings.RAPIDSMS_I18N, True)
-        self.assertEquals(settings.LANGUAGE_CODE, "en-us")
-        self.assertTrue( len(settings.LANGUAGES)>45 )
+        self.assertEquals(self.settings.LANGUAGE_CODE, "en-us")
+        self.assertFalse( hasattr(self.settings, "LANGUAGES") )
 
     def test_i18n_web_settings_3 (self):
         self.conf["i18n"] = {}
         self.conf["i18n"]["default_language"] = 'fr'
-        import_i18n_web_settings(self.settings, self.conf)
+        self.settings.import_i18n_web_settings(self.conf)
         self.assertEquals(self.settings.RAPIDSMS_I18N, True)
-        self.assertEquals(settings.LANGUAGE_CODE, 'fr')
-        self.assertTrue( len(settings.LANGUAGES)>45 )
+        self.assertEquals(self.settings.LANGUAGE_CODE, 'fr')
+        self.assertFalse( hasattr(self.settings, "LANGUAGES") )
 
     def test_i18n_web_settings_4 (self):
         self.conf["i18n"] = {}
         self.conf["i18n"]["languages"] = [ ['de','deutsche'],['fr','francais','french'] ]
         os.environ["DJANGO_SETTINGS_MODULE"] = "rapidsms.webui.settings"
-        import_i18n_web_settings(self.settings, self.conf)
+        self.settings.import_i18n_web_settings(self.conf)
         self.assertEquals( self.settings.RAPIDSMS_I18N, True )
-        self.assertEquals( settings.LANGUAGES, ( ('de','deutsche'),('fr','francais') ) )
+        self.assertEquals( self.settings.LANGUAGES, ( ('de','deutsche'),('fr','francais') ) )
         
     def test_i18n_web_settings_5 (self):
         self.conf["i18n"] = {}
         self.conf["i18n"]["languages"] = [ ['de','deutsche'],['fr','francais','french'] ]
         self.conf["i18n"]["web_languages"] = [ ['ki','Klingon'],['elf','Elvish','Yiddish'] ]
         os.environ["DJANGO_SETTINGS_MODULE"] = "rapidsms.webui.settings"
-        import_i18n_web_settings(self.settings, self.conf)
+        self.settings.import_i18n_web_settings(self.conf)
         self.assertEquals(self.settings.RAPIDSMS_I18N, True)
-        self.assertEquals( settings.LANGUAGES, ( ('ki','Klingon'),('elf','Elvish') ) )
-
+        self.assertEquals( self.settings.LANGUAGES, ( ('ki','Klingon'),('elf','Elvish') ) )
+    
     def test_i18n_sms_settings_1 (self):
         import_i18n_sms_settings(self.conf)
         self.assertEquals( i18n._default, None )
         self.assertEquals( len(i18n._translations),0 )
-
+    
     def test_i18n_sms_settings_2 (self):
         self.conf["i18n"] = {}
         import_i18n_sms_settings(self.conf)
         self.assertEquals( i18n._default, "en")
         self.assertTrue( "en" in i18n._translations )
         self.assertEquals( len(i18n._translations),1 )
-
+    
     def test_i18n_sms_settings_3 (self):
         self.conf["i18n"] = {}
         self.conf["i18n"]["default_language"] = 'fr'
@@ -99,19 +96,19 @@ class TestManager (unittest.TestCase):
         self.assertEquals( i18n._default, 'fr' )
         self.assertTrue( "fr" in i18n._translations )
         self.assertEquals( len(i18n._translations),1 )
-
+    
     def test_i18n_sms_settings_4 (self):
         self.conf["i18n"] = {}
         self.conf["i18n"]["languages"] = [ ['de','deutsche'],['fr','francais','french'] ]
         # pass a set of languages without specifying a default
         self.failUnlessRaises( Exception, import_i18n_sms_settings, self.conf )
-
+    
     def test_i18n_sms_settings_5 (self):
         self.conf["i18n"] = {}
         self.conf["i18n"]["default_language"] = 'kli'
         self.conf["i18n"]["languages"] = [ ['de','deutsche'],['fr','francais','french'] ]
         # default language not in languages
-        self.failUnlessRaises( Exception, import_i18n_web_settings, self.conf )
+        self.failUnlessRaises( Exception, import_i18n_sms_settings, self.conf )
         
     def test_i18n_sms_settings_6 (self):
         self.conf["i18n"] = {}
