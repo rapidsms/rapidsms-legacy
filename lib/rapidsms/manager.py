@@ -8,6 +8,18 @@ import i18n
 
 # the Manager class is a bin for various RapidSMS specific management methods
 class Manager (object):
+
+    def testroute(self, conf, *args):
+        """ Uses Django's autoreload functionality to automatically restart the 
+        routing server when code is changed.  """
+        from django.utils import autoreload
+
+        def run():
+            self.route(conf, args)
+
+        # run our route command using Django's autoreload
+        autoreload.main(run)
+
     def route (self, conf, *args):
         router = Router()
         router.set_logger(conf["log"]["level"], conf["log"]["file"])
@@ -114,7 +126,7 @@ def start (args):
     # if one or more arguments were passed, we're
     # starting up django -- copied from manage.py
     if len(args) < 2:
-        print "Commands: route, startproject <name>, startapp <name>"
+        print "Commands: route, testroute, runserver, startproject <name>, startapp <name>"
         sys.exit(1)
 
     if hasattr(Manager, args[1]):
