@@ -25,8 +25,8 @@ class TestManager (unittest.TestCase):
         self.settings = settings
         self.manager = Manager()
         self.conf = {}
-        i18n._translations = {}
-        i18n._default = None
+        i18n._sms_translations = {}
+        i18n._sms_default = None
         
     def test_manager (self):
         self.assertTrue(hasattr(self.manager, "route"))
@@ -79,23 +79,23 @@ class TestManager (unittest.TestCase):
     
     def test_i18n_sms_settings_1 (self):
         import_i18n_sms_settings(self.conf)
-        self.assertEquals( i18n._default, None )
-        self.assertEquals( len(i18n._translations),0 )
+        self.assertEquals( i18n._sms_default, None )
+        self.assertEquals( len(i18n._sms_translations),0 )
     
     def test_i18n_sms_settings_2 (self):
         self.conf["i18n"] = {}
         import_i18n_sms_settings(self.conf)
-        self.assertEquals( i18n._default, "en")
-        self.assertTrue( "en" in i18n._translations )
-        self.assertEquals( len(i18n._translations),1 )
+        self.assertEquals( i18n._sms_default, "en")
+        self.assertTrue( "en" in i18n._sms_translations )
+        self.assertEquals( len(i18n._sms_translations),1 )
     
     def test_i18n_sms_settings_3 (self):
         self.conf["i18n"] = {}
         self.conf["i18n"]["default_language"] = 'fr'
         import_i18n_sms_settings(self.conf)
-        self.assertEquals( i18n._default, 'fr' )
-        self.assertTrue( "fr" in i18n._translations )
-        self.assertEquals( len(i18n._translations),1 )
+        self.assertEquals( i18n._sms_default, 'fr' )
+        self.assertTrue( "fr" in i18n._sms_translations )
+        self.assertEquals( len(i18n._sms_translations),1 )
     
     def test_i18n_sms_settings_4 (self):
         self.conf["i18n"] = {}
@@ -116,10 +116,10 @@ class TestManager (unittest.TestCase):
         self.conf["i18n"]["languages"] = [ ['de','deutsche'],['fr','francais','french'] ]
         self.conf["i18n"]["sms_languages"] = [ ['ki','Klingon'],['elf','Elvish','Yiddish'] ]
         import_i18n_sms_settings(self.conf)
-        self.assertEquals( i18n._default, 'ki' )
-        self.assertTrue( "ki" in i18n._translations )
-        self.assertTrue( "elf" in i18n._translations )
-        self.assertEquals( len(i18n._translations),2 )
+        self.assertEquals( i18n._sms_default, 'ki' )
+        self.assertTrue( "ki" in i18n._sms_translations )
+        self.assertTrue( "elf" in i18n._sms_translations )
+        self.assertEquals( len(i18n._sms_translations),2 )
 
 if __name__ == "__main__":
     unittest.main()

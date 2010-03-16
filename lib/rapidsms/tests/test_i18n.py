@@ -6,7 +6,6 @@ import unittest, threading, time, datetime
 
 from rapidsms.i18n import ugettext_from_locale as _t
 from rapidsms.i18n import ugettext_noop as _
-from rapidsms.i18n import _default
 from rapidsms.i18n import init
 
 class TestI18n(unittest.TestCase):
