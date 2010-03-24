@@ -43,7 +43,7 @@ class Keyworder(object):
         for token, regex in self.TOKEN_MAP:
             str = str.replace("(%s)" % token, regex)
 
-        return re.compile(self.pattern % str, re.IGNORECASE)
+        return re.compile(self.pattern % str, re.IGNORECASE + re.UNICODE)
 
     def __call__(self, *regex_strs):
         def decorator(func):
