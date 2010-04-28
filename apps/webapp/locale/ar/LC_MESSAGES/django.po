@@ -59,6 +59,10 @@ msgid "to continue."
 msgstr "للمتابعة"
 
 #: templates/layout.html:32
+msgid "ltr;"
+msgstr "rtl;"
+
+#: templates/layout.html:32
 msgid "Log out"
 msgstr "الخروج"
 
