@@ -58,6 +58,10 @@ msgstr "الدخول"
 msgid "to continue."
 msgstr "للمتابعة"
 
+#: templates/layout.html:15
+msgid "/static/webapp/stylesheets/layout.css"
+msgstr "/static/webapp/stylesheets/layout_ar.css"
+
 #: templates/layout.html:32
 msgid "ltr;"
 msgstr "rtl;"
