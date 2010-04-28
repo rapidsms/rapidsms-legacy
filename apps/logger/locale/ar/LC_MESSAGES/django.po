@@ -18,11 +18,15 @@ msgstr ""
 
 #: templates/logger/index.html:3
 msgid "Message Log"
-msgstr ""
+msgstr "سجل الرسائل"
 
 #: templates/logger/index.html:5
 msgid "All Messages"
 msgstr "جميع الرسائل"
+
+#: templates/logger/index.html:5
+msgid "left;"
+msgstr "right;"
 
 #: templates/logger/index.html:9
 msgid "Date"

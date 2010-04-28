@@ -104,7 +104,7 @@ msgstr "الدخول"
 
 #: templates/webapp/login.html:7
 msgid "Oops. Your username and password didn't match. Please try again."
-msgstr "اسم الحول وكلمة السر غير متوافقان, الرجاء المحاولة مرة اخرى"
+msgstr "اسم الدخول وكلمة السر غير متوافقان, الرجاء المحاولة مرة اخرى"
 
 #: templates/webapp/login.html:11
 msgid "Oops. You do not have permission to view this section."

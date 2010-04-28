@@ -11,7 +11,7 @@
 <div class="split">
 	<div class="left">
 		<div class="module recipients">
-			<h2>{% trans "Select Recipients" %}</h2>
+			<h2 style= "text-align:{% trans 'left;' %}">{% trans "Select Recipients" %}</h2>
 			<form class="search" action="" method="get">
 				{% self_link_fields query field cmp  %}
 				<table>
@@ -48,17 +48,17 @@
 				<thead>
 					<tr>
 						<th></th>
-						<th>{% trans "Name" %}</th>
-						<th>{% trans "Role" %}</th>
-						<th>{% trans "Location" %}</th>
+						<th style= "text-align:{% trans 'left;' %}">{% trans "Name" %}</th>
+						<th style= "text-align:{% trans 'left;' %}">{% trans "Role" %}</th>
+						<th style= "text-align:{% trans 'left;' %}">{% trans "Location" %}</th>
 					</tr>
 				</thead>
 				<tbody class="recips{% if filtered %} filtered{% endif %}">{% for reporter in reporters.object_list %}
 					<tr uid="{{ reporter.pk }}" class="{% if reporter.is_hit %}hit{% endif %}">
 						<td class="check"></td>
-						<td>{{ reporter.full_name }}</td>
-						<td>{{ reporter.role }}</td>
-						<td>{{ reporter.location }}</td>
+						<td style= "text-align:right;">{{ reporter.full_name }}</td>
+						<td style= "text-align:{% trans 'left;' %}">{{ reporter.role }}</td>
+						<td style= "text-align:{% trans 'left;' %}">{{ reporter.location }}</td>
 					</tr>{% endfor %}
 				</tbody>
 				<tfoot>
@@ -87,10 +87,10 @@
 	</div>
 	<div class="right">
 		<div class="module contents">
-			<h2>{% trans "Message Contents" %}</h2>
+			<h2 style= "text-align:{% trans 'left;' %}">{% trans "Message Contents" %}</h2>
 			<textarea cols="40" rows="6"></textarea>
-			<input type="button" class="send" value="Send Messages" />
-			<input type="button" class="cancel" value="Cancel" disabled="disabled" />
+			<input type="button" class="send" value="{% trans 'Send Messages' %}" />
+			<input type="button" class="cancel" value="{% trans 'Cancel' %}" disabled="disabled" />
 		</div>
 	</div>
 	<div class="clear-hack"></div>

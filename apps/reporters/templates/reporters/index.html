@@ -22,9 +22,9 @@
 	<table>
 		<thead>
 			<tr>
-				<th scope="col">{% trans "Name" %}</th>
-				<th scope="col">{% trans "Alias" %}</th>
-				<th scope="col">{% trans "Last Seen" %}</th>
+				<th style= "text-align:{% trans 'left;' %} scope="col">{% trans "Name" %}</th>
+				<th style= "text-align:{% trans 'left;' %} scope="col">{% trans "Alias" %}</th>
+				<th style= "text-align:{% trans 'left;' %} scope="col">{% trans "Last Seen" %}</th>
 			</tr>
 		</thead>
 		<tbody>{% if reporters.object_list %}{% for reporter in reporters.object_list %}
@@ -63,8 +63,8 @@
 	<table>
 		<thead>
 			<tr>
-				<th scope="col">{% trans "Title" %}</th>
-				<th scope="col">{% trans "Members" %}</th>
+				<th style= "text-align:{% trans 'left;' %} scope="col">{% trans "Title" %}</th>
+				<th style= "text-align:{% trans 'left;' %} scope="col">{% trans "Members" %}</th>
 			</tr>
 		</thead>
 		<tbody>{% if groups.object_list %}{% for group in groups.object_list %}

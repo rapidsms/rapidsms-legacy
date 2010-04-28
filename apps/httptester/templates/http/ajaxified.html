@@ -32,18 +32,18 @@
 	input { margin-bottom: 1em; width:25em; }
 	#message { height: 5em; }
 </style>
-<h2>{% trans "Message Tester" %}</h2>
+<h2 style= "text-align:{% trans 'left;' %}">{% trans "Message Tester" %}</h2>
 <div class="tester">
 	<table>
 		<tbody id="log">
 		</tbody>
 	</table>
 </div>
-<div id="form_wrapper">
+<div dir="{% trans 'ltr' %}" id="form_wrapper">
 	<form id="form" name="form">
 	<label for="phone">{% trans "Phone Number:" %} <input type="text" id="phone" name="phone" value="{{number}}" /></label>
 	<label for="message">{% trans "Message:" %} <input type="text" id="message" name="message" /></label>
-	<input type="submit" id="submit" name="submit" value="Send" />
+	<input type="submit" id="submit" name="submit" value="{% trans 'Send' %}" />
 </form>
 </div>
 {% endblock %}

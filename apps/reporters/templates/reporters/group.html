@@ -29,8 +29,8 @@
 			</p>
 		</div>
 		<div class="submit">
-			<input type="submit" value="{% if group %}Save Changes{% else %}Add Group{% endif %}" />{% if group %}
-			<input type="submit" name="delete" value="Delete {{ group }}" />{% endif %}
+			<input type="submit" value="{% if group %}{% trans 'Save Changes' %}{% else %}Add Group{% endif %}" />{% if group %}
+			<input type="submit" name="delete" value="{% trans 'Delete' %} {{ group }}" />{% endif %}
 		</div>
 	</form>
 </div>

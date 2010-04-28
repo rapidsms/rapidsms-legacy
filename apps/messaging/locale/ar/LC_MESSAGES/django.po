@@ -16,9 +16,17 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+#: templates/messaging/index.html:3
+msgid "Messaging"
+msgstr "الرسائل"
+
 #: templates/messaging/index.html:14
 msgid "Select Recipients"
 msgstr "اختر مستلم"
+
+#: templates/messaging/index.html:14
+msgid "left;"
+msgstr "right;"
 
 #: templates/messaging/index.html:27
 msgid "contains"
@@ -87,3 +95,12 @@ msgstr "امسح"
 #: templates/messaging/index.html:90
 msgid "Message Contents"
 msgstr "محتوى الرسالة"
+
+#: templates/messaging/index.html:92
+msgid "Send Messages"
+msgstr "ارسال الرسائل"
+
+#: templates/messaging/index.html:93
+msgid "Cancel"
+msgstr "الغاء"
+

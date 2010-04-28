@@ -138,3 +138,11 @@ msgstr "اتصال اولي"
 #: templates/reporters/reporter.html:47
 msgid "Primary Group"
 msgstr "مجموعة اولية"
+
+#: templates/reporters/reporter.html:69
+msgid "Save Changes"
+msgstr "احفظ التعديل"
+
+#: templates/reporters/reporter.html:70
+msgid "Delete"
+msgstr "احذف"

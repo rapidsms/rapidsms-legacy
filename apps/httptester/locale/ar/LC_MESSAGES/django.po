@@ -22,8 +22,16 @@ msgid "Web Message Tester"
 msgstr "تجربة الرسائل"
 
 #: templates/http/ajaxified.html:35
+msgid "ltr"
+msgstr "rtl"
+
+#: templates/http/ajaxified.html:35
 msgid "Message Tester"
 msgstr "تجربة الرسائل"
+
+#: templates/http/ajaxified.html:46
+msgid "Send"
+msgstr "ارسل"
 
 #: templates/http/ajaxified.html:44 templates/http/demo.html:125
 #: templates/http/setphone.html:7
