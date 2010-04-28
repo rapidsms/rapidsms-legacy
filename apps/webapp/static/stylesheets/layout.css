@@ -14,6 +14,7 @@ body {
 	color: #333;
 	padding: 0;
 	margin: 0;
+    direction:rtl;
 }
 
 a {
@@ -89,7 +90,7 @@ div.clear-hack {
 	 * unicef blue stripe of header bg,
 	 * and display logo on the right */
 	#branding h1 {
-		background: url("../images/unicef.png") no-repeat 100% 50%;
+		background: url("../images/unicef_ar.png") no-repeat 100% 50%;
 		line-height: 65px;
 		padding-left: 10px;
 		color: #fff;
@@ -125,8 +126,8 @@ div.clear-hack {
 	/* global tabs sit on the right,
 	 * page-specific tabs sit on the
 	 * left, to draw more attention */
-	#tabs      { right: 0; }
-	#page-tabs { left: 0;  }
+	#tabs      { left: 0; }
+	#page-tabs { right: 0;  }
 	
 		#tabs li,
 		#page-tabs li {
@@ -317,7 +318,7 @@ input.small {
 	}
 	
 	#footer p.rights {
-		text-align: right;
-		float: right;
+		text-align: left;
+		float: left;
 		margin: 0;
 	}

@@ -1,0 +1,135 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-04-26 17:45+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: templates/404.html:3
+msgid " 404 Error "
+msgstr "خطأ 404"
+
+#: templates/404.html:5
+msgid ""
+"Oops!  Sorry, we couldn't find that.  Please check your URL or try again "
+"later..."
+msgstr "عذرا, الرابط غير موجود. الرجاء اعادة المحاولة مرة اخرى فيما بعد..."
+
+#: templates/500.html:3
+msgid " 500 Error "
+msgstr "خطأ 500"
+
+#: templates/500.html:5
+msgid " Oops!  Sorry something went wrong.  Please try again later... "
+msgstr "عذرا, حدث خطأ . الرجاء المحاولة فيما بعد ..."
+
+#: templates/dashboard.html:4
+msgid "Dashboard"
+msgstr "القائمة الرئيسية"
+
+#: templates/dashboard.html:12
+msgid "Welcome to RapidSMS! "
+msgstr "مرحبا بكم في رابد اس ام اس"
+
+#: templates/dashboard.html:14
+msgid "Click on a tab to explore."
+msgstr "اكبس علئ عنوان للاستكشاف"
+
+#: templates/dashboard.html:16
+msgid "Please"
+msgstr "الرجاء"
+
+#: templates/dashboard.html:16
+msgid "log in"
+msgstr "الدخول"
+
+#: templates/dashboard.html:16
+msgid "to continue."
+msgstr "للمتابعة"
+
+#: templates/layout.html:32
+msgid "Log out"
+msgstr "الخروج"
+
+#: templates/layout.html:34
+msgid "Log in"
+msgstr "الدخول"
+
+#: templates/layout.html:40 templates/layout.html.py:76
+msgid "RapidSMS"
+msgstr ""
+
+#: templates/layout.html:76
+msgid "is available under"
+msgstr "موجود تحت"
+
+#: templates/layout.html:77
+msgid "the BSD license"
+msgstr "ترخيص BSD"
+
+#: templates/message.html:7
+msgid "Continue"
+msgstr "تابع"
+
+#: templates/webapp/loggedout.html:3
+msgid "Goodbye"
+msgstr "الى اللقاء"
+
+#: templates/webapp/loggedout.html:6
+msgid "Thanks for visiting RapidSMS!"
+msgstr "شكرا لزيارتكم"
+
+#: templates/webapp/loggedout.html:8
+msgid "Please come again."
+msgstr "نتطلع لزيارتكم مرة اخرى"
+
+#: templates/webapp/loggedout.html:10
+msgid "Log in again"
+msgstr "الدخول مرة اخرى"
+
+#: templates/webapp/login.html:3
+msgid "Login"
+msgstr "الدخول"
+
+#: templates/webapp/login.html:7
+msgid "Oops. Your username and password didn't match. Please try again."
+msgstr "اسم الحول وكلمة السر غير متوافقان, الرجاء المحاولة مرة اخرى"
+
+#: templates/webapp/login.html:11
+msgid "Oops. You do not have permission to view this section."
+msgstr "ليس لديك الصلاحية لمشاهدة هذا الجزء"
+
+#: templates/webapp/login.html:15
+msgid "Please log in to RapidSMS"
+msgstr "الرجاء الدخول الى ربد اس ام اس"
+
+#: templates/webapp/partials/paginator.html:4
+#: templates/webapp/partials/paginator.html:6
+msgid "First Page"
+msgstr "الصفحة الاولى"
+
+#: templates/webapp/partials/paginator.html:5
+#: templates/webapp/partials/paginator.html:7
+msgid "Previous Page"
+msgstr "الصفحة السابقة"
+
+#: templates/webapp/partials/paginator.html:9
+#: templates/webapp/partials/paginator.html:11
+msgid "Next Page"
+msgstr "الصفحة التالية"
+
+#: templates/webapp/partials/paginator.html:10
+#: templates/webapp/partials/paginator.html:12
+msgid "Last Page"
+msgstr "الصفحة الاخيرة"

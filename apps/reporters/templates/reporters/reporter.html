@@ -1,30 +1,31 @@
 {% extends "reporters/index.html" %}
-{% block title %}{% if reporter %}Edit {{ reporter }}{% else %}Add a Reporter{% endif %}{% endblock %}
+{% load i18n %}
+{% block title %}{% if reporter %}{% trans "Edit" %}{{ reporter }}{% else %}{% trans "Add a Reporter" %}{% endif %}{% endblock %}
 
 {% block right %}
 <div class="module">
-	<h2>{% if reporter %}Edit {{ reporter }}{% else %}Add a Reporter{% endif %}</h2>
+	<h2>{% if reporter %}{% trans "Edit" %} {{ reporter }}{% else %}{% trans "Add a Reporter" %}{% endif %}</h2>
 	
 	<form method="post" id="fm-rep-add" action="/reporters/{% if reporter %}{{ reporter.pk }}{% else %}add{% endif %}">
 		<div>
-			<label for="fm-rep-add-alias">Alias</label>
+			<label for="fm-rep-add-alias">{% trans "Alias" %}</label>
 			<input type="text" class="required" id="fm-rep-add-alias" name="alias"{% if reporter %} value="{{ reporter.alias }}"{% endif %} />
-			<p class="help">Must be alphanumeric, up to 20 characters.</p>
+			<p class="help">{% trans "Must be alphanumeric, up to 20 characters." %}</p>
 		</div>
 		<div>
-			<label>Name</label>
+			<label>{% trans "Name" %}</label>
 			<div>
 				<input type="text" id="fm-rep-add-first_name" name="first_name"{% if reporter %} value="{{ reporter.first_name }}"{% endif %} />
-				<label for="fm-rep-add-first_name" class="suffix">First<span class="acc"> Name</span></label>
+				<label for="fm-rep-add-first_name" class="suffix">{% trans "First" %}<span class="acc"> {% trans "Name" %}</span></label>
 			</div>
 			<div>
 				<input type="text" id="fm-rep-add-last_name" name="last_name"{% if reporter %} value="{{ reporter.last_name }}"{% endif %} />
-				<label for="fm-rep-add-last_name" class="suffix">Last<span class="acc"> Name</span></label>
+				<label for="fm-rep-add-last_name" class="suffix">{% trans "Last" %}<span class="acc"> {% trans "Name" %}</span></label>
 			</div>
 		</div>{% if all_backends %}
 		
 		<div id="fm-rep-add-connections">
-			<label>Primary Connection</label>{% if connections %}{% for connection in connections %}
+			<label>{% trans "Primary Connection" %}</label>{% if connections %}{% for connection in connections %}
 			<div>
 				<input type="hidden" name="conn-id" value="{{ connection.pk }}" />
 				<select name="conn-backend">
@@ -43,7 +44,7 @@
 		</div>{% endif %}
 		
 		<div id="fm-rep-add-groups">
-			<label>Primary Group</label>{% if all_groups %}{% if groups %}{% for group in groups %}
+			<label>{% trans "Primary Group" %}</label>{% if all_groups %}{% if groups %}{% for group in groups %}
 			<div>
 				<select name="group">
 					<option></option>{% for my_group in all_groups %}
@@ -57,9 +58,9 @@
 				</select>
 			</div>{% endif %}{% else %}
 			<div class="no-data">
-				No Groups Yet.
+				{% trans "No Groups Yet." %}
 				<a href="/groups/add" class="add">
-					Add a Group
+					{% trans "Add a Group" %}
 				</a>
 			</div>{% endif %}
 		</div>

@@ -1,5 +1,7 @@
 {% extends base_template %}
-{% block title %}Dashboard{% endblock %}
+{% load i18n %}
+
+{% block title %}{% trans "Dashboard" %}{% endblock %}
 {% block javascripts %}
 <script type="text/javascript" src="/static/webapp/javascripts/jquery.flot.js"></script>
 <script type="text/javascript" src="/static/webapp/javascripts/jquery.flot.pie.pack.js"></script>
@@ -7,10 +9,10 @@
 <![endif]-->
 {% endblock %}
 {% block content %}
-Welcome to RapidSMS! 
+{% trans "Welcome to RapidSMS! " %}
 {% if user.is_authenticated %}
-Click on a tab to explore.
+{% trans "Click on a tab to explore." %}
 {% else %}                                        
-Please <a href="/accounts/login/">log in</a> to continue.
+{% trans "Please" %} <a href="/accounts/login/">{% trans "log in" %}</a> {% trans "to continue." %} 
 {% endif %}  
 {% endblock %}

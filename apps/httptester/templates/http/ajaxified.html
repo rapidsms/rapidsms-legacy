@@ -1,5 +1,6 @@
 {% extends base_template %}
-{% block title %}Web Message Tester{% endblock %}
+{% load i18n %}
+{% block title %}{% trans "Web Message Tester" %}{% endblock %}
 {% block javascripts %}
 <script type="text/javascript" src="/static/http/scripts/jquery.scrollTo-min.js"></script>
 <script type="text/javascript" src="/static/http/scripts/httpclient.js"></script>			
@@ -31,7 +32,7 @@
 	input { margin-bottom: 1em; width:25em; }
 	#message { height: 5em; }
 </style>
-<h2>Message Tester</h2>
+<h2>{% trans "Message Tester" %}</h2>
 <div class="tester">
 	<table>
 		<tbody id="log">
@@ -40,8 +41,8 @@
 </div>
 <div id="form_wrapper">
 	<form id="form" name="form">
-	<label for="phone">Phone Number: <input type="text" id="phone" name="phone" value="{{number}}" /></label>
-	<label for="message">Message: <input type="text" id="message" name="message" /></label>
+	<label for="phone">{% trans "Phone Number:" %} <input type="text" id="phone" name="phone" value="{{number}}" /></label>
+	<label for="message">{% trans "Message:" %} <input type="text" id="message" name="message" /></label>
 	<input type="submit" id="submit" name="submit" value="Send" />
 </form>
 </div>

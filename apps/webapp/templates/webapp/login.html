@@ -1,17 +1,18 @@
 {% extends request.base_template %}
-{% block title %}Login{% endblock %}
+{% load i18n %}
+{% block title %}{% trans "Login" %}{% endblock %}
 {% block content %}
 
 {% if form.errors %}
-<p>Oops. Your username and password didn't match. Please try again.</p>
+<p>{% trans "Oops. Your username and password didn't match. Please try again." %}</p>
 {% endif %}
 
 {% if user.is_authenticated %}
-<p>Oops. You do not have permission to view this section.</p>
+<p>{% trans "Oops. You do not have permission to view this section." %}</p>
 
 {% else %}
 
-<h1>Please log in to RapidSMS</h1>
+<h1>{% trans "Please log in to RapidSMS" %}</h1>
 
 
 <form method="post" action="{% url webapp.views.login %}">

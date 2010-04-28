@@ -1,15 +1,16 @@
-{% extends base_template %}
-{% block title %}Message Log{% endblock %}
+﻿{% extends base_template %}
+{% load i18n %}
+{% block title %}{% trans "Message Log" %}{% endblock %}
 {% block content %}
-<h2>All Messages</h2> 
+<h2>{% trans "All Messages" %}</h2> 
 <table width="100%"> 
     <thead>
         <tr>
-            <th>Date</th>
-            <th>From</th>
-            <th>Backend</th>
-            <th>Message</th>
-            <th>Direction</th>
+            <th>{% trans "Date" %}</th>
+            <th>{% trans "From" %}</th>
+            <th>{% trans "Backend" %}</th>
+            <th>{% trans "Message" %}</th>
+            <th>{% trans "Direction" %}</th>
         </tr>
     </thead>
     <tbody>

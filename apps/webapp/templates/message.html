@@ -1,9 +1,10 @@
 {% extends base_template %}
+{% load i18n %}
 {% block content %}
 
 <div class="message">
 	<p>{{ message }}</p>{% if link %}
-	<a href="{{ link }}" class="continue">Continue &raquo;</a>{% endif %}
+	<a href="{{ link }}" class="continue">{% trans "Continue" %} &raquo;</a>{% endif %}
 </div>
 
 {% endblock %}

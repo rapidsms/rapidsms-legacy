@@ -1,5 +1,6 @@
 {% extends base_template %}
-{% block title %}Web Message Tester{% endblock %}
+{% load i18n %}
+{% block title %}{% trans "Web Message Tester" %}{% endblock %}
 {% block content %}
 
 <!-- 
@@ -112,18 +113,18 @@
     <body>
         <div id="wrapper">
             <div>
-                <h1>RapidSMS Virtual Device</h1>
+                <h1>{% trans "RapidSMS Virtual Device" %}</h1>
                 
                 <ul id="log">
-		<li class="in">bednets</li>
-		<li class="out">text 1 for distribution points. text 2 for hanging instructions</li>
+		<li class="in">{% trans "bednets" %}</li>
+		<li class="out">{% trans "text 1 for distribution points. text 2 for hanging instructions" %}</li>
                 </ul>
             
                 <form id="send" method="post">
                 <br>
-                <h2>Phone Number: </h2><input type="text" id="phone_number" name="phone_number" />
+                <h2>{% trans "Phone Number:" %} </h2><input type="text" id="phone_number" name="phone_number" />
                 <br>
-                <h2>Message: </h2><input type="text" id="body" name="body" />
+                <h2>{% trans "Message:" %} </h2><input type="text" id="body" name="body" />
                     <div id="submitbutton">
                     <input type="submit" value="Send" />
                     </div>

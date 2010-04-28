@@ -1,0 +1,140 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-04-26 23:18+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: templates/reporters/group.html:3 templates/reporters/reporter.html:3
+#: templates/reporters/reporter.html:7
+msgid "Edit"
+msgstr "تعديل"
+
+#: templates/reporters/group.html:3 templates/reporters/group.html.py:7
+#: templates/reporters/index.html:79 templates/reporters/index.html.py:93
+#: templates/reporters/reporter.html:63
+msgid "Add a Group"
+msgstr "اضافة مجموعة"
+
+#: templates/reporters/group.html:11 templates/reporters/index.html:66
+msgid "Title"
+msgstr "العنوان"
+
+#: templates/reporters/group.html:15
+msgid "Description"
+msgstr "الوصف"
+
+#: templates/reporters/group.html:18
+msgid ""
+"If provided, the text is displayed to users attempting to send a bulk "
+"message to this group, to ensure they understand what it is."
+msgstr ""
+
+#: templates/reporters/group.html:22
+msgid "Parent Group"
+msgstr "المجموعة الأب"
+
+#: templates/reporters/group.html:24
+msgid "None"
+msgstr "لا شيئ"
+
+#: templates/reporters/group.html:28
+msgid "The other Group that"
+msgstr "المجموعة الاخرى التي"
+
+#: templates/reporters/group.html:28
+msgid "this group"
+msgstr "هذه المجموعة"
+
+#: templates/reporters/group.html:28
+msgid " is contained by."
+msgstr "محتوى ب"
+
+#: templates/reporters/index.html:5
+msgid "Reporters and Groups"
+msgstr "المراسلون والمجموعات"
+
+#: templates/reporters/index.html:14
+msgid "Reporters"
+msgstr "مراسلون"
+
+#: templates/reporters/index.html:15
+msgid "Groups"
+msgstr "مجموعات"
+
+#: templates/reporters/index.html:21
+msgid "All Reporters"
+msgstr "جميع المراسلون"
+
+#: templates/reporters/index.html:25 templates/reporters/reporter.html:16
+#: templates/reporters/reporter.html:19 templates/reporters/reporter.html:23
+msgid "Name"
+msgstr "الاسم"
+
+#: templates/reporters/index.html:26 templates/reporters/reporter.html:11
+msgid "Alias"
+msgstr "الكنية"
+
+#: templates/reporters/index.html:27
+msgid "Last Seen"
+msgstr "اخر مشاهدة"
+
+#: templates/reporters/index.html:33 templates/reporters/index.html.py:72
+msgid "Unknown"
+msgstr "عير معروف"
+
+#: templates/reporters/index.html:34
+msgid "n/a"
+msgstr ""
+
+#: templates/reporters/index.html:39
+msgid "No reporters Yet."
+msgstr "لا يوجد مراسلون"
+
+#: templates/reporters/index.html:41 templates/reporters/index.html.py:55
+#: templates/reporters/reporter.html:3 templates/reporters/reporter.html:7
+msgid "Add a Reporter"
+msgstr "اضف مراسل"
+
+#: templates/reporters/index.html:62
+msgid "All Groups"
+msgstr "جميع المجموعات"
+
+#: templates/reporters/index.html:67
+msgid "Members"
+msgstr "اعضاء"
+
+#: templates/reporters/index.html:77 templates/reporters/reporter.html:61
+msgid "No Groups Yet."
+msgstr "لا يوجد مجموعات"
+
+#: templates/reporters/reporter.html:13
+msgid "Must be alphanumeric, up to 20 characters."
+msgstr "يجب ان يتكون من حروف وارقام, حتى 20 حرف"
+
+#: templates/reporters/reporter.html:19
+msgid "First"
+msgstr "اول"
+
+#: templates/reporters/reporter.html:23
+msgid "Last"
+msgstr "اخر"
+
+#: templates/reporters/reporter.html:28
+msgid "Primary Connection"
+msgstr "اتصال اولي"
+
+#: templates/reporters/reporter.html:47
+msgid "Primary Group"
+msgstr "مجموعة اولية"

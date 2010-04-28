@@ -1,0 +1,45 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-04-27 01:04+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: templates/logger/index.html:3
+msgid "Message Log"
+msgstr ""
+
+#: templates/logger/index.html:5
+msgid "All Messages"
+msgstr "جميع الرسائل"
+
+#: templates/logger/index.html:9
+msgid "Date"
+msgstr "التاريخ"
+
+#: templates/logger/index.html:10
+msgid "From"
+msgstr "من"
+
+#: templates/logger/index.html:11
+msgid "Backend"
+msgstr "الخلفية"
+
+#: templates/logger/index.html:12
+msgid "Message"
+msgstr "الرسائل"
+
+#: templates/logger/index.html:13
+msgid "Direction"
+msgstr "الاتجاه"

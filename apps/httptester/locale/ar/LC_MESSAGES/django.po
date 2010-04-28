@@ -1,0 +1,59 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-04-28 11:38+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: templates/http/ajaxified.html:3 templates/http/demo.html:3
+#: templates/http/index.html:3 templates/http/setphone.html:3
+msgid "Web Message Tester"
+msgstr "تجربة الرسائل"
+
+#: templates/http/ajaxified.html:35
+msgid "Message Tester"
+msgstr "تجربة الرسائل"
+
+#: templates/http/ajaxified.html:44 templates/http/demo.html:125
+#: templates/http/setphone.html:7
+msgid "Phone Number:"
+msgstr "رقم الهاتف:"
+
+#: templates/http/ajaxified.html:45 templates/http/demo.html:127
+msgid "Message:"
+msgstr "الرسالة:"
+
+#: templates/http/demo.html:116
+msgid "RapidSMS Virtual Device"
+msgstr ""
+
+#: templates/http/demo.html:119
+msgid "bednets"
+msgstr ""
+
+#: templates/http/demo.html:120
+msgid "text 1 for distribution points. text 2 for hanging instructions"
+msgstr "النص 1 للنقاط الموزعة, النص 2 لتعليق التعليمات"
+
+#: templates/http/index.html:23
+msgid "All Previous Messages"
+msgstr "جميع الرسائل السابقة"
+
+#: templates/http/index.html:36
+msgid "characters"
+msgstr "احرف"
+
+#: templates/http/index.html:41
+msgid "No Messages Yet."
+msgstr "لا يوجد رسائل"

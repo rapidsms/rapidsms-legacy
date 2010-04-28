@@ -210,7 +210,7 @@ table {
 			tfoot .paginator,
 			tfoot .paginator a,
 			tfoot .paginator span {
-				float: left; }
+				float: right; }
 			
 				tfoot .paginator a.active {
 					background: #eee;

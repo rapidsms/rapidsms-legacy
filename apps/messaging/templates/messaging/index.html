@@ -1,4 +1,5 @@
 {% extends "messaging/base.html" %}
+{% load i18n %}
 {% block title %}Messaging{% endblock %}
 {% load reporters-tags %}
 
@@ -10,7 +11,7 @@
 <div class="split">
 	<div class="left">
 		<div class="module recipients">
-			<h2>Select Recipients</h2>
+			<h2>{% trans "Select Recipients" %}</h2>
 			<form class="search" action="" method="get">
 				{% self_link_fields query field cmp  %}
 				<table>
@@ -23,12 +24,12 @@
 							</td>
 							<td>
 								<select name="cmp">
-									<option value="icontains"{% ifequal cmp "icontains" %} selected="selected"{% endifequal %}>contains</option>
-									<option value="iexact"{% ifequal cmp "iexact" %} selected="selected"{% endifequal %}>equals</option>
-									<option value="istartswith"{% ifequal cmp "istartswith" %} selected="selected"{% endifequal %}>starts with</option>
-									<option value="iendswith"{% ifequal cmp "iendswith" %} selected="selected"{% endifequal %}>ends with</option>
-									<option value="lt"{% ifequal cmp "lt" %} selected="selected"{% endifequal %}>is less than</option>
-									<option value="gt"{% ifequal cmp "gt" %} selected="selected"{% endifequal %}>is more than</option>
+									<option value="icontains"{% ifequal cmp "icontains" %} selected="selected"{% endifequal %}>{% trans "contains" %}</option>
+									<option value="iexact"{% ifequal cmp "iexact" %} selected="selected"{% endifequal %}>{% trans "equals" %}</option>
+									<option value="istartswith"{% ifequal cmp "istartswith" %} selected="selected"{% endifequal %}>{% trans "starts with" %}</option>
+									<option value="iendswith"{% ifequal cmp "iendswith" %} selected="selected"{% endifequal %}>{% trans "ends with" %}</option>
+									<option value="lt"{% ifequal cmp "lt" %} selected="selected"{% endifequal %}>{% trans "is less than" %}</option>
+									<option value="gt"{% ifequal cmp "gt" %} selected="selected"{% endifequal %}>{% trans "is more than" %}</option>
 								</select>
 							</td>
 							<td class="search">
@@ -47,9 +48,9 @@
 				<thead>
 					<tr>
 						<th></th>
-						<th>Name</th>
-						<th>Role</th>
-						<th>Location</th>
+						<th>{% trans "Name" %}</th>
+						<th>{% trans "Role" %}</th>
+						<th>{% trans "Location" %}</th>
 					</tr>
 				</thead>
 				<tbody class="recips{% if filtered %} filtered{% endif %}">{% for reporter in reporters.object_list %}
@@ -64,20 +65,20 @@
 					<tr>
 						<td colspan="4">
 							<div class="paginator">{% if reporters.has_previous %}
-								<a href="{% self_link "page" 1 %}" class="first" title="First page">First Page</a>
-								<a href="{% self_link "page" reporters.previous_page_number %}" class="prev" title="Previous page">Previous Page</a>{% else %}
-								<span class="first na" title="You are already on the first page">First Page</span>
-								<span class="prev na" title="There are no previous pages">Previous Page</span>{% endif %}{% for page in reporters.paginator.page_range %}
+								<a href="{% self_link "page" 1 %}" class="first" title="First page">{% trans "First Page" %}</a>
+								<a href="{% self_link "page" reporters.previous_page_number %}" class="prev" title="Previous page">{% trans "Previous Page" %}</a>{% else %}
+								<span class="first na" title="You are already on the first page">{% trans "First Page" %}</span>
+								<span class="prev na" title="There are no previous pages">{% trans "Previous Page" %}</span>{% endif %}{% for page in reporters.paginator.page_range %}
 								<a href="{% self_link "page" page %}"{% ifequal page reporters.number %} class="active"{% endifequal %} title="Page {{ page }}">{{ page }}</a>{% endfor %}{% if reporters.has_next %}
-								<a href="{% self_link "page" reporters.next_page_number %}" class="next" title="Next page">Next Page</a>
-								<a href="{% self_link "page" reporters.paginator.num_pages %}" class="last" title="Last page">Last Page</a>{% else %}
-								<span class="next na" title="There are no more pages">Next Page</span>
-								<span class="last na" title="You are already on the last page">Last Page</span>{% endif %}
+								<a href="{% self_link "page" reporters.next_page_number %}" class="next" title="Next page">{% trans "Next Page" %}</a>
+								<a href="{% self_link "page" reporters.paginator.num_pages %}" class="last" title="Last page">{% trans "Last Page" %}</a>{% else %}
+								<span class="next na" title="There are no more pages">{% trans "Next Page" %}</span>
+								<span class="last na" title="You are already on the last page">{% trans "Last Page" %}</span>{% endif %}
 							</div>
 							
-							<a href="/messaging/none" class="none" title="Select No Recipients">None</a>
-							<a href="/messaging/all" class="all" title="Select All Recipients">All</a>
-							<a href="/messaging/clear" class="clear" title="Clear Message Statuses">Clear</a>
+							<a href="/messaging/none" class="none" title="Select No Recipients">{% trans "None" %}</a>
+							<a href="/messaging/all" class="all" title="Select All Recipients">{% trans "All" %}</a>
+							<a href="/messaging/clear" class="clear" title="Clear Message Statuses">{% trans "Clear" %}</a>
 						</td>
 					</tr>
 				</tfoot>
@@ -86,7 +87,7 @@
 	</div>
 	<div class="right">
 		<div class="module contents">
-			<h2>Message Contents</h2>
+			<h2>{% trans "Message Contents" %}</h2>
 			<textarea cols="40" rows="6"></textarea>
 			<input type="button" class="send" value="Send Messages" />
 			<input type="button" class="cancel" value="Cancel" disabled="disabled" />
