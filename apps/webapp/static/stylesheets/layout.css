@@ -318,7 +318,7 @@ input.small {
 	}
 	
 	#footer p.rights {
-		text-align: left;
-		float: left;
+		text-align: right;
+		float:right;
 		margin: 0;
 	}
