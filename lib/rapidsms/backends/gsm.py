@@ -48,7 +48,9 @@ class Backend(Backend):
     def configure(self, *args, **kwargs):
         self.modem = None
         self.modem_args = args
-        
+
+        self.service_center = kwargs.pop("service_center", None)
+
         # set max outbound text size
         if 'max_csm' in kwargs:
             self.max_csm = int(kwargs['max_csm'])
@@ -125,10 +127,14 @@ class Backend(Backend):
             *self.modem_args,
             **self.modem_kwargs)
 
-        # If we got the connection, call superclass to
-        # start the run loop--it just sets self._running to True
-        # and calls run.
         if self.modem is not None:
+
+            # set the SMSC, if it was included in the config.
+            if self.service_center is not None:
+                self.modem.service_center = self.service_center
+
+            # call superclass to start the run loop--it just sets
+            # self._running to True and calls run.
             backend.Backend.start(self)
 
     def stop(self):
